@@ -1,11 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+
+//pages
+import LandingPage from "./Pages/LandingPage";
+import Home from "./Pages/Home";
+import EventPage from "./Pages/EventPage";
 
 function App() {
   return (
-    <div className="App">
-      <h1>YUMMY TUMMY STONKS</h1>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/welcome" component={LandingPage}/>
+        <Route exact path="/home" component={Home}/>
+        <Route exact path="/event/:id" component={EventPage}/>
+        <Route path="/">
+          <Redirect to="/welcome"/>
+        </Route>
+      
+      </Switch>
+    </Router>
   );
 }
 
