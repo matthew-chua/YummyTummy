@@ -4,10 +4,12 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import LandingPage from "./Pages/LandingPage";
 import Home from "./Pages/Home";
 import EventPage from "./Pages/EventPage";
+import NavBar from "./Layout/NavBar";
 
 function App() {
   return (
     <Router>
+      <NavBar />
       <Switch>
         <Route exact path="/welcome" component={LandingPage}/>
         <Route exact path="/home" component={Home}/>

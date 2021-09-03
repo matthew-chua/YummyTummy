@@ -1,9 +1,11 @@
 import React from 'react'
 
+import classes from './EventPage.module.css';
+
 export default function EventPage() {
     return (
-        <div>
-            <h1>this is the single event page</h1>
+        <div className={classes.container}>
+            <h1>Events Page</h1>
         </div>
     )
 }
