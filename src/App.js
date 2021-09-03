@@ -15,7 +15,6 @@ function App() {
         <Route path="/">
           <Redirect to="/welcome"/>
         </Route>
-      
       </Switch>
     </Router>
   );
