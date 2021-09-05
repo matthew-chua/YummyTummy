@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import EditEventModal from '../Components/Modals/EditEventModal';
 
-import classes from './EventPage.module.css';
+import classes from './Page.module.css';
 
 export default function EventPage() {
 
@@ -13,7 +13,7 @@ export default function EventPage() {
     }
 
     return (
-        <div>
+        <div className={classes.page}>
             <h1>this is the old event page</h1>
             <button onClick={editModalHandler}>EDIT EVENT</button>
             {editModal && <EditEventModal toggle={editModalHandler}/>}

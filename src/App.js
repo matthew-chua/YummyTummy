@@ -1,24 +1,37 @@
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+  useHistory,
+} from "react-router-dom";
+
+// initialise firebase app
+import app from "./Firebase/firebase";
 
 //pages
-import LandingPage from "./Pages/LandingPage";
-import Home from "./Pages/Home";
+import WelcomePage from "./Pages/WelcomePage";
+import HomePage from "./Pages/HomePage";
 import EventPage from "./Pages/EventPage";
 import NavBar from "./Layout/NavBar";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import { AuthProvider } from "./Auth/AuthProvider";
 
 function App() {
   return (
-    <Router>
-      <NavBar />
-      <Switch>
-        <Route exact path="/welcome" component={LandingPage}/>
-        <Route exact path="/home" component={Home}/>
-        <Route exact path="/event/:id" component={EventPage}/>
-        <Route path="/">
-          <Redirect to="/welcome"/>
-        </Route>
-      </Switch>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <NavBar />
+        <Switch>
+          <Route exact path="/welcome" component={WelcomePage} />
+          <PrivateRoute exact path="/home" component={HomePage} />
+          <PrivateRoute exact path="/event/:id" component={EventPage} />
+          <Route path="/">
+            <Redirect to="/welcome"/>
+          </Route>
+        </Switch>
+      </Router>
+    </AuthProvider>
   );
 }
 
