@@ -10,8 +10,8 @@ import {
 import app from "./Firebase/firebase";
 
 //pages
-import WelcomePage from "./Pages/WelcomePage";
-import HomePage from "./Pages/HomePage";
+import LandingPage from "./Pages/LandingPage";
+import DashboardPage from "./Pages/DashboardPage";
 import EventPage from "./Pages/EventPage";
 import NavBar from "./Layout/NavBar";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
@@ -23,8 +23,8 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-          <Route exact path="/welcome" component={WelcomePage} />
-          <PrivateRoute exact path="/home" component={HomePage} />
+          <Route exact path="/welcome" component={LandingPage} />
+          <PrivateRoute exact path="/home" component={DashboardPage} />
           <PrivateRoute exact path="/event/:id" component={EventPage} />
           <Route path="/">
             <Redirect to="/welcome"/>

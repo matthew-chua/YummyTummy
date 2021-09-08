@@ -1,6 +1,44 @@
 /* accounting for the nav bar */
-.page{
-    /* padding-top: 4.375rem; */
-    padding-top: 5rem;
-    margin: 0 10vw;
+.page {
+  /* padding-top: 4.375rem; */
+  padding-top: 5rem;
+  margin: 0 10vw;
+  display: flex;
+  flex-direction: row;
+}
+.subtitle {
+  font-family: "Lobster", cursive;
+}
+.createEventButton {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  margin: 10px;
+  border-radius: 20px;
+  padding: 10px;
+}
+.pic {
+  height: 100px;
+  width: 100px;
+}
+.leftContainer{
+    width: 50%;
+}
+
+.rightContainer{
+    width: 50%;
+}
+.card{
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    margin: 10px;
+    border-radius: 20px;
+    padding: 10px;
 }
