@@ -2,6 +2,9 @@ import { useEffect, useContext } from "react";
 import { useHistory } from "react-router";
 import { signInWithGoogleAuth, provider, auth } from "../Auth/auth";
 import { AuthContext } from "../Auth/AuthProvider";
+import classes from "./Page.module.css"
+
+import hungryPic from "../Assets/food_dream.svg";
 
 export default function WelcomePage() {
   const history = useHistory();
@@ -21,8 +24,23 @@ export default function WelcomePage() {
 
   return (
     <div>
-      <h1>This is the landing page</h1>
-      <button onClick={signInWithGoogleHandler}>Login</button>
+
+      <div>
+        <h1>Yummy Tummy</h1>
+        <h3>not sure where to eat?</h3>
+        <p>fret not, Yummy Tummy is here to help you 
+          and your best friends find new places to dine!</p>
+      </div>
+
+      <div>
+        <button onClick={signInWithGoogleHandler}>Login</button>
+        <p>log in now to jio your friends!</p>
+      </div>
+      
+      <div>
+        <img src={hungryPic} className={classes.pic}/>
+      </div>
+
     </div>
   );
 }
