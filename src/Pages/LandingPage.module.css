@@ -1,0 +1,26 @@
+.page {
+    margin: 10vh 10vh 10vw 10vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.h4 {
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+    font-size: clamp(1.25rem, 3vw, 4rem);
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: clamp(0.8rem, 2vw, 1.5rem);
+}
+
+.logo {
+    height: 10vh;
+}
+
+.pic {
+    width: 40vw;
+  }
+
+  
