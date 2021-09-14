@@ -16,6 +16,7 @@ import EventPage from "./Pages/EventPage";
 import NavBar from "./Layout/NavBar";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import { AuthProvider } from "./Auth/AuthProvider";
+import TestPage from "./Pages/TestPage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/welcome" component={LandingPage} />
           <PrivateRoute exact path="/home" component={DashboardPage} />
           <PrivateRoute exact path="/event/:id" component={EventPage} />
+          <PrivateRoute exact path="/test" component={TestPage} />
           <Route path="/">
             <Redirect to="/welcome"/>
           </Route>

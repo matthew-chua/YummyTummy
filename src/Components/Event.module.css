@@ -1,0 +1,24 @@
+.root {
+    display: flex;
+    box-shadow: 6px 15px 19px 0px rgba(0,0,0,0.79);
+    -webkit-box-shadow: 6px 15px 19px 0px rgba(0,0,0,0.79);
+    -moz-box-shadow: 6px 15px 19px 0px rgba(0,0,0,0.79);
+    border-radius: 20px;
+    margin: 35px;
+    justify-content: space-around;
+}
+
+.leftContainer  {
+    padding: 10px;
+    padding-right: 25px;
+}
+
+.rightContainer {
+    padding: 10px;
+    padding-left: 25px;
+    text-align: right;
+}
+
+.fontsize {
+    font-size: 1rem;
+}

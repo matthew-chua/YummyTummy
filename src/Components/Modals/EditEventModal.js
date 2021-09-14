@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./EditEventModal.module.css";
 
 import pic from "../../Assets/eventpic.svg";
+import ConfirmDeleteModal from "./ConfirmDeleteModal";
 
 export default function EditEventModal(props) {
   return (
@@ -35,6 +36,7 @@ export default function EditEventModal(props) {
         
       </form>
       <div className={classes.overlay} onClick={props.toggle} />
+      {/* <ConfirmDeleteModal className = {classes.deleteModal}/> */}
     </div>
   );
 }

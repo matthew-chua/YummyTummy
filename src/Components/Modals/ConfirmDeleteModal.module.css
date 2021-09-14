@@ -1,0 +1,47 @@
+.root {
+    padding: 20px;
+    text-align: center;
+    background-color: rgb(145, 56, 228);
+    color: rgb(255, 255, 255);
+    box-shadow: 5px 5px 10px 3px rgba(0,0,0,0.50);
+    -webkit-box-shadow: 5px 5px 10px 3px rgba(0,0,0,0.50);
+    -moz-box-shadow: 5px 5px 10px 3px rgba(0,0,0,0.50);
+    border-radius: 20px;
+    width: 30%;
+    height: 30%;
+}
+
+.bigFont {
+    font-size: 2rem;
+}
+
+.smallFont {
+    font-size: 1rem;
+}
+
+.buttons {
+    padding: 20px;
+    justify-content: center;
+    display: flex;
+    height: 50px;
+}
+
+.leftButton {
+    display: flex;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    margin-right: 50px;
+}
+
+.rightButton {
+    display: flex;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    margin-left: 50px;
+}
+
+
