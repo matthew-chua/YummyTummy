@@ -1,26 +1,62 @@
 .page {
-    margin: 10vh 10vh 10vw 10vw;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  margin: 10vh 10vh 10vw 10vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .h4 {
-    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-    font-size: clamp(1.25rem, 3vw, 4rem);
-    font-style: normal;
-    font-variant: normal;
-    font-weight: 400;
-    line-height: clamp(0.8rem, 2vw, 1.5rem);
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  font-size: clamp(1.25rem, 3vw, 4rem);
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: clamp(0.8rem, 2vw, 1.5rem);
 }
 
 .logo {
-    height: 10vh;
+  height: 10vh;
 }
 
 .pic {
-    width: 40vw;
-  }
+  width: 40vw;
+}
 
-  
+.btn {
+  width: 25vh;
+  height: 5vh;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+  transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
+  text-align: center;
+}
+.btn:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 3px 3px rgba(219, 191, 254, 0.3);
+  box-shadow: 0 0 3px 3px rgba(219, 191, 254, 0.3);
+}
+.btn:active {
+  background-color: rgba(219, 191, 254, 0.3);
+  transition: background-color 0.2s;
+}
+
+.img {
+  width: 2vh;
+  height: 2vh;
+  margin-right: 10px;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnText {
+  display: inline;
+}
