@@ -7,6 +7,7 @@ import landingPageClasses from "./LandingPage.module.css";
 
 import logo from "../Assets/YummyTummyLogo.svg";
 import hungryPic from "../Assets/food_dream.svg";
+import googleLogo from "../Assets/google_logo.svg";
 
 export default function WelcomePage() {
   const history = useHistory();
@@ -41,10 +42,7 @@ export default function WelcomePage() {
               className={landingPageClasses.btn}
             >
               <div className={landingPageClasses.btnContainer}>
-                <img
-                  className={landingPageClasses.img}
-                  src="https://developers.google.com/identity/images/g-logo.png"
-                />
+                <img className={landingPageClasses.img} src={googleLogo} />
                 <div className={landingPageClasses.btnText}>
                   Sign in With Google
                 </div>
