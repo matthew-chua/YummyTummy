@@ -42,7 +42,7 @@ export default function WelcomePage() {
               className={landingPageClasses.btn}
             >
               <div className={landingPageClasses.btnContainer}>
-                <img className={landingPageClasses.img} src={googleLogo} />
+                <img className={landingPageClasses.googleImg} src={googleLogo} />
                 <div className={landingPageClasses.btnText}>
                   Sign in With Google
                 </div>

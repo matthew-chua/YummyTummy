@@ -1,9 +1,13 @@
 .page {
-  margin: 10vh 10vh 10vw 10vw;
+  /* margin: 10vh 10vh 10vw 10vw; */
+  padding: 0 10vh 0 10vw;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
 }
 
 .h4 {
@@ -16,7 +20,7 @@
 }
 
 .logo {
-  height: 10vh;
+  width: 40vw;
 }
 
 .pic {
@@ -44,7 +48,7 @@
   transition: background-color 0.2s;
 }
 
-.img {
+.googleImg {
   width: 2vh;
   height: 2vh;
   margin-right: 10px;
@@ -59,4 +63,15 @@
 
 .btnText {
   display: inline;
+}
+
+@media screen and (max-width: 680px) {
+  .page {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pic{
+    width: 60vw;
+    transform: translate(-11%, 0);
+  }
 }
