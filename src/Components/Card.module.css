@@ -1,34 +1,34 @@
-.leftContainer{
-    width: 35%;
-    height: 100%;
-    border-radius: 20px 0 0 20px;
-    background-color: whitesmoke;
-    
-
-}
-
-.rightContainer{
-    width: 65%;
-    height: 100%;
-    background-image: linear-gradient(135deg, #5E6BCB, #BA5BB2);
-    border-radius: 0 20px 20px 0px;
-    color: white;
-    
-
-}
-.card{
+.root{
     display: flex;
-    flex-direction: row;
-    width: 95%;
-    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    margin: 10px;
-    border-radius: 20px;
-    /* padding: 10px; */
-    height: 80vh;
-
+    justify-content: center;
+    align-items: center;
 }
-.paddingDiv{
-    padding: 2rem;
+.leftContainer {
+  width: 35%;
+  height: 100%;
+  border-radius: 20px 0 0 20px;
+  background-color: whitesmoke;
+}
+
+.rightContainer {
+  width: 65%;
+  height: 100%;
+  background-image: linear-gradient(135deg, #5e6bcb, #ba5bb2);
+  border-radius: 0 20px 20px 0px;
+  color: white;
+}
+.card {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  box-shadow: 7px 10px 21px -6px rgba(0, 0, 0, 0.76);
+  -webkit-box-shadow: 7px 10px 21px -6px rgba(0, 0, 0, 0.76);
+  -moz-box-shadow: 7px 10px 21px -6px rgba(0, 0, 0, 0.76);
+  margin: 10px;
+  border-radius: 20px;
+  /* padding: 10px; */
+  height: 80vh;
+}
+.paddingDiv {
+  padding: 2rem;
 }

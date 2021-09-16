@@ -1,0 +1,20 @@
+.title {
+  font-size: 1.8rem;
+}
+.locationCard {
+  box-shadow: 7px 10px 21px -6px rgba(0, 0, 0, 0.76);
+  -webkit-box-shadow: 7px 10px 21px -6px rgba(0, 0, 0, 0.76);
+  -moz-box-shadow: 7px 10px 21px -6px rgba(0, 0, 0, 0.76);
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: row;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+.text{
+    font-size: 1rem;
+}
