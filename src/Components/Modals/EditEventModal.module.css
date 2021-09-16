@@ -1,52 +1,52 @@
 .modal {
-    z-index: 999;
-    position: absolute;
-    top: 50%;
-    width: 90%;
-    height: 80%;
-    left: 50%;
-    min-width: clamp(10rem, 2vw, 30rem);
-    min-height: clamp(15rem, 2vh, 35rem);
-    padding: 3rem;
-    border-radius: 1rem;
-    transform: translate(-50%, -50%);
-    background: #fff;
-    box-shadow: 0.5rem 0.5rem 1rem #696969;
-    display: flex;
-    flex-direction: row;
-  }
-  .overlay {
-    z-index: 95;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  .leftContainer{
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      padding: 2rem;
-  }
-  .rightContainer{
-    width: 50%;
-    padding: 2rem;
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  width: 90%;
+  height: 80%;
+  left: 50%;
+  min-width: clamp(10rem, 2vw, 30rem);
+  min-height: clamp(15rem, 2vh, 35rem);
+  padding: 3rem;
+  border-radius: 1rem;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  box-shadow: 0.5rem 0.5rem 1rem #696969;
+  display: flex;
+  flex-direction: row;
+}
+.overlay {
+  z-index: 9;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.leftContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+.rightContainer {
+  width: 50%;
+  padding: 2rem;
+}
+.horiButtonGroup {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  padding-top: 10rem;
+}
+.pic {
+  align-content: center;
+  height: 70%;
+  width: 70%;
+}
+.deleteModal {
+  justify-content: center;
+  align-items: center;
+}
 
-}
-.horiButtonGroup{
-    justify-content: space-between;
-    display: flex;
-    flex-direction: row;
-    padding-top: 10rem;
-}
-.pic{
-    align-content: center;
-    height: 70%;
-    width: 70%;
-
-}
-/* .deleteModal {
-  z-index: 9999;
-} */
