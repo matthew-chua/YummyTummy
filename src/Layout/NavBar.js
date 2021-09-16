@@ -40,8 +40,8 @@ const NavBar = () => {
       {currentUser && (
         <div className={classes.wrapper}>
           <div className={`${classes.navBar} ${classes.navBarJustify}`}>
-            <NavLink className={classes.navTitle} to="/documents">
-              <img className={classes.logo} src={logo} alt="TrueSign Logo" />
+            <NavLink className={classes.navTitle} to="/home">
+              <img className={classes.logo} src={logo} alt="YummyTummy Logo" />
             </NavLink>
             <div className={classes.buttonGroup}>
               <div

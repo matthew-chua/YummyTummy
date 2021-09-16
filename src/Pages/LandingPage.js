@@ -23,6 +23,7 @@ export default function WelcomePage() {
   // sign in
   const signInWithGoogleHandler = () => {
     signInWithGoogleAuth(auth, provider);
+    
   };
 
   return (

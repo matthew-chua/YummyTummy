@@ -1,18 +1,63 @@
 /* accounting for the nav bar */
 .page {
   /* padding-top: 4.375rem; */
-  padding-top: 5rem;
-  margin: 0 10vw;
-  display: flex;
-  flex-direction: row;
+  /* padding-top: 5rem; */
+  /* width: 100vw; */
+  padding: 5rem 10vw 0 10vw;
+  /* box-sizing: border-box; */
+  /* margin: 0 10vw; */
+  /* display: flex; */
+  /* justify-content: space-between; */
 }
+
+.header{
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .subtitle {
   font-family: "Lobster", cursive;
+  font-size: clamp(1.5rem, 5vw, 5rem);
+  font-weight: 100;
+  margin-bottom: 1.25rem;
 }
 .createEventButton {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  aspect-ratio: 4;
   cursor: pointer;
+  box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.79);
+  -webkit-box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.79);
+  -moz-box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.79);
+  border-radius: 20px;
+  /* padding: 10px; */
+  width: 35vw;
+}
+.pic {
+  width: 15%;
+  /* height: 80%; */
+}
+
+.content{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+.leftContainer {
+  width: 35vw;
+}
+
+.rightContainer {
+  width: 35vw;
+}
+.card {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
@@ -20,25 +65,34 @@
   border-radius: 20px;
   padding: 10px;
 }
-.pic {
-  height: 100px;
-  width: 100px;
-}
-.leftContainer{
-    width: 50%;
-}
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+  .header{
+    margin-top: 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .createEventButton{
+    width: 80vw;
+  }
+  .createEventButton h4{
+    font-size: clamp(0.8rem, 4vw, 3rem);
+    line-height: clamp(0.8rem, 6vw, 3rem);
+  }
+  .createEventButton p{
+    font-size: clamp(0.8rem, 3.5vw, 3rem);
+    line-height: clamp(0.8rem, 6vw, 3rem);
+  }
 
-.rightContainer{
-    width: 50%;
-}
-.card{
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    margin: 10px;
-    border-radius: 20px;
-    padding: 10px;
+  .leftContainer {
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+  
+  .rightContainer {
+    margin-top: 1.5rem;
+    width: 100%;
+  }
 }

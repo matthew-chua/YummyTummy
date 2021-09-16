@@ -1,4 +1,5 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import { createUser } from "../Firestore/DatabaseManager";
 
 export const provider = new GoogleAuthProvider();
 export const auth = getAuth();
@@ -15,6 +16,10 @@ export const signInWithGoogleAuth = async (auth, provider) => {
       console.log(`user:`, user);
       console.log(`token: ${token}`);
       console.log("credential", credential);
+
+      // create user
+      createUser(user.uid, user.displayName, user.photoURL);
+
       return true;
     })
     .catch((error) => {

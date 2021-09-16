@@ -36,7 +36,6 @@ export default function CreateEventModal(props) {
             <br/>
             <br/>
             <br/>
-            
             Copy your event's unique URL and share it with your friends to invite them!
           </p>
         </div>

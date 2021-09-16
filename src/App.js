@@ -3,10 +3,10 @@ import {
   Switch,
   Route,
   Redirect,
-  useHistory,
 } from "react-router-dom";
 
-// initialise firebase app
+// Don't delete
+// initialise firebase app (need this import to initialise even tho we not calling the app)
 import app from "./Firebase/firebase";
 
 //pages

@@ -150,8 +150,8 @@
       font-size: 1.25rem;
     }
     .button {
-      font-size: 0.7rem;
-      width: 2.8rem;
+      font-size: 0.5rem;
+      padding: 0.3rem 0.7rem;
     }
     .logo{
       width: 8rem;
