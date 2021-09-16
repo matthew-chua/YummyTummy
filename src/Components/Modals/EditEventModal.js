@@ -30,10 +30,10 @@ export default function EditEventModal(props) {
               <input type="number" />
 
               <div className={classes.horiButtonGroup}>
-                <button onClick={props.toggle} className={classes.saveButton}>
+                <button onClick={props.toggle} className={classes.cancelButton}>
                   Cancel
                 </button>
-                <button className={classes.cancelButton} type="submit">
+                <button className={classes.saveButton} type="submit">
                   Save
                 </button>
               </div>
@@ -51,7 +51,10 @@ export default function EditEventModal(props) {
               <img src={pic} className={classes.pic} />
               <div className={classes.text}>
                 <h1>Edit Event!</h1>
-                <p>Change of plans? No worries, simply update the details on the left and hit save!</p>
+                <p>
+                  Change of plans? No worries, simply update the details on the
+                  left and hit save!
+                </p>
               </div>
             </div>
           }

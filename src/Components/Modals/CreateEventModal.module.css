@@ -1,35 +1,72 @@
 .modal {
-    z-index: 9999;
-    position: absolute;
-    top: 50%;
-    width: 90%;
-    height: 80%;
-    left: 50%;
-    min-width: clamp(10rem, 2vw, 30rem);
-    min-height: clamp(15rem, 2vh, 35rem);
-    transform: translate(-50%, -50%);
-  }
-  .overlay {
-    z-index: 9998;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
+  z-index: 9999;
+  position: absolute;
+  top: 50%;
+  width: 90%;
+  height: 80%;
+  left: 50%;
+  min-width: clamp(10rem, 2vw, 30rem);
+  min-height: clamp(15rem, 2vh, 35rem);
+  transform: translate(-50%, -50%);
+}
+.overlay {
+  z-index: 9998;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
 
-
-.pic{
+.pic {
   height: 50%;
   width: 50%;
 }
 
-.rightContainer{
+.rightContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.text{
+.text {
   padding-top: 3rem;
+}
+.cancelButton {
+  border: none;
+  background-color: black;
+  opacity: 0.37;
+  color: white;
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  font-size: clamp(0.8rem, 2vw, 1.5rem);
+  width: 50%;
+  height: 55.36px;
+  border-radius: 15px;
+  margin-right: 5px;
+}
+.createButton {
+  border: none;
+  background-color: #ba5bb2;
+  color: white;
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  font-size: clamp(0.8rem, 2vw, 1.5rem);
+  width: 50%;
+  height: 55.36px;
+  border-radius: 15px;
+}
+.cancelButton:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 6px 6px rgba(27, 26, 28, 0.3);
+  box-shadow: 0 0 6px 6px rgba(27, 26, 28, 0.3);
+}
+.createButton:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 6px 6px #ba5bb21d;
+  box-shadow: 0 0 6px 6px #ba5bb21d;
+}
+.horiButtonGroup {
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }

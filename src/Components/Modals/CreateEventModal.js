@@ -19,10 +19,10 @@ export default function CreateEventModal(props) {
               <input type="number" />
 
               <div className={classes.horiButtonGroup}>
-                <button onClick={props.toggle} className={classes.saveButton}>
+                <button onClick={props.toggle} className={classes.cancelButton}>
                   Cancel
                 </button>
-                <button className={classes.cancelButton} type="submit">
+                <button className={classes.createButton} type="submit">
                   Create
                 </button>
               </div>
