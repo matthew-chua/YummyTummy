@@ -7,13 +7,7 @@
     left: 50%;
     min-width: clamp(10rem, 2vw, 30rem);
     min-height: clamp(15rem, 2vh, 35rem);
-    padding: 3rem;
-    border-radius: 1rem;
     transform: translate(-50%, -50%);
-    background: #fff;
-    box-shadow: 0.5rem 0.5rem 1rem #696969;
-    display: flex;
-    flex-direction: row;
   }
   .overlay {
     z-index: 9998;
@@ -24,26 +18,18 @@
     left: 0;
     background-color: rgba(0, 0, 0, 0.4);
   }
-  .leftContainer{
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      padding: 2rem;
-  }
-  .rightContainer{
-    width: 50%;
-    padding: 2rem;
 
-}
-.horiButtonGroup{
-    justify-content: space-between;
-    display: flex;
-    flex-direction: row;
-    padding-top: 10rem;
-}
+
 .pic{
-    align-content: center;
-    height: 70%;
-    width: 70%;
+  height: 50%;
+  width: 50%;
+}
 
+.rightContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.text{
+  padding-top: 3rem;
 }

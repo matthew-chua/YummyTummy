@@ -9,7 +9,7 @@ export default function Participants(props) {
     
     return (
         <div>
-            <p>Who's Coming:</p>
+            <p className={classes.text}>Who's Coming:</p>
             {participantArray.map((participant, index)=> (
                 <p className={classes.names}>{participant}</p>
             ))}

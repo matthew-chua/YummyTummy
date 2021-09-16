@@ -2,13 +2,14 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { auth } from "../Auth/auth";
 import classes from "./Page.module.css";
+import { getEvents } from "../Firestore/DatabaseManager";
 
 //assets
 import speakerPic from "../Assets/announcement.png";
+
 //components
 import CreateEventModal from "../Components/Modals/CreateEventModal";
 import Event from "../Components/Event";
-import { getEvents } from "../Firestore/DatabaseManager";
 
 export default function HomePage() {
   const DUMMYDATA = [

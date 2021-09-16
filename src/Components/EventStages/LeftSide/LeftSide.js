@@ -17,7 +17,7 @@ export default function LeftSide(props) {
     eventTitle: "Supper",
     dateTime: "24 Aug, 19:00",
     eatery: "To be Confirmed",
-    eventID: "red-frog93",
+    eventID: "red-frog97",
     participants: ["matthew", "ivan", "daniel", "grace"],
   };
   const DUMMYLOCATIONS = [
@@ -50,9 +50,9 @@ export default function LeftSide(props) {
        {editEvent && <EditEventModal toggle={editEventHandler}/>}
       <div className={classes.top}>
         <div>
-          <h1>{DUMMYDATA.eventTitle}</h1>
-          <p> 📅 {DUMMYDATA.dateTime}</p>
-          <p> 📍 {DUMMYDATA.eatery}</p>
+          <h1 className={classes.title}>{DUMMYDATA.eventTitle}</h1>
+          <p className={classes.text}> 📅 {DUMMYDATA.dateTime}</p>
+          <p className={classes.text}> 📍 {DUMMYDATA.eatery}</p>
         </div>
 
         {/* need to change this to the icon */}
@@ -61,7 +61,7 @@ export default function LeftSide(props) {
 
       {props.pageState == 0 && (
         <div>
-          <Invite />
+          <Invite id={DUMMYDATA.eventID}/>
           <Participants participants={DUMMYDATA.participants} />
         </div>
       )}
@@ -74,7 +74,7 @@ export default function LeftSide(props) {
 
       {(props.pageState == 3 || props.pageState == 4) && (
         <div>
-          <Invite />
+          <Invite id={DUMMYDATA.eventID}/>
           <Participants participants={DUMMYDATA.participants} />
         </div>
       )}
