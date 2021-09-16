@@ -10,7 +10,7 @@
   /* justify-content: space-between; */
 }
 
-.header{
+.header {
   margin-top: 2.5rem;
   display: flex;
   justify-content: space-between;
@@ -42,7 +42,7 @@
   /* height: 80%; */
 }
 
-.content{
+.content {
   display: flex;
   justify-content: space-between;
   margin-top: 2rem;
@@ -54,6 +54,11 @@
 .rightContainer {
   width: 35vw;
 }
+
+.columnTitle {
+  font-size: clamp(0.8rem, 4vw, 2.5rem);
+}
+
 .card {
   display: flex;
   flex-direction: row;
@@ -69,19 +74,19 @@
   .content {
     flex-direction: column;
   }
-  .header{
+  .header {
     margin-top: 1.5rem;
     flex-direction: column;
     align-items: flex-start;
   }
-  .createEventButton{
+  .createEventButton {
     width: 80vw;
   }
-  .createEventButton h4{
+  .createEventButton h4 {
     font-size: clamp(0.8rem, 4vw, 3rem);
     line-height: clamp(0.8rem, 6vw, 3rem);
   }
-  .createEventButton p{
+  .createEventButton p {
     font-size: clamp(0.8rem, 3.5vw, 3rem);
     line-height: clamp(0.8rem, 6vw, 3rem);
   }
@@ -90,7 +95,7 @@
     margin-top: 1.5rem;
     width: 100%;
   }
-  
+
   .rightContainer {
     margin-top: 1.5rem;
     width: 100%;

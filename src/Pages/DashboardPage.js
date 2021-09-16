@@ -48,17 +48,18 @@ export default function HomePage() {
         >
           <img src={speakerPic} className={classes.pic} />
           <div>
-            <h4 style={{margin:0}}>jio your friends!</h4>
-            <p style={{margin:0}}>Click here to create an event!</p>
+            <h4 style={{ margin: 0 }}>jio your friends!</h4>
+            <p style={{ margin: 0 }}>Click here to create an event!</p>
           </div>
         </div>
       </div>
 
       <div className={classes.content}>
         <div className={classes.leftContainer}>
-          <p>Upcoming Events</p>
+          <p className={classes.columnTitle}>Upcoming Events</p>
           {DUMMYDATA.map((event, index) => (
             <Event
+              key={index}
               title={event.eventTitle}
               location={event.location}
               dateTime={event.dateTime}
@@ -67,7 +68,7 @@ export default function HomePage() {
           ))}
         </div>
         <div className={classes.rightContainer}>
-          <p>Previous Events</p>
+          <p className={classes.columnTitle}>Previous Events</p>
         </div>
       </div>
       {createEventModal && (

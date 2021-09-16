@@ -14,8 +14,9 @@ export default function Event(props) {
                 </div>
             </div>
             <div className = {classes.rightContainer}>
+            {/* actually if too many, put ... */}
             {PARTICIPANTARRAY.map((participant, index) => (
-            <p className = {classes.fontsize}>{participant}</p> 
+            <p key={index} className = {classes.fontsize}>{participant}</p> 
             ))}
             </div>
         </div>
