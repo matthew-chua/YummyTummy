@@ -1,24 +1,25 @@
 import React from "react";
+import { useState } from "react";
 
 //components
 import Invite from "./Invite";
 import Locations from "./Locations";
 import Participants from "./Participants";
+import EditEventModal from "../../Modals/EditEventModal";
 
 //css
 import classes from "./LeftSide.module.css";
 
 export default function LeftSide(props) {
-  const DUMMYDATA = [
-    {
-      eventTitle: "Supper",
-      dateTime: "24 Aug, 19:00",
-      eatery: "To be Confirmed",
-      eventID: "red-frog93",
-      participants: ["matthew", "ivan", "daniel", "grace"],
-    },
-  ];
 
+
+  const DUMMYDATA = {
+    eventTitle: "Supper",
+    dateTime: "24 Aug, 19:00",
+    eatery: "To be Confirmed",
+    eventID: "red-frog93",
+    participants: ["matthew", "ivan", "daniel", "grace"],
+  };
   const DUMMYLOCATIONS = [
     {
       name: "Koufu",
@@ -38,38 +39,45 @@ export default function LeftSide(props) {
     },
   ];
 
+  const [editEvent, setEditEvent] = useState(false);
+
+  const editEventHandler = () => {
+    setEditEvent(prev=>(!prev));
+  }
+
   return (
     <div className={classes.root}>
-      {DUMMYDATA.map((event, index) => (
+       {editEvent && <EditEventModal toggle={editEventHandler}/>}
+      <div className={classes.top}>
         <div>
-          <h1>{event.eventTitle}</h1>
-          <p> 📅 {event.dateTime}</p>
-          <p> 📍 {event.eatery}</p>
+          <h1>{DUMMYDATA.eventTitle}</h1>
+          <p> 📅 {DUMMYDATA.dateTime}</p>
+          <p> 📍 {DUMMYDATA.eatery}</p>
         </div>
-      ))}
+
+        {/* need to change this to the icon */}
+        {props.pageState == 0 && <p className={classes.editIcon} onClick={editEventHandler}>edit</p>}
+      </div>
 
       {props.pageState == 0 && (
-        <>
+        <div>
           <Invite />
-          <Participants participants={DUMMYDATA[0].participants} />
-        </>
+          <Participants participants={DUMMYDATA.participants} />
+        </div>
       )}
 
-      {props.pageState == 1 && <Locations locations={DUMMYLOCATIONS}/>}
+      {props.pageState == 1 && <Locations locations={DUMMYLOCATIONS} />}
 
       {props.pageState == 2 && (
-        <Participants participants={DUMMYDATA[0].participants} />
+        <Participants participants={DUMMYDATA.participants} />
       )}
 
       {(props.pageState == 3 || props.pageState == 4) && (
-        <>
+        <div>
           <Invite />
-          <Participants participants={DUMMYDATA[0].participants} />
-        </>
+          <Participants participants={DUMMYDATA.participants} />
+        </div>
       )}
-
-
-
     </div>
   );
 }

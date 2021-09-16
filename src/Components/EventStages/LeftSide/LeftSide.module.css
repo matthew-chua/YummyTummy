@@ -1,3 +1,8 @@
-.root{
-    
+.top{
+    display: flex;
+    justify-content: space-between;
+}
+.editIcon{
+    cursor: pointer;
+    height: fit-content;
 }
