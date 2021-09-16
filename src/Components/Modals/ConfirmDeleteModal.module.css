@@ -2,7 +2,7 @@
     z-index: 9999;
     padding: 20px;
     text-align: center;
-    background-color: rgb(145, 56, 228);
+    background-image: linear-gradient(135deg, #5E6BCB, #BA5BB2);
     color: rgb(255, 255, 255);
     box-shadow: 5px 5px 10px 3px rgba(0,0,0,0.50);
     -webkit-box-shadow: 5px 5px 10px 3px rgba(0,0,0,0.50);
