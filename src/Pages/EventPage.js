@@ -5,6 +5,7 @@ import { useState } from "react";
 import Card from "../Components/Card";
 import LeftSide from "../Components/EventStages/LeftSide/LeftSide";
 import JoinYourFriends from "../Components/EventStages/RightSide/JoinYourFriends";
+import HostSearch from "../Components/EventStages/RightSide/HostSearch";
 
 //css
 import classes from "./EventPage.module.css";
@@ -33,7 +34,7 @@ export default function EventPage() {
       {pageState === 1 && (
         <Card
           left={<LeftSide pageState={pageState} />}
-          right={<h2>right side</h2>}
+          right={<HostSearch/>}
           pageState={pageState}
         />
       )}
