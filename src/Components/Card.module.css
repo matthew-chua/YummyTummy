@@ -5,14 +5,14 @@
 }
 .leftContainer {
   width: 35%;
-  height: 100%;
+  /* height: 100%; */
   border-radius: 20px 0 0 20px;
   background-color: whitesmoke;
 }
 
 .rightContainer {
   width: 65%;
-  height: 100%;
+  /* height: 100%; */
   background-image: linear-gradient(135deg, #5e6bcb, #ba5bb2);
   border-radius: 0 20px 20px 0px;
   color: white;
@@ -27,7 +27,7 @@
   margin: 10px;
   border-radius: 20px;
   /* padding: 10px; */
-  height: 80vh;
+  /* height: 80vh; */
 }
 .paddingDiv {
   padding: 2rem;

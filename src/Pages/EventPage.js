@@ -4,12 +4,13 @@ import { useState } from "react";
 //components
 import Card from "../Components/Card";
 import LeftSide from "../Components/EventStages/LeftSide/LeftSide";
+import JoinYourFriends from "../Components/EventStages/RightSide/JoinYourFriends";
 
 //css
 import classes from "./EventPage.module.css";
 
 export default function EventPage() {
-  const [pageState, setPageState] = useState(0);
+  const [pageState, setPageState] = useState(3);
 
   // 0 - host (search location)
   // 1 - host (choose location)
@@ -48,7 +49,7 @@ export default function EventPage() {
       {pageState === 3 && (
         <Card
           left={<LeftSide pageState={pageState} />}
-          right={<h2>right side</h2>}
+          right={<JoinYourFriends/>}
           pageState={pageState}
         />
       )}
