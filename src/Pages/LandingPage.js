@@ -29,8 +29,8 @@ export default function WelcomePage() {
   return (
     <div className={landingPageClasses.page}>
       <div>
-        <img src={logo} className={landingPageClasses.logo} />
-        <h4 className={landingPageClasses.h4}>not sure where to eat?</h4>
+        <h1 className={landingPageClasses.logo}>Yummy Tummy</h1>
+        <h2 className={landingPageClasses.subtitle}>not sure where to eat?</h2>
         <p>
           fret not, Yummy Tummy is here to help you and your best friends find
           new places to dine!

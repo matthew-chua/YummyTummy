@@ -11,7 +11,7 @@ import classes from "./EventPage.module.css";
 export default function EventPage() {
   const [pageState, setPageState] = useState(0);
 
-  //0 - host (search location)
+  // 0 - host (search location)
   // 1 - host (choose location)
   // 2 - host / participant (curated location)
   // 3 - invitee (join event)
