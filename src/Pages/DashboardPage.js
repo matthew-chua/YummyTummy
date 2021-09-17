@@ -30,7 +30,7 @@ export default function HomePage() {
   const [createEventModal, setCreateEventModal] = useState(false);
 
   const createEventModalHandler = () => {
-    setCreateEventModal(!createEventModal);
+    setCreateEventModal(prev=>(!prev));
   };
 
   useEffect(async () => {

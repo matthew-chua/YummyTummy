@@ -6,7 +6,7 @@ import Card from "../Card";
 export default function CreateEventModal(props) {
   return (
     <div>
-      <form name="createEvent" className={classes.modal}>
+      <form className={classes.modal}>
         <Card
           left={
             <div className={classes.leftContainer}>
@@ -22,7 +22,7 @@ export default function CreateEventModal(props) {
                 <button
                   onClick={props.toggle}
                   className={classes.cancelButton}
-                  type="cancel"
+                  type="button"
                 >
                   Cancel
                 </button>
