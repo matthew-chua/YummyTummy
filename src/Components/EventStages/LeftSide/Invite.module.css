@@ -1,5 +1,7 @@
-.root{
-    
+
+.link:hover{
+    transform: scale(1.1);
+    cursor: pointer;
 }
 .link{
     background-image: linear-gradient(135deg, #5E6BCB, #BA5BB2);
@@ -10,6 +12,12 @@
     padding-right: 1rem;
     align-items: center;
     justify-content: space-between;
+    transition: 0.1s ease-in;
+    -o-transition: 0.1s ease-in;
+    -ms-transition: 0.1s ease-in;
+    -moz-transition: 0.1s ease-in;
+    -webkit-transition: 0.1s ease-in;
+    transform: scale(1);
 }
 .text{
     font-size: 0.8rem;

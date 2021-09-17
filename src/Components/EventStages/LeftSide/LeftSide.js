@@ -20,6 +20,7 @@ export default function LeftSide(props) {
     eventID: "red-frog97",
     participants: ["matthew", "ivan", "daniel", "grace"],
   };
+  
   const DUMMYLOCATIONS = [
     {
       name: "Koufu",
@@ -56,23 +57,23 @@ export default function LeftSide(props) {
         </div>
 
         {/* need to change this to the icon */}
-        {props.pageState == 0 && <p className={classes.editIcon} onClick={editEventHandler}>edit</p>}
+        {props.pageState === 0 && <p className={classes.editIcon} onClick={editEventHandler}>edit</p>}
       </div>
 
-      {props.pageState == 0 && (
+      {props.pageState === 0 && (
         <div>
           <Invite id={DUMMYDATA.eventID}/>
           <Participants participants={DUMMYDATA.participants} />
         </div>
       )}
 
-      {props.pageState == 1 && <Locations locations={DUMMYLOCATIONS} />}
+      {props.pageState === 1 && <Locations locations={DUMMYLOCATIONS} />}
 
-      {props.pageState == 2 && (
+      {props.pageState === 2 && (
         <Participants participants={DUMMYDATA.participants} />
       )}
 
-      {(props.pageState == 3 || props.pageState == 4) && (
+      {(props.pageState === 3 || props.pageState === 4) && (
         <div>
           <Invite id={DUMMYDATA.eventID}/>
           <Participants participants={DUMMYDATA.participants} />
