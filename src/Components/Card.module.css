@@ -26,9 +26,26 @@
   -moz-box-shadow: 7px 10px 21px -6px rgba(0, 0, 0, 0.76);
   margin: 10px;
   border-radius: 20px;
+  /* max-height: 90vh; */
   /* padding: 10px; */
   /* height: 80vh; */
 }
 .paddingDiv {
   padding: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .card{
+    flex-direction: column-reverse;
+    width: 90%;
+  }
+  .leftContainer {
+    width: 100%;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .rightContainer {
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+  }
 }

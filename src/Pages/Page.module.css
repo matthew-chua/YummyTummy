@@ -30,9 +30,9 @@
   justify-content: space-evenly;
   aspect-ratio: 4;
   cursor: pointer;
-  box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.79);
-  -webkit-box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.79);
-  -moz-box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.79);
+  box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.40);
+  -webkit-box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.40);
+  -moz-box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.40);
   border-radius: 20px;
   /* padding: 10px; */
   width: 35vw;

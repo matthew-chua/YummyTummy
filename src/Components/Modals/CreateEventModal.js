@@ -37,7 +37,7 @@ export default function CreateEventModal(props) {
               <img src={pic} className={classes.pic} />
 
               <div className={classes.text}>
-                <h1>Create an Event!</h1>
+                <h3>Create an Event!</h3>
                 <p>Fill in the details and hit create when you're done</p>
                 <p>
                   Copy your event's unique URL and share it with your friends to

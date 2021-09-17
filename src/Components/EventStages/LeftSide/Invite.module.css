@@ -23,6 +23,16 @@
     font-size: 0.8rem;
     color: white;
 }
+.input{
+    width: 85%;
+  /* height: 4vh; */
+  /* font-family: Futura, "Trebuchet MS", Arial, sans-serif; */
+  color: white;
+  font-size: clamp(0.8rem, 1vw, 1.5rem);
+  box-shadow: none;
+  background-color: transparent;
+}
+
 .icon{
     color: white;
 }

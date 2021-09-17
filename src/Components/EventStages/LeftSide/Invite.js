@@ -16,11 +16,12 @@ export default function Invite(props) {
     return (
         <div className={classes.root} >
             <p>Invite your friends:</p>
-            <div className={classes.link} onClick={copyLinkHandler}>
-                {!showCopiedMessage && <p className={classes.text}>https://www.yummytummy.com/event/{props.id}</p>}
+            <div className={classes.link}>
+                {/* think input might be a better choice in this case */}
+                {!showCopiedMessage && <input className={`${classes.text} ${classes.input}`} value={`https://www.yummytummy.com/event/${props.id}`}></input>}
+                {/* {!showCopiedMessage && <p className={classes.text}>{`https://www.yummytummy.com/event/${props.id}`}</p>} */}
                 {showCopiedMessage && <p className={classes.text}>Copied!</p>}
-
-                <p className={classes.icon}>
+                <p className={classes.icon} onClick={copyLinkHandler}>
                 <i class="fa fa-copy"></i>
                 </p>
             </div>
