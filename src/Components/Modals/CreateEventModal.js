@@ -1,9 +1,28 @@
 import React from "react";
+import {useState} from 'react';
 import classes from "./CreateEventModal.module.css";
 import pic from "../../Assets/eventpic.svg";
 import Card from "../Card";
 
 export default function CreateEventModal(props) {
+  
+  const [count, setCount] = useState(0);
+  
+  const plusOne = (e) => {
+    e.preventDefault();
+    if (count <5) {
+      setCount(count + 1);
+    }
+    
+  };
+
+  const minusOne = (e) => {
+    e.preventDefault();
+    if (count >0) {
+      setCount(count - 1);
+    }
+  };
+
   return (
     <div>
       <form className={classes.modal}>
@@ -15,19 +34,30 @@ export default function CreateEventModal(props) {
               <h2>Date & Time:</h2>
               <input type="datetime-local" />
 
-              <h2>Max Pax:</h2>
-              <input type="number" min="0" max="5" />
+              <div className={classes.maxPax}>
 
-              <div className={classes.horiButtonGroup}>
+              <h2 className={classes.maxPaxText}>Max Pax:</h2>
+              <button className={classes.minusButton} onClick={minusOne}>-</button>
+              <p className={classes.count}>{count}</p>
+              <button className={classes.addButton} onClick={plusOne}>+</button>
+              </div>
+
+              <div className={classes.vertButtonGroup}>
+              <button onClick={props.toggle} className={classes.currentLocationButton} type="button">
+              Create with Current Location
+              </button>
+               {/* <div className={classes.or}>or</div> */}
+              <button onClick={props.toggle} className={classes.joinWithPostalCode} type="button">
+                Create with Postal Code{" "}
+                <i style={{ marginLeft: "10px" }} class="fa fa-arrow-right"></i>
+              </button>
+
                 <button
                   onClick={props.toggle}
                   className={classes.cancelButton}
                   type="button"
                 >
                   Cancel
-                </button>
-                <button className={classes.createButton} type="submit">
-                  Create
                 </button>
               </div>
             </div>
