@@ -7,6 +7,7 @@ import LeftSide from "../Components/EventStages/LeftSide/LeftSide";
 import JoinYourFriends from "../Components/EventStages/RightSide/JoinYourFriends";
 import HostSearch from "../Components/EventStages/RightSide/HostSearch";
 import WaitForLocation from "../Components/EventStages/RightSide/WaitForLocation";
+import CuratedLocation from "../Components/EventStages/RightSide/CuratedLocation";
 
 //css
 import classes from "./EventPage.module.css";
@@ -43,7 +44,7 @@ export default function EventPage() {
       {pageState === 2 && (
         <Card
           left={<LeftSide pageState={pageState} />}
-          right={<h2>right side</h2>}
+          right={<CuratedLocation />}
           pageState={pageState}
         />
       )}

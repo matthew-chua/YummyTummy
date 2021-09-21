@@ -1,0 +1,84 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+.img {
+  width: 25vw;
+  align-items: center;
+  transform: scale(1.5, 1.5);
+  padding: 0;
+}
+
+.title {
+  font-weight: normal;
+}
+
+.text {
+  justify-content: left;
+}
+
+.address {
+  font-size: 60%;
+}
+.rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.ratingsText {
+  font-size: 70%;
+  margin-right: 10px;
+}
+.outer {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+}
+.outer::before {
+  content: "\f006 \f006 \f006 \f006 \f006";
+}
+.inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  /* width: 29%; */
+}
+.inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #f8ce0b;
+}
+
+.btnGroup {
+  display: flex;
+  flex-direction: horizontal;
+  gap: 2%;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.btn {
+  border: none;
+  background-color: rgba(102, 60, 117, 1);
+  color: white;
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  font-size: clamp(0.4rem, 1.5vw, 1.5rem);
+  width: 48%;
+  height: 55.36px;
+  border-radius: 15px;
+}
+
+.btn:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 3px 3px rgba(219, 191, 254, 0.3);
+  box-shadow: 0 0 3px 3px rgba(219, 191, 254, 0.3);
+}
+
+.btn:active {
+  background-color: rgba(219, 191, 254, 0.3);
+  transition: background-color 0.2s;
+}
