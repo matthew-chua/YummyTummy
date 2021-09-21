@@ -12,7 +12,7 @@ import WaitForLocation from "../Components/EventStages/RightSide/WaitForLocation
 import classes from "./EventPage.module.css";
 
 export default function EventPage() {
-  const [pageState, setPageState] = useState(4);
+  const [pageState, setPageState] = useState(3);
 
   // 0 - host (search location)
   // 1 - host (choose location)
