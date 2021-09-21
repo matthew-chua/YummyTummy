@@ -31,7 +31,9 @@
   /* height: 80vh; */
 }
 .paddingDiv {
+  box-sizing: border-box; /* to include the padding in the 100% height */
   padding: 2rem;
+  height: 100%;
 }
 
 @media screen and (max-width: 768px) {

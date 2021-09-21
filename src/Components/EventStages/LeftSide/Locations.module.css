@@ -1,5 +1,5 @@
 .title {
-  font-size: 1.8rem;
+  font-size: clamp(1.25rem, 2vw,1.8rem)
 }
 .locationCard {
   box-shadow: 7px 10px 21px -6px rgba(0, 0, 0, 0.76);

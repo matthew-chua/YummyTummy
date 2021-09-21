@@ -21,7 +21,8 @@
 
 .logo {
   font-family: Lobster;
-  padding-bottom: 0.25em;
+  /* padding-bottom: 0.25em; */
+  line-height: 130%;
   font-size: clamp(2.5rem, 6vw, 7vw);
   background: -webkit-linear-gradient(135deg, #ba5bb2 55%, #5e6bcb);
   background-clip: text;
