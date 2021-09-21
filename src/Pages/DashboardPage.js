@@ -29,7 +29,13 @@ export default function HomePage() {
     },
   ];
 
-  const expiredEvents = [];
+  const expiredEvents = [    {
+    eventTitle: "Lunch",
+    location: "NorthHill",
+    dateTime: "12:00, 28/10/21",
+    participants: ["Matthew (Host)", "Colin", "Grace"],
+    eventID: "bluefish-39"
+  },];
 
   let noExpiredEvents = false;
   let noUpcomingEvents = false;
@@ -95,6 +101,19 @@ export default function HomePage() {
         <div className={classes.rightContainer}>
           <p className={classes.columnTitle}>Previous Events</p>
           {noExpiredEvents && <p>You have no previous events 🥲</p>}
+
+          {expiredEvents.map((event, index) => (
+            
+            <Event
+              key={index}
+              title={event.eventTitle}
+              location={event.location}
+              dateTime={event.dateTime}
+              participants={event.participants}
+              eventID={event.eventID}
+            />
+            
+          ))}
         </div>
       </div>
       {createEventModal && (

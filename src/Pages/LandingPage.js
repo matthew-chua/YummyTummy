@@ -2,11 +2,12 @@ import { useEffect, useContext } from "react";
 import { useHistory } from "react-router";
 import { signInWithGoogleAuth, provider, auth } from "../Auth/auth";
 import { AuthContext } from "../Auth/AuthProvider";
-import pageClasses from "./Page.module.css";
+
+//css
 import landingPageClasses from "./LandingPage.module.css";
 
-import logo from "../Assets/YummyTummyLogo.svg";
-import hungryPic from "../Assets/food_dream.svg";
+//assets
+import hungryPic from "../Assets/food_dream.png";
 import googleLogo from "../Assets/google_logo.svg";
 
 export default function WelcomePage() {
@@ -55,7 +56,7 @@ export default function WelcomePage() {
         </div>
       </div>
 
-      <div>
+      <div className={landingPageClasses.rightContainer}>
         <img src={hungryPic} className={landingPageClasses.pic} />
       </div>
     </div>
