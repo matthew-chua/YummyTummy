@@ -13,11 +13,7 @@ import CuratedLocation from "../Components/EventStages/RightSide/CuratedLocation
 import classes from "./EventPage.module.css";
 
 export default function EventPage() {
-<<<<<<< Updated upstream
-  const [pageState, setPageState] = useState(3);
-=======
   const [pageState, setPageState] = useState(1);
->>>>>>> Stashed changes
 
   // 0 - host (search location)
   // 1 - host (choose location)

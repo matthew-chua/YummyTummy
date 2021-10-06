@@ -30,12 +30,21 @@
   justify-content: space-evenly;
   aspect-ratio: 4;
   cursor: pointer;
-  box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.40);
-  -webkit-box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.40);
-  -moz-box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.40);
+  box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.4);
   border-radius: 20px;
   /* padding: 10px; */
   width: 35vw;
+  transition: 0.1s ease-in;
+  -o-transition: 0.1s ease-in;
+  -ms-transition: 0.1s ease-in;
+  -moz-transition: 0.1s ease-in;
+  -webkit-transition: 0.1s ease-in;
+  transform: scale(1);
+}
+.createEventButton:hover {
+  transform: scale(1.1);
 }
 .pic {
   width: 15%;

@@ -1,8 +1,9 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { auth } from "../Auth/auth";
 import classes from "./Page.module.css";
 import { getEvents } from "../Firestore/DatabaseManager";
+import { AuthContext } from "../Auth/AuthProvider";
 
 //assets
 import speakerPic from "../Assets/announcement.png";
@@ -11,54 +12,79 @@ import speakerPic from "../Assets/announcement.png";
 import CreateEventModal from "../Components/Modals/CreateEventModal";
 import Event from "../Components/Event";
 
+//firebase
+import { Timestamp } from "firebase/firestore";
+
 export default function HomePage() {
+  const { currentUser } = useContext(AuthContext);
+  console.log("USER:", currentUser.uid);
+
   const DUMMYDATA = [
     {
       eventTitle: "Supper",
       location: "Extension",
       dateTime: "22:00, 24/10/21",
       participants: ["Matthew (Host)", "Colin", "Grace"],
-      eventID: "redfrog-93"
+      eventID: "redfrog-93",
     },
     {
       eventTitle: "Lunch",
       location: "NorthHill",
       dateTime: "12:00, 28/10/21",
       participants: ["Matthew (Host)", "Colin", "Grace"],
-      eventID: "bluefish-39"
+      eventID: "bluefish-39",
     },
   ];
 
-  const expiredEvents = [    {
-    eventTitle: "Lunch",
-    location: "NorthHill",
-    dateTime: "12:00, 28/10/21",
-    participants: ["Matthew (Host)", "Colin", "Grace"],
-    eventID: "bluefish-39"
-  },];
+  const expiredEvents = [
+    //   {
+    //   eventTitle: "Lunch",
+    //   location: "NorthHill",
+    //   dateTime: "12:00, 28/10/21",
+    //   participants: ["Matthew (Host)", "Colin", "Grace"],
+    //   eventID: "bluefish-39"
+    // }
+  ];
 
   let noExpiredEvents = false;
   let noUpcomingEvents = false;
 
-  if (expiredEvents.length === 0){
+  if (expiredEvents.length === 0) {
     noExpiredEvents = true;
   }
 
-  if (DUMMYDATA.length === 0){
+  if (DUMMYDATA.length === 0) {
     noUpcomingEvents = true;
   }
 
   const [createEventModal, setCreateEventModal] = useState(false);
 
   const createEventModalHandler = () => {
-    setCreateEventModal(prev=>(!prev));
+    setCreateEventModal((prev) => !prev);
   };
 
-  
-
+  //fetches ALL events from firebase
+  const [eventState, setEventState] = useState([]);
   useEffect(async () => {
-    getEvents();
+    const eventArray = await getEvents();
+    setEventState(eventArray);
   }, []);
+
+  //add user's events to myEvents, and user's expired events to myExpiredEvents
+  let myEvents = [];
+  let myExpiredEvents = [];
+  eventState.forEach((event) => {
+    event.participantsID.forEach((participant) => {
+      if (participant.id == currentUser.uid) {
+        let currentTime = new Date();
+        if (event.startTime.toDate() > currentTime) {
+          myEvents.push(event);
+        } else {
+          myExpiredEvents.push(event);
+        }
+      }
+    });
+  });
 
   return (
     <div className={classes.page}>
@@ -81,38 +107,38 @@ export default function HomePage() {
       <div className={classes.content}>
         <div className={classes.leftContainer}>
           <p className={classes.columnTitle}>Upcoming Events</p>
-          
-          {noUpcomingEvents && <p>You have no upcoming events 🥲 <br/> Use the button above to create an event!</p>}
-          
-          
-          {DUMMYDATA.map((event, index) => (
-            
+
+          {noUpcomingEvents && (
+            <p>
+              You have no upcoming events 🥲 <br /> Use the button above to
+              create an event!
+            </p>
+          )}
+
+          {myEvents.map((event, index) => (
             <Event
               key={index}
               title={event.eventTitle}
-              location={event.location}
-              dateTime={event.dateTime}
-              participants={event.participants}
+              location={event.placeID}
+              dateTime={event.startTime.toDate().toJSON()}
+              participants={event.participantsID}
               eventID={event.eventID}
             />
-            
           ))}
         </div>
         <div className={classes.rightContainer}>
           <p className={classes.columnTitle}>Previous Events</p>
           {noExpiredEvents && <p>You have no previous events 🥲</p>}
 
-          {expiredEvents.map((event, index) => (
-            
+          {myExpiredEvents.map((event, index) => (
             <Event
               key={index}
               title={event.eventTitle}
-              location={event.location}
-              dateTime={event.dateTime}
-              participants={event.participants}
+              location={event.placeID}
+              dateTime={event.startTime.toDate().toJSON()}
+              participants={event.participantsID}
               eventID={event.eventID}
             />
-            
           ))}
         </div>
       </div>

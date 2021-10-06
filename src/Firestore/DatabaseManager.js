@@ -14,10 +14,14 @@ const usersCollection = collection(db, usersCollectionName);
 // get all events
 export const getEvents = async () => {
   const querySnapshot = await getDocs(eventsCollection);
-
+  const eventArray = []
   querySnapshot.forEach((doc) => {
-    console.log(`${doc.id} => `, doc.data());
+    // console.log(`${doc.id} => `, doc.data());
+    eventArray.push(doc.data());
+
   });
+  console.log("IN CONTROLLER", eventArray);
+  return eventArray;
 };
 
 // create user (upon sign in)
@@ -31,3 +35,7 @@ export const createUser = async (uuid, name, photoURL) => {
     eventsID: [],
   });
 };
+
+// export const createEvent = async () => {
+//   await setDoc(doc(db, eventsCollectionName))
+// }
