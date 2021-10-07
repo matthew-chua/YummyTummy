@@ -20,7 +20,6 @@ export const getEvents = async () => {
     eventArray.push(doc.data());
 
   });
-  console.log("IN CONTROLLER", eventArray);
   return eventArray;
 };
 
@@ -36,6 +35,18 @@ export const createUser = async (uuid, name, photoURL) => {
   });
 };
 
-// export const createEvent = async () => {
-//   await setDoc(doc(db, eventsCollectionName))
-// }
+//creates an event
+export const createEvent = async (event) => {
+  await setDoc(doc(db, eventsCollectionName, event.eventID), {
+    eventID: event.eventID,
+    eventTitle: event.eventTitle,
+    host: event.host,
+    maxParticipants: event.maxParticipants,
+    participantsID: event.participantsID,
+    placeID: event.placeID,
+    recommendedEateries: event.recommendedEateries,
+    selectedEatery: event.selectedEatery,
+    startTime: event.startTime,
+    totalCoordinates: event.totalCoordinates
+  })
+}

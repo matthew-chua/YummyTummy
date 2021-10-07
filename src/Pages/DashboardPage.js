@@ -17,7 +17,7 @@ import { Timestamp } from "firebase/firestore";
 
 export default function HomePage() {
   const { currentUser } = useContext(AuthContext);
-  console.log("USER:", currentUser.uid);
+  
 
   const DUMMYDATA = [
     {
