@@ -60,8 +60,8 @@ export default function HomePage() {
     <div className={classes.page}>
       
       <div className={classes.header}>
+        {/* <h1 id="test">hello</h1> */}
         <h3 className={classes.subtitle}>My Events</h3>
-
         <div
           onClick={createEventModalHandler}
           className={classes.createEventButton}

@@ -6,6 +6,19 @@
     height: inherit;
 }
 
+.map{
+    /* width: 500px; */
+    /* height: 500px; */
+}
+
+.red{
+    color: red;
+}
+
+.blue{
+    color: blue;
+}
+
 .img{
     width: 25vw;
     align-items: center;

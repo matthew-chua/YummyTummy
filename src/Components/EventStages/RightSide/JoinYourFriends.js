@@ -2,6 +2,10 @@ import React from "react";
 import JoinYourFriendsPic from "../../../Assets/JoinYourFriendsPic.gif";
 import classes from "./JoinYourFriends.module.css";
 
+// Autocomplete Search
+import GoogleMaps from '../../../Maps/GoogleMaps'
+// import useNearbySearch from '../../../Maps/NearbySearch'
+
 export default function JoinYourFriends() {
   return (
     <div className={classes.root}>
@@ -22,11 +26,12 @@ export default function JoinYourFriends() {
       </div>
       <div className={classes.bottom}>
         <button className={classes.button1}>Join with Current Location</button>
-        <h3 className={classes.text3}>or</h3>
-        <button className={classes.button2}>
+        {/* <h3 className={classes.text3}>or</h3> */}
+        <GoogleMaps />
+        {/* <button className={classes.button2}>
           Join with postal code{" "}
           <i style={{ marginLeft: "10px" }} class="fa fa-arrow-right"></i>
-        </button>
+        </button> */}
       </div>
     </div>
   );

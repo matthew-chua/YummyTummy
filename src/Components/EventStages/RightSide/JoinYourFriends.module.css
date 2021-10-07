@@ -20,7 +20,9 @@
 .bottom {
     display: flex;
     margin-top: 25px;
+    margin-bottom: 25px;
     justify-content: space-between;
+    flex-direction: column;
     width: 100%;
 }
 
@@ -54,11 +56,14 @@
     border-radius: 10px;
     justify-content: center;
     align-items: center;
-    width: 60%;
+    /* width: 60%; */
+    width: 100%;
+    height: 56px;
+    /* width: 55vw; */
     margin-right: 50px;
     color: white;
     /* font-size: large; */
-    font-size: clamp(0.75rem, 2vw, 1rem);
+    font-size: clamp(0.8rem, 2vw, 1rem);
     padding: 1rem;
     /* line-height: 1rem; */
     background-color: rgba(102, 60, 117, 1);

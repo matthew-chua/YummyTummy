@@ -18,7 +18,7 @@ import classes from "./EventPage.module.css";
 import { getSingleEvent } from "../Firestore/DatabaseManager";
 
 export default function EventPage() {
-  const [pageState, setPageState] = useState(0);
+  const [pageState, setPageState] = useState(3);
   const params = useParams();
 
   //get current userID
@@ -31,7 +31,7 @@ export default function EventPage() {
     const singleEvent = await getSingleEvent(params.id);
     setEventState(singleEvent);
     setLoading(false);
-    pageSetter(singleEvent);
+    // pageSetter(singleEvent);
   },[])
   
   // 0 - host (search location)
