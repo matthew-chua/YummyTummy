@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useParams } from "react-router";
 
 //components
 import Card from "../Components/Card";
@@ -13,7 +14,9 @@ import CuratedLocation from "../Components/EventStages/RightSide/CuratedLocation
 import classes from "./EventPage.module.css";
 
 export default function EventPage() {
-  const [pageState, setPageState] = useState(1);
+  const [pageState, setPageState] = useState(4);
+  const params = useParams();
+  console.log("PARAMS", params.id);
 
   // 0 - host (search location)
   // 1 - host (choose location)
@@ -27,7 +30,7 @@ export default function EventPage() {
     <div className={classes.root}>
       {pageState === 0 && (
         <Card
-          left={<LeftSide pageState={pageState} />}
+          left={<LeftSide pageState={pageState} id={params.id}/>}
           right={<h2>right side</h2>}
           pageState={pageState}
         />
@@ -35,7 +38,7 @@ export default function EventPage() {
 
       {pageState === 1 && (
         <Card
-          left={<LeftSide pageState={pageState} />}
+          left={<LeftSide pageState={pageState} id={params.id}/>}
           right={<HostSearch />}
           pageState={pageState}
         />
@@ -43,7 +46,7 @@ export default function EventPage() {
 
       {pageState === 2 && (
         <Card
-          left={<LeftSide pageState={pageState} />}
+          left={<LeftSide pageState={pageState} id={params.id}/>}
           right={<CuratedLocation />}
           pageState={pageState}
         />
@@ -51,7 +54,7 @@ export default function EventPage() {
 
       {pageState === 3 && (
         <Card
-          left={<LeftSide pageState={pageState} />}
+          left={<LeftSide pageState={pageState} id={params.id}/>}
           right={<JoinYourFriends />}
           pageState={pageState}
         />
@@ -59,7 +62,7 @@ export default function EventPage() {
 
       {pageState === 4 && (
         <Card
-          left={<LeftSide pageState={pageState} />}
+          left={<LeftSide pageState={pageState} id={params.id}/>}
           right={<WaitForLocation />}
           pageState={pageState}
         />

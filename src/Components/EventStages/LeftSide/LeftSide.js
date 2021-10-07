@@ -62,7 +62,7 @@ export default function LeftSide(props) {
 
       {props.pageState === 0 && (
         <div>
-          <Invite id={DUMMYDATA.eventID}/>
+          <Invite id={props.id}/>
           <Participants participants={DUMMYDATA.participants} />
         </div>
       )}
@@ -75,7 +75,7 @@ export default function LeftSide(props) {
 
       {(props.pageState === 3 || props.pageState === 4) && (
         <div>
-          <Invite id={DUMMYDATA.eventID}/>
+          <Invite id={props.id}/>
           <Participants participants={DUMMYDATA.participants} />
         </div>
       )}

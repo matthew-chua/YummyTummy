@@ -10,7 +10,7 @@ import { Timestamp } from "firebase/firestore";
 
 
 //id stuff
-// import hri from "human-readable-ids";
+import hri from "human-readable-ids";
 
 //network
 import {createEvent} from "../../Firestore/DatabaseManager";
@@ -80,27 +80,29 @@ export default function CreateEventModal(props) {
 
   //generate the totalCoordinates field, and update event 
   const postalCodeHandler = () => {
-    submitHandler();
+    // submitHandler();
+    window.location.reload();
   }
 
   //create the unique ID and send it to firebase
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     console.log("HERE", event)
-    createEvent(event);
+    await createEvent(event);
     props.toggle();
-    
+    window.location.reload();
   }
 
   
 
   //success callback for geolocation call
   const success = (pos) => {
-    
+    const id = hri.hri.random();
+    console.log("ID", id);
     let updatedEvent = {
       ...event,
       totalCoordinates: [pos.coords.latitude, pos.coords.longitude],
       //find a package to get this done properly
-      eventID: "WHOOP ITS DONE",
+      eventID: id,
       host: {
         id: currentUser.uid,
         name: currentUser.displayName,
@@ -190,7 +192,7 @@ export default function CreateEventModal(props) {
 
               <div className={classes.text}>
                 <h3>Create an Event!</h3>
-                <p>Fill in the details and hit create when you're done</p>
+                <p>Fill in the details and hit create when you're done!</p>
                 <p>
                   Copy your event's unique URL and share it with your friends to
                   invite them!
