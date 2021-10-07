@@ -18,10 +18,9 @@ export default function Event(props) {
   };
 
   //format the time more nicely
-  const split = props.dateTime.split("T")
-  const time = split[1].substring(0,5)
-  const date = split[0];
-  
+  const formattedTime = props.dateTime.toString().split(" ");
+  const date = formattedTime[1]+" "+formattedTime[2];
+  const time = formattedTime[4].substring(0,5)
 
   return (
     <div className={classes.root} onClick={openEventPageHandler}>
@@ -29,7 +28,7 @@ export default function Event(props) {
         <h3 className={classes.eventTitle}>{props.title}</h3>
         <div>
           <p className={classes.fontsize}>📍 {props.location ? props.location : "Pending"}</p>
-          <p className={classes.fontsize}>⏰ {time + " - " + date}</p>
+          <p className={classes.fontsize}>⏰ {date + ", " + time}</p>
         </div>
       </div>
       <div className={classes.rightContainer}>

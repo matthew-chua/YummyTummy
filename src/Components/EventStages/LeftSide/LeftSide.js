@@ -11,15 +11,6 @@ import EditEventModal from "../../Modals/EditEventModal";
 import classes from "./LeftSide.module.css";
 
 export default function LeftSide(props) {
-
-
-  const DUMMYDATA = {
-    eventTitle: "Supper",
-    dateTime: "24 Aug, 19:00",
-    eatery: "To be Confirmed",
-    eventID: "red-frog97",
-    participants: ["matthew", "ivan", "daniel", "grace"],
-  };
   
   const DUMMYLOCATIONS = [
     {
@@ -46,14 +37,33 @@ export default function LeftSide(props) {
     setEditEvent(prev=>(!prev));
   }
 
+  const event = props.event;
+
+  //get an array of participant names
+  let participantNames = [];
+
+  if (event.participantsID){
+      event.participantsID.forEach((participant)=>{
+      participantNames.push(participant.name);
+    })
+  }
+  let date = "";
+  let time = "";
+
+  if (event.startTime){
+    const newTime = event.startTime.toDate().toString().split(" ");
+    date = newTime[0]+", "+newTime[1]+" "+newTime[2];
+    time = newTime[4].substring(0,5);
+  }
+
   return (
     <div className={classes.root}>
        {editEvent && <EditEventModal toggle={editEventHandler}/>}
       <div className={classes.top}>
         <div>
-          <h1 className={classes.title}>{DUMMYDATA.eventTitle}</h1>
-          <p className={classes.text}> 📅 {DUMMYDATA.dateTime}</p>
-          <p className={classes.text}> 📍 {DUMMYDATA.eatery}</p>
+          <h1 className={classes.title}>{}</h1>
+          <p className={classes.text}> 📅  {date + ", " + time}</p>
+          <p className={classes.text}> 📍 {event.selectedEatery ? event.selectedEatery : "Pending"}</p>
         </div>
 
         {/* need to change this to the icon */}
@@ -63,20 +73,20 @@ export default function LeftSide(props) {
       {props.pageState === 0 && (
         <div>
           <Invite id={props.id}/>
-          <Participants participants={DUMMYDATA.participants} />
+          <Participants participants={participantNames} />
         </div>
       )}
 
       {props.pageState === 1 && <Locations locations={DUMMYLOCATIONS} />}
 
       {props.pageState === 2 && (
-        <Participants participants={DUMMYDATA.participants} />
+        <Participants participants={participantNames} />
       )}
 
       {(props.pageState === 3 || props.pageState === 4) && (
         <div>
           <Invite id={props.id}/>
-          <Participants participants={DUMMYDATA.participants} />
+          <Participants participants={participantNames} />
         </div>
       )}
     </div>

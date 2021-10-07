@@ -90,7 +90,7 @@ export default function HomePage() {
               key={index}
               title={event.eventTitle}
               location={event.placeID}
-              dateTime={event.startTime.toDate().toJSON()}
+              dateTime={event.startTime.toDate()}
               participants={event.participantsID}
               eventID={event.eventID}
             />
@@ -105,7 +105,7 @@ export default function HomePage() {
               key={index}
               title={event.eventTitle}
               location={event.placeID}
-              dateTime={event.startTime.toDate().toJSON()}
+              dateTime={event.startTime.toDate()}
               participants={event.participantsID}
               eventID={event.eventID}
             />

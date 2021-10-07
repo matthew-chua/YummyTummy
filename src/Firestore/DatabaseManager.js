@@ -1,5 +1,5 @@
 // import { applyActionCode } from "@firebase/auth";
-import { collection, doc, getDocs, setDoc } from "firebase/firestore";
+import { collection, doc, getDocs, setDoc, getDoc } from "firebase/firestore";
 import firebase from "../Firebase/firebase";
 
 // constants
@@ -43,10 +43,21 @@ export const createEvent = async (event) => {
     host: event.host,
     maxParticipants: event.maxParticipants,
     participantsID: event.participantsID,
-    placeID: event.placeID,
     recommendedEateries: event.recommendedEateries,
     selectedEatery: event.selectedEatery,
     startTime: event.startTime,
     totalCoordinates: event.totalCoordinates
   })
+}
+
+export const getSingleEvent = async (eventID) => {
+  const docRef = doc(db, eventsCollectionName, eventID)
+  const docSnapshot = await getDoc(docRef);
+  
+  if (!docSnapshot.exists()){ 
+    console.log("L");
+  }else{
+    return docSnapshot.data();
+  }
+  
 }

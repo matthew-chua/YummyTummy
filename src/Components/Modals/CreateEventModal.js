@@ -44,7 +44,6 @@ export default function CreateEventModal(props) {
     },
     maxParticipants: 0,
     participantsID: [],
-    placeID: "",
     recommendedEateries: [],
     selectedEatery: "",
     startTime : "",
