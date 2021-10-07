@@ -25,10 +25,6 @@ export default function CreateEventModal(props) {
     e.preventDefault();
     if (count < 5) {
       setCount(()=> (count + 1));
-      // setEvent({
-      //   ...event,
-      //   maxParticipants: count,
-      // });
     }
   };
 
@@ -36,10 +32,6 @@ export default function CreateEventModal(props) {
     e.preventDefault();
     if (count > 0) {
       setCount(()=> (count - 1));
-      // setEvent({
-      //   ...event,
-      //   maxParticipants: count,
-      // });
     }
   };
 
@@ -93,17 +85,6 @@ export default function CreateEventModal(props) {
 
   //create the unique ID and send it to firebase
   const submitHandler = (event) => {
-    // setEvent({
-    //   ...event,
-    //   host: {
-    //     id: currentUser.uid,
-    //     name: currentUser.displayName,
-    //   },
-    //   participantsID: [{
-    //     id: currentUser.uid,
-    //     name: currentUser.displayName,
-    //   }]
-    // })
     console.log("HERE", event)
     createEvent(event);
     props.toggle();
@@ -118,6 +99,7 @@ export default function CreateEventModal(props) {
     let updatedEvent = {
       ...event,
       totalCoordinates: [pos.coords.latitude, pos.coords.longitude],
+      //find a package to get this done properly
       eventID: "WHOOP ITS DONE",
       host: {
         id: currentUser.uid,
@@ -130,17 +112,7 @@ export default function CreateEventModal(props) {
       maxParticipants: count,
       startTime: time
     }
-
-    // setEvent(updatedEvent);
-
     submitHandler(updatedEvent); 
-
-    // console.log({
-    //   ...event,
-    //   totalCoordinate: [pos.coords.latitude, pos.coords.longitude],
-    //   eventID: "TESTID",
-    // })
-    // submitHandler();
   }
   
   //some random options for the geolocation call
@@ -154,10 +126,6 @@ export default function CreateEventModal(props) {
   const error = (err) => {
     console.log("ERROR", err);
   }
-
-  // useEffect(()=>{
-  //   console.log("useeffect", event)
-  // }, [event])
 
   //gets current date so i can use it to set min in datetime input
   const min = new Date();
