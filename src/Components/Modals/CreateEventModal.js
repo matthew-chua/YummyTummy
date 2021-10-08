@@ -14,6 +14,7 @@ import hri from "human-readable-ids";
 
 //network
 import {createEvent} from "../../Firestore/DatabaseManager";
+import AutocompleteSearch from "../../Maps/AutocompleteSearch";
 
 export default function CreateEventModal(props) {
 
@@ -83,15 +84,39 @@ export default function CreateEventModal(props) {
     window.location.reload();
   }
 
+  const customLocationHandler = (location) => {
+    finishCreatingEvent(location);
+  }
+
   //create the unique ID and send it to firebase
   const submitHandler = async (event) => {
     console.log("HERE", event)
     await createEvent(event);
+    // need to check for failure bro
     props.toggle();
     window.location.reload();
   }
 
-  
+  // create event for custom location
+  const finishCreatingEvent = (location) => {
+    const id = hri.hri.random();
+    let updatedEvent = {
+      ...event,
+      totalCoordinates: [location.lat, location.lng],
+      eventID: id,
+      host: {
+        id: currentUser.uid,
+        name: currentUser.displayName,
+      },
+      participantsID: [{
+        id: currentUser.uid,
+        name: currentUser.displayName,
+      }],
+      maxParticipants: count,
+      startTime: time
+    }
+    submitHandler(updatedEvent); 
+  }
 
   //success callback for geolocation call
   const success = (pos) => {
@@ -159,21 +184,28 @@ export default function CreateEventModal(props) {
                   className={classes.currentLocationButton}
                   type="button"
                 >
-                  Create with Current Location
+                  Create with current location
                 </button>
                 {/* <div className={classes.or}>or</div> */}
-                <button
+                {/* <button
                   onClick={postalCodeHandler}
                   className={classes.joinWithPostalCode}
                   type="button"
-
                 >
                   Create with Postal Code{" "}
                   <i
                     style={{ marginLeft: "10px" }}
                     class="fa fa-arrow-right"
                   ></i>
-                </button>
+                </button> */}
+                <div className={classes.searchBox}>
+                  <AutocompleteSearch 
+                  placeholder="Create with a specific location" 
+                  buttonText="Create"
+                  searchBoxActionClicked={customLocationHandler}
+                  errorTextColor="red"
+                  />
+                </div>
 
                 <button
                   onClick={props.toggle}

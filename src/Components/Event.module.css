@@ -1,13 +1,23 @@
 .root {
-    display: flex;
+    /* display: flex; */
     box-shadow: 6px 15px 19px 0px rgba(0,0,0,0.79);
     -webkit-box-shadow: 6px 15px 19px 0px rgba(0,0,0,0.79);
     -moz-box-shadow: 6px 15px 19px 0px rgba(0,0,0,0.79);
     border-radius: 20px;
     margin: 2.5rem 0;
-    justify-content: space-around;
+    /* align-items: center; */
+    /* justify-content: space-around; */
+    /* justify-content: space-between; */
     aspect-ratio: 2.7;
     cursor: pointer;
+}
+
+.cardContent{
+    justify-content: space-between;
+    display: flex;
+    height: 100%;
+    padding: 0 20px;
+    /* width: 80%; */
 }
 
 .leftContainer  {

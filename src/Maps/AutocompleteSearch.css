@@ -59,6 +59,14 @@ body {
   font-weight: 300;
 }
 
+.textBoxError{
+  animation: shake 0.2s ease-in-out 0s 2;
+  /* color: red; */
+  box-shadow: 0 0 0.5em red;
+}
+
+
+
 #autocompleteflex {
   /* display: flex; */
   position: relative;
@@ -68,18 +76,27 @@ body {
 
 #clear{
   position: absolute;
-  height: 100%;
-  top: 21px;
+  height: 99%;
+  top: 1px;
+  /* transform: translateY(-102%); */
   right: 0;
-  background-color: #e4cfe2;
+  /* background-color: #e4cfe2; */
+  color: #ba5bb2;
+  background-color: #fff;
   border-radius: 10px;
   border: none;
   cursor: pointer;
   font-size: clamp(0.8rem, 2vw, 1rem);
+  transition: 100ms;
+}
+
+#clear:hover{
+  font-size: clamp(1rem, 3vw, 1.2rem);;
 }
 
 #pac-input {
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  z-index: 17;
   background-color: #fff;
   /* font-family: Futura; */
   font-size: 15px;
@@ -104,4 +121,11 @@ body {
   font-size: 25px;
   font-weight: 500;
   padding: 6px 12px;
+}
+
+@keyframes shake {
+  0% { margin-left: 0rem; }
+  25% { margin-left: 0.5rem; }
+  75% { margin-left: -0.5rem; }
+  100% { margin-left: 0rem; }
 }

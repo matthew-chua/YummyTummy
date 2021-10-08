@@ -1,13 +1,37 @@
-import { useEffect, useCallback, useState } from "react";
-import "./GoogleMaps.css";
+import { useEffect, useState } from "react";
+import { AuthContext } from "../Auth/AuthProvider";
+import "./AutocompleteSearch.css";
 
-export default function GoogleMaps() {
+export default function AutocompleteSearch(props) {
+  const [location, setLocation] = useState(null);
+  const [error, setError] = useState(false);
+
+
+  const searchBoxChangeHandler = () => {
+    if (error) {
+      setError(false);
+    }
+  };
+
+  const searchBoxActionClicked = () => {
+    // if (location)
+    if (location == null) {
+      // shake text box
+      setError(true);
+      // props.searchBoxActionClicked(null);
+    } else {
+      props.searchBoxActionClicked(location);
+    }
+  };
+
   function initMap() {
     let map;
     map = new window.google.maps.Map(document.getElementById("map"), {
       center: { lat: -34.397, lng: 150.644 },
       zoom: 8,
     });
+
+    
 
     // const card = document.getElementById("pac-card");
     const input = document.getElementById("pac-input");
@@ -17,7 +41,7 @@ export default function GoogleMaps() {
     const options = {
       fields: ["formatted_address", "geometry", "name"],
       strictBounds: false,
-      types: ["establishment"],
+      types: ["geocode", "establishment"],
     };
 
     // map.controls[window.google.maps.ControlPosition.TOP_LEFT].push(card);
@@ -28,7 +52,6 @@ export default function GoogleMaps() {
     );
 
     var service = new window.google.maps.places.PlacesService(map);
-    
 
     // autocomplete.bindTo("bounds", map);
 
@@ -43,35 +66,36 @@ export default function GoogleMaps() {
     // });
 
     autocomplete.addListener("place_changed", () => {
-    //   infowindow.close();
-    //   marker.setVisible(false);
+      //   infowindow.close();
+      //   marker.setVisible(false);
 
       const place = autocomplete.getPlace();
-      console.log("place:", place.geometry.location.toJSON())
-      console.log("place:", place.geometry.location.toJSON().lat)
-      console.log("place:", place.geometry.location.toJSON().lng)
       // service.getDetails(place)
       if (!place.geometry || !place.geometry.location) {
         // User entered the name of a Place that was not suggested and
         // pressed the Enter key, or the Place Details request failed.
         window.alert("No details available for input: '" + place.name + "'");
+        
+
         return;
       }
 
+      console.log("place:", place.geometry.location.toJSON());
+      setLocation(place.geometry.location.toJSON());
       // If the place has a geometry, then present it on a map.
-    //   if (place.geometry.viewport) {
-    //     map.fitBounds(place.geometry.viewport);
-    //   } else {
-    //     map.setCenter(place.geometry.location);
-    //     map.setZoom(17);
-    //   }
+      //   if (place.geometry.viewport) {
+      //     map.fitBounds(place.geometry.viewport);
+      //   } else {
+      //     map.setCenter(place.geometry.location);
+      //     map.setZoom(17);
+      //   }
 
-    //   marker.setPosition(place.geometry.location);
-    //   marker.setVisible(true);
-    //   infowindowContent.children["place-name"].textContent = place.name;
-    //   infowindowContent.children["place-address"].textContent =
-        // place.formatted_address;
-    //   infowindow.open(map, marker);
+      //   marker.setPosition(place.geometry.location);
+      //   marker.setVisible(true);
+      //   infowindowContent.children["place-name"].textContent = place.name;
+      //   infowindowContent.children["place-address"].textContent =
+      // place.formatted_address;
+      //   infowindow.open(map, marker);
     });
 
     // Sets a listener on a radio button to change the filter type on Places
@@ -125,13 +149,11 @@ export default function GoogleMaps() {
   }
   useEffect(() => {
     initMap();
-    // fetch data
-    // fetchPlaces();
   }, []);
 
   return (
     <
-    // style={{width:'40px'}}
+      // style={{width:'40px'}}
     >
       {/* <div className="pac-card" id="pac-card">
         {/* <>
@@ -182,9 +204,12 @@ export default function GoogleMaps() {
         </div>
       </div> */}
       <div id="autocompleteflex">
-        <input id="pac-input" type="text" placeholder="Enter a location" />
-        <button id="clear">Join!</button>
+        <input className={error ? "textBoxError" : ""} id="pac-input" type="text" placeholder={props.placeholder} onChange={searchBoxChangeHandler} />
+        <button id="clear" type="button" onClick={searchBoxActionClicked}>
+          {props.buttonText}
+        </button>
       </div>
+      {error && <p style={{color: props.errorTextColor}}>Error, please select from given options</p>}
       <div id="map"></div>
       {/* <div id="infowindow-content">
         <span id="place-name" className="title"></span>

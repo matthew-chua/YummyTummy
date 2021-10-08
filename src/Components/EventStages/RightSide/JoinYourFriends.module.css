@@ -26,6 +26,11 @@
     width: 100%;
 }
 
+.searchBoxContainer{
+    margin-top: 20px;
+    width: 100%;   
+}
+
 .text1 {
     font-size: large;
     margin-top: 15px;

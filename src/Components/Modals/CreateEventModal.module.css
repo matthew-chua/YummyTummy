@@ -1,5 +1,5 @@
 .modal {
-  z-index: 9999;
+  z-index: 15;
   position: absolute;
   top: 45%;
   width: 90%;
@@ -10,7 +10,7 @@
   transform: translate(-50%, -50%);
 }
 .overlay {
-  z-index: 9998;
+  z-index: 14;
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -217,4 +217,8 @@ input {
 
 .addButton:hover {
   cursor: pointer;
+}
+
+.searchBox{
+  width:100%
 }

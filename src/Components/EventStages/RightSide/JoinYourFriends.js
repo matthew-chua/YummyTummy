@@ -3,10 +3,19 @@ import JoinYourFriendsPic from "../../../Assets/JoinYourFriendsPic.gif";
 import classes from "./JoinYourFriends.module.css";
 
 // Autocomplete Search
-import GoogleMaps from '../../../Maps/GoogleMaps'
+import AutocompleteSearch from "../../../Maps/AutocompleteSearch";
 // import useNearbySearch from '../../../Maps/NearbySearch'
 
 export default function JoinYourFriends() {
+
+  const joinWithCustomLocationHandler = (location) => {
+    console.log(location)
+    console.log(location.lat)
+    console.log(location.lng)
+    // yo daniel this is wired up to the "Join" button for the text box, will 
+    // return the location if the user chose from the drop down list
+  }
+
   return (
     <div className={classes.root}>
       <div>
@@ -27,7 +36,14 @@ export default function JoinYourFriends() {
       <div className={classes.bottom}>
         <button className={classes.button1}>Join with Current Location</button>
         {/* <h3 className={classes.text3}>or</h3> */}
-        <GoogleMaps />
+        <div className={classes.searchBoxContainer}>
+          <AutocompleteSearch 
+          placeholder="Join with custom location" 
+          buttonText="Join!"
+          errorTextColor="white"
+          searchBoxActionClicked={joinWithCustomLocationHandler}
+          />
+        </div>
         {/* <button className={classes.button2}>
           Join with postal code{" "}
           <i style={{ marginLeft: "10px" }} class="fa fa-arrow-right"></i>
