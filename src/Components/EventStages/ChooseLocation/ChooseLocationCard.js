@@ -16,7 +16,7 @@ export default function ChooseLocationCard(props) {
   const [placeList, setPlaceList] = useState([]);
 
   // selected index from list of places
-  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const didFetchPlaceDetail = (place) => {
     // gets call each time successful fetch
@@ -51,6 +51,7 @@ export default function ChooseLocationCard(props) {
           loading={props.loading}
           placeList={placeList}
           placeClickHandler={placeClickHandler}
+          selectedIndex={selectedIndex}
         />
       }
       right={<HostChooseLocation selectedPlace={placeList[selectedIndex]} />}

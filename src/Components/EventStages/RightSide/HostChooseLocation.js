@@ -7,6 +7,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Stars from "../../Utility/Stars";
 
+import svg from "../../../Assets/undraw_special_event_4aj8.svg";
+
 export default function HostChooseLocation(props) {
   useEffect(() => {
     if (props.selectedPlace) {
@@ -53,39 +55,42 @@ export default function HostChooseLocation(props) {
     maxHeight: 500,
   };
 
+  const selectLocationHandler = () => {
+    // bitch i aint doing none of this shit no more bye!
+  };
+
   return (
     <div>
       {props.selectedPlace ? (
-        // <img
-        //   src={
-        //     props.selectedPlace.photoURLList &&
-        //     props.selectedPlace.photoURLList[2].getUrl({
-        //       maxWidth: 500,
-        //       maxHeight: 500,
-        //     })
-        //   }
-        // />
         <>
-          <Slider {...settings}>
-            {props.selectedPlace.photoURLList &&
-              props.selectedPlace.photoURLList.map((img, index) => (
+          {props.selectedPlace.photoURLList ? (
+            <Slider {...settings}>
+              {props.selectedPlace.photoURLList.map((img, index) => (
                 <div key={index} className={classes.carouselContainer}>
                   <img
                     className={classes.carouselImg}
                     src={img.getUrl(options)}
-                    alt=""
+                    alt="restaurant"
                   ></img>
                 </div>
               ))}
-          </Slider>
-          <h3>{props.selectedPlace.name}</h3>
+            </Slider>
+          ) : (
+            <div className={classes.carouselContainer}>
+              <img className={classes.carouselImg} src={svg} />
+            </div>
+          )}
+          <h3 className={classes.title}>{props.selectedPlace.name}</h3>
           <p>{props.selectedPlace.address}</p>
-          <Stars rating={props.selectedPlace.rating}/>
+          <Stars rating={props.selectedPlace.rating} />
           <p>{`${props.selectedPlace.reviews} reviews`}</p>
-          <button className={classes.btn}> Select </button>
+          <button className={classes.btn} onClick={selectLocationHandler}>
+            {" "}
+            Select{" "}
+          </button>
         </>
       ) : (
-        <h1>"pick a place"</h1>
+        <h1>loading...</h1>
       )}
     </div>
   );

@@ -5,14 +5,13 @@ import Stars from "../../Utility/Stars";
 import classes from "./Locations.module.css";
 
 export default function Locations(props) {
-
   const placeClickHandler = (event) => {
-    props.placeClickHandler(event.target.id)
-  }
+    props.placeClickHandler(event.target.id);
+  };
 
   const [location, setLocation] = useState([]);
   useEffect(() => {
-    if (props.locations){
+    if (props.locations) {
       setLocation(props.locations);
     }
   }, [props.locations]);
@@ -21,9 +20,17 @@ export default function Locations(props) {
     <div>
       <h1 className={classes.title}>Our Recommendations</h1>
       {location.map((location, index) => (
-        <div id={index} className={classes.locationCard} onClick={placeClickHandler}>
+        <div
+          id={index}
+          className={`${classes.locationCard} ${
+            props.selectedIndex == index && classes.active
+          }`}
+          onClick={placeClickHandler}
+        >
           <div id={index}>
-            <p id={index} className={classes.text}>{location.name}</p>
+            <p id={index} className={classes.text}>
+              {location.name}
+            </p>
             <Stars indexValue={index} rating={location.rating} />
           </div>
           <i id={index} className={"fa fa-chevron-right"}></i>

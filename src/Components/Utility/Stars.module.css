@@ -6,6 +6,8 @@
 .ratingsText {
   font-size: 70%;
   margin-right: 10px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .outer {
   display: inline-block;

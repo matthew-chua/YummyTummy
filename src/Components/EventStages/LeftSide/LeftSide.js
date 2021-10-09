@@ -82,7 +82,7 @@ export default function LeftSide(props) {
         </div>
       )}
 
-      {props.pageState === 1 && <Locations locations={props.placeList} placeClickHandler={props.placeClickHandler}/>}
+      {props.pageState === 1 && <Locations locations={props.placeList} placeClickHandler={props.placeClickHandler} selectedIndex={props.selectedIndex}/>}
 
       {props.pageState === 2 && (
         <Participants participants={participantNames} />

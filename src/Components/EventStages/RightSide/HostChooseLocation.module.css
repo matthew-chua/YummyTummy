@@ -8,6 +8,10 @@
   /* border-radius: 1.5rem; */
 }
 
+.title{
+  margin-top: 10px;
+}
+
 .paddingDiv {
   padding: 20px;
   /* height:50vh */

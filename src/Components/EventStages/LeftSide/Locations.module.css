@@ -1,5 +1,5 @@
 .title {
-  font-size: clamp(1.25rem, 2vw,1.8rem)
+  font-size: clamp(1.25rem, 2vw, 1.8rem);
 }
 .locationCard {
   box-shadow: 7px 10px 21px -6px rgba(0, 0, 0, 0.76);
@@ -10,11 +10,25 @@
   flex-direction: row;
   padding-left: 2rem;
   padding-right: 2rem;
+  padding-bottom: 1rem;
   margin-bottom: 1rem;
   align-items: center;
   justify-content: space-between;
-  
+  cursor: pointer;
 }
-.text{
-    font-size: 1rem;
+.locationCard:hover {
+  box-shadow: 7px 10px 21px -6px rgb(130, 54, 145);
+  -webkit-box-shadow: 7px 10px 21px -6px rgb(130, 54, 145);
+  -moz-box-shadow: 7px 10px 21px -6px rgb(130, 54, 145);
+}
+
+.text {
+  font-size: 1rem;
+}
+
+.active {
+  box-shadow: 7px 10px 21px -6px rgb(130, 54, 145);
+  -webkit-box-shadow: 7px 10px 21px -6px rgb(130, 54, 145);
+  -moz-box-shadow: 7px 10px 21px -6px rgb(130, 54, 145);
+  /* background-color: red; */
 }
