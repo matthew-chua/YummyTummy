@@ -44,6 +44,7 @@ export const getPlaceDetailsForList = async (queryList, completed) => {
           openingHours: place.opening_hours ? place.opening_hours.weekday_text[0] : "Closed on Sundays",
           rating: place.rating,
           reviews: place.user_ratings_total,
+          photoURLList: place.photos
         };
         completed(cleanedPlace);
       }

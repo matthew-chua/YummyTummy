@@ -16,6 +16,7 @@ import classes from "./EventPage.module.css";
 //data manager
 import { getSingleEvent } from "../Firestore/DatabaseManager";
 import HostChooseLocation from "../Components/EventStages/RightSide/HostChooseLocation";
+import ChooseLocationCard from "../Components/EventStages/ChooseLocation/ChooseLocationCard";
 
 export default function EventPage() {
   // 0 - host (search location)
@@ -98,17 +99,11 @@ export default function EventPage() {
       )}
 
       {pageState === PageStates.ChooseLocation && (
-        <Card
-          left={
-            <LeftSide
-              pageState={pageState}
-              id={params.id}
-              event={eventState}
-              loading={loading}
-            />
-          }
-          right={<HostChooseLocation />}
+        <ChooseLocationCard
           pageState={pageState}
+          id={params.id}
+          event={eventState}
+          loading={loading}
         />
       )}
 

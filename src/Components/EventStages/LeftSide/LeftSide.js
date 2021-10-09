@@ -1,12 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-// google maps
-import {
-  getPlaceDetailsForList,
-  usePlaceDetails,
-} from "../../../Maps/UsePlaceDetails";
-
 //components
 import Invite from "./Invite";
 import Locations from "./Locations";
@@ -17,33 +11,6 @@ import EditEventModal from "../../Modals/EditEventModal";
 import classes from "./LeftSide.module.css";
 
 export default function LeftSide(props) {
-  usePlaceDetails();
-  
-  // place list 
-  const [placeList, setPlaceList] = useState([]);
-
-  // selected index from list of places
-  const [selectedIndex, setSelectedIndex] = useState(null)
-
-  const didFetchPlaceDetail = (place) => {
-    // gets call each time successful fetch
-    setPlaceList((prev) => {
-      prev.push(place);
-      return prev;
-    });
-  };
-
-  useEffect(async () => {
-    if (props.pageState === 1) {
-      if (props.event) {
-        getPlaceDetailsForList(
-          props.event.recommendedEateries,
-          didFetchPlaceDetail
-        );
-      }
-    }
-  }, [props.event]);
-
   // const DUMMYLOCATIONS = [
   //   {
   //     name: "Koufu",
@@ -115,7 +82,7 @@ export default function LeftSide(props) {
         </div>
       )}
 
-      {props.pageState === 1 && <Locations locations={placeList} />}
+      {props.pageState === 1 && <Locations locations={props.placeList} placeClickHandler={props.placeClickHandler}/>}
 
       {props.pageState === 2 && (
         <Participants participants={participantNames} />
