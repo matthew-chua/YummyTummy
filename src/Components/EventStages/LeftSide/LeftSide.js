@@ -1,5 +1,11 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+// google maps
+import {
+  getPlaceDetailsForList,
+  usePlaceDetails,
+} from "../../../Maps/UsePlaceDetails";
 
 //components
 import Invite from "./Invite";
@@ -11,73 +17,105 @@ import EditEventModal from "../../Modals/EditEventModal";
 import classes from "./LeftSide.module.css";
 
 export default function LeftSide(props) {
+  usePlaceDetails();
   
-  const DUMMYLOCATIONS = [
-    {
-      name: "Koufu",
-      location: "North Spine",
-      rating: 2.8,
-      reviews: 322,
-      address: "638A Jurong West Street 61, #01-22, Pioneer Mall, Singapore",
-      openingHours: "10:00 - 19:00",
-    },
-    {
-      name: "Collins Grill",
-      location: "Jurong Point",
-      rating: 4.0,
-      reviews: 32,
-      address: "638A Jurong West Street 61, #01-22, Pioneer Mall, Singapore",
-      openingHours: "12:00 - 19:00",
-    },
-  ];
+  // place list 
+  const [placeList, setPlaceList] = useState([]);
+
+  // selected index from list of places
+  const [selectedIndex, setSelectedIndex] = useState(null)
+
+  const didFetchPlaceDetail = (place) => {
+    // gets call each time successful fetch
+    setPlaceList((prev) => {
+      prev.push(place);
+      return prev;
+    });
+  };
+
+  useEffect(async () => {
+    if (props.pageState === 1) {
+      if (props.event) {
+        getPlaceDetailsForList(
+          props.event.recommendedEateries,
+          didFetchPlaceDetail
+        );
+      }
+    }
+  }, [props.event]);
+
+  // const DUMMYLOCATIONS = [
+  //   {
+  //     name: "Koufu",
+  //     rating: 2.8,
+  //     reviews: 322,
+  //     address: "638A Jurong West Street 61, #01-22, Pioneer Mall, Singapore",
+  //     openingHours: "10:00 - 19:00",
+  //   },
+  //   {
+  //     name: "Collins Grill",
+  //     rating: 4.0,
+  //     reviews: 32,
+  //     address: "638A Jurong West Street 61, #01-22, Pioneer Mall, Singapore",
+  //     openingHours: "12:00 - 19:00",
+  //   },
+  // ];
 
   const [editEvent, setEditEvent] = useState(false);
 
   const editEventHandler = () => {
-    setEditEvent(prev=>(!prev));
-  }
+    setEditEvent((prev) => !prev);
+  };
 
   const event = props.event;
 
   //get an array of participant names
   let participantNames = [];
 
-  if (event.participantsID){
-      event.participantsID.forEach((participant)=>{
+  if (event.participantsID) {
+    event.participantsID.forEach((participant) => {
       participantNames.push(participant.name);
-    })
+    });
   }
   let date = "";
   let time = "";
 
-  if (event.startTime){
+  if (event.startTime) {
     const newTime = event.startTime.toDate().toString().split(" ");
-    date = newTime[0]+", "+newTime[1]+" "+newTime[2];
-    time = newTime[4].substring(0,5);
+    date = newTime[0] + ", " + newTime[1] + " " + newTime[2];
+    time = newTime[4].substring(0, 5);
   }
 
   return (
     <div className={classes.root}>
-       {editEvent && <EditEventModal toggle={editEventHandler}/>}
+      {editEvent && <EditEventModal toggle={editEventHandler} />}
+      <div id="map"></div>
       <div className={classes.top}>
         <div>
-          <h1 className={classes.title}>{}</h1>
-          <p className={classes.text}> 📅  {date + ", " + time}</p>
-          <p className={classes.text}> 📍 {event.selectedEatery ? event.selectedEatery : "Pending"}</p>
+          <h1 className={classes.title}>{event.eventTitle}</h1>
+          <p className={classes.text}> 📅 {date + ", " + time}</p>
+          <p className={classes.text}>
+            {" "}
+            📍 {event.selectedEatery ? event.selectedEatery : "Pending"}
+          </p>
         </div>
 
         {/* need to change this to the icon */}
-        {props.pageState === 0 && <p className={classes.editIcon} onClick={editEventHandler}>edit</p>}
+        {props.pageState === 0 && (
+          <p className={classes.editIcon} onClick={editEventHandler}>
+            edit
+          </p>
+        )}
       </div>
 
       {props.pageState === 0 && (
         <div>
-          <Invite id={props.id}/>
+          <Invite id={props.id} />
           <Participants participants={participantNames} />
         </div>
       )}
 
-      {props.pageState === 1 && <Locations locations={DUMMYLOCATIONS} />}
+      {props.pageState === 1 && <Locations locations={placeList} />}
 
       {props.pageState === 2 && (
         <Participants participants={participantNames} />
@@ -85,7 +123,7 @@ export default function LeftSide(props) {
 
       {(props.pageState === 3 || props.pageState === 4) && (
         <div>
-          <Invite id={props.id}/>
+          <Invite id={props.id} />
           <Participants participants={participantNames} />
         </div>
       )}

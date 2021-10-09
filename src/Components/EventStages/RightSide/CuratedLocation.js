@@ -1,11 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import pic from "../../../Assets/location_by_Icons8.gif";
+import Stars from "../../Utility/Stars";
 
 import classes from "./CuratedLocation.module.css";
 
 export default function HostSearch() {
-  const [ratings, setRatings] = useState(50);
+  // ratings must be out of 5.0, pass into stars
+  // made it reusable because i need use for left side also cheers -ivan
+  const [ratings, setRatings] = useState(2.0);
+  // actually u might not even need this state, can just take directly from props, but see how you wanna do it
 
   return (
     <div className={classes.root}>
@@ -16,15 +20,7 @@ export default function HostSearch() {
         <p className={classes.address}>
           638A Jurong West Street 61, #01-22, Pioneer Mall, Singapore
         </p>
-        <div className={classes.rating}>
-          <p className={classes.ratingsText}>2.0</p>
-          <div className={classes.outer}>
-            <div
-              style={{ width: `${ratings}%` }}
-              className={classes.inner}
-            ></div>
-          </div>
-        </div>
+        <Stars rating={ratings} />
         <p className={classes.ratingsText}>332 reviews</p>
       </div>
       <div className={classes.btnGroup}>

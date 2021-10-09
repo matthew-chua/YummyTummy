@@ -23,35 +23,6 @@
 .address {
   font-size: 60%;
 }
-.rating {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.ratingsText {
-  font-size: 70%;
-  margin-right: 10px;
-}
-.outer {
-  display: inline-block;
-  position: relative;
-  font-family: FontAwesome;
-}
-.outer::before {
-  content: "\f006 \f006 \f006 \f006 \f006";
-}
-.inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  /* width: 29%; */
-}
-.inner::before {
-  content: "\f005 \f005 \f005 \f005 \f005";
-  color: #f8ce0b;
-}
 
 .btnGroup {
   display: flex;

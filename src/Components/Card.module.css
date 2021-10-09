@@ -1,18 +1,16 @@
-.root{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .leftContainer {
   width: 35%;
-  /* height: 100%; */
   border-radius: 20px 0 0 20px;
   background-color: whitesmoke;
 }
 
 .rightContainer {
   width: 65%;
-  /* height: 100%; */
   background-image: linear-gradient(135deg, #5e6bcb, #ba5bb2);
   border-radius: 0 20px 20px 0px;
   color: white;
@@ -26,6 +24,7 @@
   -moz-box-shadow: 7px 10px 21px -6px rgba(0, 0, 0, 0.76);
   margin: 10px;
   border-radius: 20px;
+  height: 85vh;
   /* max-height: 90vh; */
   /* padding: 10px; */
   /* height: 80vh; */
@@ -34,20 +33,28 @@
   box-sizing: border-box; /* to include the padding in the 100% height */
   padding: 2rem;
   height: 100%;
+  /* height:100%; */
+  overflow: auto;
 }
 
 @media screen and (max-width: 768px) {
-  .card{
+  .card {
     flex-direction: column-reverse;
     width: 90%;
+    /* justify-content: stretch; */
+    /* justify-content: stretch; */
+    /* height: 90vh; */
+    /* height: auto; */
   }
   .leftContainer {
     width: 100%;
     border-radius: 0 0 20px 20px;
+    height: 60%
   }
 
   .rightContainer {
     width: 100%;
     border-radius: 20px 20px 0 0;
+    flex-grow: 1;
   }
 }
