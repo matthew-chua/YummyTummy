@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import pic from "../../Assets/eventpic.svg";
 import ConfirmDeleteModal from "./ConfirmDeleteModal";
 import Card from "../Card";
+import { editEvent } from "../../Firestore/DatabaseManager";
+import { Timestamp } from "firebase/firestore";
 
 export default function EditEventModal(props) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -30,13 +32,39 @@ export default function EditEventModal(props) {
     }
   }, []);
 
-  const [error, setError] = useState(false);
-
   console.log("HERE", props.event);
   // console.log("title", eventState.eventTitle);
 
-  const submitHandler = (e) => {
+  const [eventTitleValid, setEventTitleValid] = useState(true);
+
+  const [startTimeValid, setStartTimeValid] = useState(true);
+
+  const submitHandler = async (e) => {
+    console.log("Hi", eventState);
     e.preventDefault();
+    if (eventState.eventTitle == "" && !eventState.startTime) {
+      setStartTimeValid(false);
+      setEventTitleValid(false);
+    } else if (!eventState.startTime) {
+      setStartTimeValid(false);
+      setEventTitleValid(true);
+    } else if (eventState.eventTitle == "") {
+      setEventTitleValid(false);
+      setStartTimeValid(true);
+    } else {
+      setEventTitleValid(true);
+      setStartTimeValid(true);
+
+      let finalEvent = {...eventState,
+      startTime: time,
+      };
+      
+      console.log("FINAL EVNET", finalEvent.startTime);
+
+      await editEvent(finalEvent);
+      // need to check for failure bro
+      window.location.reload();
+    }
   };
 
   const editMaxPax = (e) => {
@@ -53,11 +81,17 @@ export default function EditEventModal(props) {
     });
   };
 
+  const [time, setTime] = useState();
+
   const editDate = (e) => {
+    let timeStamp = new Timestamp(Date.parse(e.target.value) / 1000, 0);
+    setTime(timeStamp);
+    console.log("here1", timeStamp);
     setEventState({
       ...eventState,
       startTime: e.target.value,
     });
+    console.log("here2", eventState.startTime);
   };
 
   return (
@@ -70,12 +104,20 @@ export default function EditEventModal(props) {
             <div className={classes.leftContainer}>
               <h2>Event Title:</h2>
               <input value={eventState.eventTitle} onChange={editTitle} />
+              {!eventTitleValid && (
+                <p className={classes.invalidText}>This is a required field.</p>
+              )}
               <h2>Date & Time:</h2>
               <input
                 type="datetime-local"
                 value={eventState.startTime}
                 onChange={editDate}
               />
+              {!startTimeValid && (
+                <p className={classes.invalidText}>
+                  Date and Time is Required.
+                </p>
+              )}
 
               <h2>Max Pax:</h2>
               <input

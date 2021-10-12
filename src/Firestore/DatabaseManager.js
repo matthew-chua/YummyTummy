@@ -1,5 +1,13 @@
 // import { applyActionCode } from "@firebase/auth";
-import { collection, doc, getDocs, setDoc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  setDoc,
+  getDoc,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
 import firebase from "../Firebase/firebase";
 
 // constants
@@ -14,20 +22,19 @@ const usersCollection = collection(db, usersCollectionName);
 // get all events
 export const getEvents = async () => {
   const querySnapshot = await getDocs(eventsCollection);
-  const eventArray = []
+  const eventArray = [];
   querySnapshot.forEach((doc) => {
     // console.log(`${doc.id} => `, doc.data());
     eventArray.push(doc.data());
-
   });
   return eventArray;
 };
 
 // create user (upon sign in)
 export const createUser = async (uuid, name, photoURL) => {
-// If the document does not exist, it will be created. 
-// If the document does exist, its contents will be overwritten with the newly provided data, 
-// unless you specify that the data should be merged into the existing document
+  // If the document does not exist, it will be created.
+  // If the document does exist, its contents will be overwritten with the newly provided data,
+  // unless you specify that the data should be merged into the existing document
   await setDoc(doc(db, usersCollectionName, uuid), {
     name,
     photoURL,
@@ -46,31 +53,39 @@ export const createEvent = async (event) => {
     recommendedEateries: event.recommendedEateries,
     selectedEatery: event.selectedEatery,
     startTime: event.startTime,
-    totalCoordinates: event.totalCoordinates
-  })
-}
+    totalCoordinates: event.totalCoordinates,
+  });
+};
 
 export const getSingleEvent = async (eventID) => {
-  const docRef = doc(db, eventsCollectionName, eventID)
+  const docRef = doc(db, eventsCollectionName, eventID);
   const docSnapshot = await getDoc(docRef);
-  
-  if (!docSnapshot.exists()){ 
+
+  if (!docSnapshot.exists()) {
     // LOL wtf matt HAHAHAHHA
     console.log("L");
-  }else{
+  } else {
     return docSnapshot.data();
   }
-  
-}
+};
 
-export const updateRecommendedEateries = async (eventID, recommendedEateries) => {
-  const docRef = doc(db, eventsCollectionName, eventID)
+export const updateRecommendedEateries = async (
+  eventID,
+  recommendedEateries
+) => {
+  const docRef = doc(db, eventsCollectionName, eventID);
 
-  await updateDoc(docRef, {recommendedEateries: recommendedEateries})
-
-}
+  await updateDoc(docRef, { recommendedEateries: recommendedEateries });
+};
 
 //delete document
 export const deleteEvent = async (event) => {
   await deleteDoc(doc(db, eventsCollectionName, event.eventID));
-}
+};
+
+// edit document
+export const editEvent = async (event) => {
+  const docRef = doc(db, eventsCollectionName, event.eventID);
+
+  await updateDoc(docRef, event);
+};
