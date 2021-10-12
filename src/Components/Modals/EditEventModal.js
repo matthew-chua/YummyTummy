@@ -16,39 +16,73 @@ export default function EditEventModal(props) {
 
   const [eventState, setEventState] = useState({});
 
+  let newDate = "";
+
   useEffect(() => {
-    setEventState(props.event);
-  }, [props.event]);
+    if (props.event) {
+      // setEventState(props.event);
+      newDate = props.event.startTime.toDate().toISOString().substr(0, 19);
+      setEventState({
+        ...props.event,
+        startTime: newDate,
+      });
+      console.log("TEST", eventState.eventTitle);
+    }
+  }, []);
 
   const [error, setError] = useState(false);
 
   console.log("HERE", props.event);
   // console.log("title", eventState.eventTitle);
 
-  let newDate = "";
-  if (eventState.startTime) {
-    newDate = eventState.startTime.toDate().toISOString().substr(0, 19);
-    console.log("NEW DATE", newDate);
-  }
   const submitHandler = (e) => {
     e.preventDefault();
   };
 
+  const editMaxPax = (e) => {
+    setEventState({
+      ...eventState,
+      maxParticipants: e.target.value,
+    });
+  };
+
+  const editTitle = (e) => {
+    setEventState({
+      ...eventState,
+      eventTitle: e.target.value,
+    });
+  };
+
+  const editDate = (e) => {
+    setEventState({
+      ...eventState,
+      startTime: e.target.value,
+    });
+  };
+
   return (
     <>
-      {showDeleteModal && <ConfirmDeleteModal toggle={toggleDeleteModal} deleteModal={setShowDeleteModal} event={eventState}/>}
+      {showDeleteModal && <ConfirmDeleteModal toggle={toggleDeleteModal} />}
 
       <form className={classes.modal}>
         <Card
           left={
             <div className={classes.leftContainer}>
               <h2>Event Title:</h2>
-              <input value={eventState.eventTitle} />
+              <input value={eventState.eventTitle} onChange={editTitle} />
               <h2>Date & Time:</h2>
-              <input type="datetime-local" value={newDate} />
+              <input
+                type="datetime-local"
+                value={eventState.startTime}
+                onChange={editDate}
+              />
 
               <h2>Max Pax:</h2>
-              <input type="number" value={eventState.maxParticipants} />
+              <input
+                type="number"
+                value={eventState.maxParticipants}
+                onChange={editMaxPax}
+              />
 
               <div className={classes.horiButtonGroup}>
                 <button onClick={props.toggle} className={classes.cancelButton}>
