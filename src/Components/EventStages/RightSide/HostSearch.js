@@ -14,11 +14,16 @@ import { updateRecommendedEateries } from "../../../Firestore/DatabaseManager";
 
 export default function HostSearch(props) {
   const [showEateries, setShowEateries] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   useNearbySearch();
 
-  const didFinishGettingNearbyRestaurants = (recommendedEateries) => {
-    updateRecommendedEateries(props.eventID, recommendedEateries);
+  const didFinishGettingNearbyRestaurants = async (recommendedEateries) => {
+    const didUpload = await updateRecommendedEateries(props.eventID, recommendedEateries);
+
+    if (didUpload){
+      window.location.reload();
+    }
     // need to check for success
     // reload
     props.setEventState((prev) => {
@@ -32,6 +37,9 @@ export default function HostSearch(props) {
       console.log(props.location);
       console.log(props.participantsList.length);
       // console.log(props.location / props.participantsList.length)
+
+      setLoading(true);
+
       getNearbyRestaurants(
         {
           lat: props.location[0] / props.participantsList.length,
@@ -39,8 +47,11 @@ export default function HostSearch(props) {
         },
         didFinishGettingNearbyRestaurants
       );
+    }else{
+      // handle error
     }
   };
+
 
   return (
     <div className={classes.root}>
@@ -62,6 +73,7 @@ export default function HostSearch(props) {
         <button className={classes.btn} onClick={toggleShowEateries}>
           Search
         </button>
+        {loading && <p>Loading...</p>}
       </div>
     </div>
   );
