@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./EditEventModal.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import pic from "../../Assets/eventpic.svg";
 import ConfirmDeleteModal from "./ConfirmDeleteModal";
@@ -13,6 +13,27 @@ export default function EditEventModal(props) {
     e.preventDefault();
     setShowDeleteModal((prev) => !prev);
   };
+
+  const [eventState, setEventState] = useState({});
+
+  useEffect(() => {
+    setEventState(props.event);
+  }, [props.event]);
+
+  const [error, setError] = useState(false);
+
+  console.log("HERE", props.event);
+  // console.log("title", eventState.eventTitle);
+
+  let newDate = "";
+  if (eventState.startTime) {
+    newDate = eventState.startTime.toDate().toISOString().substr(0, 19);
+    console.log("NEW DATE", newDate);
+  }
+  const submitHandler = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       {showDeleteModal && <ConfirmDeleteModal toggle={toggleDeleteModal} />}
@@ -22,18 +43,18 @@ export default function EditEventModal(props) {
           left={
             <div className={classes.leftContainer}>
               <h2>Event Title:</h2>
-              <input />
+              <input value={eventState.eventTitle} />
               <h2>Date & Time:</h2>
-              <input type="datetime-local" />
+              <input type="datetime-local" value={newDate} />
 
               <h2>Max Pax:</h2>
-              <input type="number" />
+              <input type="number" value={eventState.maxParticipants} />
 
               <div className={classes.horiButtonGroup}>
                 <button onClick={props.toggle} className={classes.cancelButton}>
                   Cancel
                 </button>
-                <button className={classes.saveButton} type="submit">
+                <button className={classes.saveButton} onClick={submitHandler}>
                   Save
                 </button>
               </div>

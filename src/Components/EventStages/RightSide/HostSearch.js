@@ -47,7 +47,7 @@ export default function HostSearch(props) {
       <img src={pic} className={classes.img} />
       <div id="map"></div>
       <div className={classes.text}>
-        <h1 className={classes.title}>Choose Location</h1>
+        <h1 className={classes.title}>Search</h1>
         <p
           className={`${classes.description} ${
             showEateries ? classes.red : classes.blue

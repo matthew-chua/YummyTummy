@@ -55,7 +55,9 @@ export default function LeftSide(props) {
 
   return (
     <div className={classes.root}>
-      {editEvent && <EditEventModal toggle={editEventHandler} />}
+      {editEvent && (
+        <EditEventModal event={props.event} toggle={editEventHandler} />
+      )}
       <div id="map"></div>
       <div className={classes.top}>
         <div>
@@ -82,7 +84,13 @@ export default function LeftSide(props) {
         </div>
       )}
 
-      {props.pageState === 1 && <Locations locations={props.placeList} placeClickHandler={props.placeClickHandler} selectedIndex={props.selectedIndex}/>}
+      {props.pageState === 1 && (
+        <Locations
+          locations={props.placeList}
+          placeClickHandler={props.placeClickHandler}
+          selectedIndex={props.selectedIndex}
+        />
+      )}
 
       {props.pageState === 2 && (
         <Participants participants={participantNames} />
