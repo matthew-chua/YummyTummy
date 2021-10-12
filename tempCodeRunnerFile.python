@@ -1,0 +1,5 @@
+
+hashmap = {0: 1, 2:2, 3:3}
+
+if 1 in hashmap:
+    print("1")

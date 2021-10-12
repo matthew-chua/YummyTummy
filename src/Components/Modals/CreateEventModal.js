@@ -20,7 +20,11 @@ export default function CreateEventModal(props) {
 
   const { currentUser } = useContext(AuthContext);
 
-  const [count, setCount] = useState(0);
+  const [eventTitleValid, setEventTitleValid] = useState(true);
+
+  const [startTimeValid, setStartTimeValid] = useState(true);
+
+  const [count, setCount] = useState(1);
 
   const plusOne = (e) => {
     e.preventDefault();
@@ -31,7 +35,7 @@ export default function CreateEventModal(props) {
 
   const minusOne = (e) => {
     e.preventDefault();
-    if (count > 0) {
+    if (count > 1) {
       setCount(()=> (count - 1));
     }
   };
@@ -90,11 +94,24 @@ export default function CreateEventModal(props) {
 
   //create the unique ID and send it to firebase
   const submitHandler = async (event) => {
-    console.log("HERE", event)
-    await createEvent(event);
-    // need to check for failure bro
-    props.toggle();
-    window.location.reload();
+    console.log("HERE!!!!", event)
+    if (event.eventTitle == "" && !event.startTime) {
+      setStartTimeValid(false);
+      setEventTitleValid(false);
+    } else if (!event.startTime){
+      setStartTimeValid(false);
+      setEventTitleValid(true);
+    } else if (event.eventTitle == "") {
+      setEventTitleValid(false);
+      setStartTimeValid(true);
+    } else {
+      setEventTitleValid(true);
+      setStartTimeValid(true);
+      await createEvent(event);
+      // need to check for failure bro
+      props.toggle();
+      window.location.reload();
+    }
   }
 
   // create event for custom location
@@ -164,9 +181,10 @@ export default function CreateEventModal(props) {
             <div className={classes.leftContainer}>
               <h2>Event Title:</h2>
               <input value={event.eventTitle} name="eventTitle" onChange={inputHandler}/>
+              {!eventTitleValid && <p className={classes.invalidText}>This is a required field.</p>}
               <h2>Date & Time:</h2>
               <input type="datetime-local" min={min.toISOString().substring(0,16)} value={event.startTime} name="startTime" onChange={dateInputHandler}/>
-
+              {!startTimeValid && <p className={classes.invalidText}>Date and Time is Required.</p>}
               <div className={classes.maxPax} >
                 <h2 className={classes.maxPaxText}>Max Pax:</h2>
                 <button className={classes.minusButton} onClick={minusOne}>
@@ -177,6 +195,8 @@ export default function CreateEventModal(props) {
                   +
                 </button>
               </div>
+
+              
 
               <div className={classes.vertButtonGroup}>
                 <button
@@ -198,6 +218,7 @@ export default function CreateEventModal(props) {
                     class="fa fa-arrow-right"
                   ></i>
                 </button> */}
+                
                 <div className={classes.searchBox}>
                   <AutocompleteSearch 
                   placeholder="Create with a specific location" 

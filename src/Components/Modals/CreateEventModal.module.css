@@ -222,3 +222,8 @@ input {
 .searchBox{
   width:100%
 }
+
+.invalidText {
+  color: red;
+  font-size: clamp(0.8rem, 1vw, 1.5rem);
+}

@@ -1,7 +1,20 @@
 import React from "react";
 import classes from "./ConfirmDeleteModal.module.css";
+import { deleteEvent } from "../../Firestore/DatabaseManager";
+import { useHistory } from "react-router";
+
 
 export default function ConfirmDeleteModal(props) {
+  
+  const history = useHistory()
+
+  const deleteEventHandler = async () => {
+    await deleteEvent(props.event)
+    history.push("/home")
+    
+
+  }
+
   return (
     <div>
       <div className={classes.root}>
@@ -13,7 +26,7 @@ export default function ConfirmDeleteModal(props) {
           <button className={classes.leftButton} onClick={props.toggle}>
             Cancel
           </button>
-          <button className={classes.rightButton}>Delete</button>
+          <button className={classes.rightButton} onClick={deleteEventHandler}>Delete</button>
         </div>
       </div>
       <div className={classes.overlay} onClick={props.toggle}/>

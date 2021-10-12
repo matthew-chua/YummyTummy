@@ -1,5 +1,5 @@
 // import { applyActionCode } from "@firebase/auth";
-import { collection, doc, getDocs, setDoc, getDoc, updateDoc } from "firebase/firestore";
+import { collection, doc, getDocs, setDoc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import firebase from "../Firebase/firebase";
 
 // constants
@@ -68,4 +68,9 @@ export const updateRecommendedEateries = async (eventID, recommendedEateries) =>
 
   await updateDoc(docRef, {recommendedEateries: recommendedEateries})
 
+}
+
+//delete document
+export const deleteEvent = async (event) => {
+  await deleteDoc(doc(db, eventsCollectionName, event.eventID));
 }

@@ -36,7 +36,7 @@ export default function EditEventModal(props) {
 
   return (
     <>
-      {showDeleteModal && <ConfirmDeleteModal toggle={toggleDeleteModal} />}
+      {showDeleteModal && <ConfirmDeleteModal toggle={toggleDeleteModal} deleteModal={setShowDeleteModal} event={eventState}/>}
 
       <form className={classes.modal}>
         <Card
