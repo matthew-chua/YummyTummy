@@ -67,7 +67,7 @@ export const updateRecommendedEateries = async (eventID, recommendedEateries) =>
   const docRef = doc(db, eventsCollectionName, eventID)
 
   await updateDoc(docRef, {recommendedEateries: recommendedEateries})
-
+  return true;
 }
 
 //delete document
