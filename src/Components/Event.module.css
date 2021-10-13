@@ -24,7 +24,8 @@
     /* padding: 10px; */
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly
+    justify-content: space-evenly;
+    width: inherit;
     /* padding-right: 25px; */
 }
 
@@ -49,6 +50,11 @@
     font-size: clamp(1.25rem, 3vw, 3rem);
     /* line-height: clamp(0.8rem, 2vw, 1rem); */
     margin: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: inline-block;
+    white-space: nowrap;
+    padding-bottom: 1px;
 }
 
 @media screen and (max-width: 768px) {

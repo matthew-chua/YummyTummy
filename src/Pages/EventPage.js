@@ -132,7 +132,7 @@ export default function EventPage() {
               loading={loading}
             />
           }
-          right={<JoinYourFriends />}
+          right={<JoinYourFriends event={eventState}/>}
           pageState={pageState}
         />
       )}

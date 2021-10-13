@@ -7,6 +7,7 @@ export default function ConfirmDeleteModal(props) {
   const history = useHistory();
 
   const deleteEventHandler = async () => {
+    console.log(props.event)
     if (props.event) {
       await deleteEvent(props.event);
       history.push("/home");

@@ -1,20 +1,91 @@
-import React from "react";
+import { React, useEffect, useContext } from "react";
 import JoinYourFriendsPic from "../../../Assets/JoinYourFriendsPic.gif";
 import classes from "./JoinYourFriends.module.css";
+import { AuthContext } from "../../../Auth/AuthProvider";
+import { editEvent } from "../../../Firestore/DatabaseManager";
 
 // Autocomplete Search
 import AutocompleteSearch from "../../../Maps/AutocompleteSearch";
 // import useNearbySearch from '../../../Maps/NearbySearch'
 
-export default function JoinYourFriends() {
-
+export default function JoinYourFriends(props) {
+  
+  const currentEvent = props.event;
+  
+  let updatedLat = currentEvent.totalCoordinates[0]
+  let updatedLong = currentEvent.totalCoordinates[1]
+  const { currentUser } = useContext(AuthContext);
+  let currentUserDetails = {"name": currentUser.displayName, "id":  currentUser.uid, }
+  console.log(currentUserDetails)
+  let updatedParticipantsID = currentEvent.participantsID
+  console.log(updatedParticipantsID)
+  
   const joinWithCustomLocationHandler = (location) => {
     console.log(location)
     console.log(location.lat)
     console.log(location.lng)
-    // yo daniel this is wired up to the "Join" button for the text box, will 
-    // return the location if the user chose from the drop down list
+    finishJoiningEvent(location)
+  } 
+
+  const finishJoiningEvent = async (location) => {
+    console.log(currentEvent)
+    console.log(location)
+    updatedLat += location.lat
+    updatedLong += location.lng
+    updatedParticipantsID.push(currentUserDetails)
+    console.log(updatedParticipantsID)
+
+    let updatedEvent = {
+      ...currentEvent,
+      totalCoordinates: [updatedLat, updatedLong]
+      //add participant ID
+      
+    }
+    console.log(updatedEvent)
+    await submitHandler(updatedEvent)
+    window.location.reload();
   }
+
+  const currentLocationHandler = (e) => {
+    console.log(e)
+    navigator.geolocation.getCurrentPosition(success, error, options)
+  }
+
+   //some random options for the geolocation call
+   var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+
+  
+
+  //success callback for geolocation call
+  const success = async (pos) => {
+    updatedLat += pos.coords.latitude
+    updatedLong += pos.coords.longitude
+    updatedParticipantsID.push(currentUserDetails)
+    console.log(updatedParticipantsID)
+
+    let updatedEvent = {
+      ...currentEvent,
+      totalCoordinates: [updatedLat, updatedLong]
+    }
+    console.log(updatedEvent)
+    await submitHandler(updatedEvent)
+    window.location.reload();
+  }
+
+  //error callback for geolocation
+  const error = (err) => {
+    console.log("ERROR", err);
+  }
+  
+  const submitHandler = async (event) => {
+    console.log(event)
+    await editEvent(event);
+  }
+  
 
   return (
     <div className={classes.root}>
@@ -34,7 +105,7 @@ export default function JoinYourFriends() {
         </h3>
       </div>
       <div className={classes.bottom}>
-        <button className={classes.button1}>Join with Current Location</button>
+        <button className={classes.button1} onClick={currentLocationHandler}>Join with Current Location</button>
         {/* <h3 className={classes.text3}>or</h3> */}
         <div className={classes.searchBoxContainer}>
           <AutocompleteSearch 

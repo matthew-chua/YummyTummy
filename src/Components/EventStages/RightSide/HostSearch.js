@@ -60,9 +60,7 @@ export default function HostSearch(props) {
       <div className={classes.text}>
         <h1 className={classes.title}>Search</h1>
         <p
-          className={`${classes.description} ${
-            showEateries ? classes.red : classes.blue
-          }`}
+          className={`${classes.description}`}
         >
           When all friends have responded, hit the search button!
         </p>

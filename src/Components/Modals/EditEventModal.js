@@ -59,7 +59,7 @@ export default function EditEventModal(props) {
       startTime: time,
       };
       
-      console.log("FINAL EVNET", finalEvent.startTime);
+      console.log("FINAL EVENT", finalEvent.startTime);
 
       await editEvent(finalEvent);
       // need to check for failure bro
@@ -96,7 +96,7 @@ export default function EditEventModal(props) {
 
   return (
     <>
-      {showDeleteModal && <ConfirmDeleteModal toggle={toggleDeleteModal} />}
+      {showDeleteModal && <ConfirmDeleteModal event={eventState} toggle={toggleDeleteModal} />}
 
       <form className={classes.modal}>
         <Card
