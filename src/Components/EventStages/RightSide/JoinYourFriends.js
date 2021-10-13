@@ -3,6 +3,7 @@ import JoinYourFriendsPic from "../../../Assets/JoinYourFriendsPic.gif";
 import classes from "./JoinYourFriends.module.css";
 import { AuthContext } from "../../../Auth/AuthProvider";
 import { editEvent } from "../../../Firestore/DatabaseManager";
+import { useHistory } from "react-router";
 
 // Autocomplete Search
 import AutocompleteSearch from "../../../Maps/AutocompleteSearch";
@@ -11,6 +12,7 @@ import AutocompleteSearch from "../../../Maps/AutocompleteSearch";
 export default function JoinYourFriends(props) {
   
   const currentEvent = props.event;
+  const history = useHistory();
   
   let updatedLat = currentEvent.totalCoordinates[0]
   let updatedLong = currentEvent.totalCoordinates[1]
@@ -43,7 +45,7 @@ export default function JoinYourFriends(props) {
     }
     console.log(updatedEvent)
     await submitHandler(updatedEvent)
-    window.location.reload();
+    history.push("/home");
   }
 
   const currentLocationHandler = (e) => {
@@ -73,7 +75,7 @@ export default function JoinYourFriends(props) {
     }
     console.log(updatedEvent)
     await submitHandler(updatedEvent)
-    window.location.reload();
+    history.push("/home");
   }
 
   //error callback for geolocation
