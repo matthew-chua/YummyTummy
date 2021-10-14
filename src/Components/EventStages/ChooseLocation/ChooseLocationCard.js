@@ -21,7 +21,8 @@ export default function ChooseLocationCard(props) {
   const didFetchPlaceDetail = (place) => {
     // gets call each time successful fetch
     setPlaceList((prev) => {
-      prev.push(place);
+      prev = [...prev, place];
+      console.log("prev:", prev);
       return prev;
     });
   };
@@ -33,6 +34,11 @@ export default function ChooseLocationCard(props) {
   useEffect(async () => {
     if (props.pageState === 1) {
       if (props.event) {
+        // console.log("place details:");
+
+        // here is the bug: calling api but updating with a callback function causes too many state rerenders
+        // doesn't quite append properly thus inconsistent number of items displayed
+
         getPlaceDetailsForList(
           props.event.recommendedEateries,
           didFetchPlaceDetail

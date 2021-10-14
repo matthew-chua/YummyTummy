@@ -34,6 +34,8 @@ export default function LeftSide(props) {
     setEditEvent((prev) => !prev);
   };
 
+  console.log("left side place list: ", props.placeList)
+
   const event = props.event;
 
   //get an array of participant names
