@@ -13,6 +13,7 @@ import { LoginModal } from "../../Modals/LoginModal";
 export default function JoinYourFriends(props) {
   
   const currentEvent = props.event;
+  console.log(currentEvent);
   const history = useHistory();
   
   let updatedLat = currentEvent.totalCoordinates[0]

@@ -144,7 +144,7 @@ export default function EventPage() {
               loading={loading}
             />
           }
-          right={<JoinYourFriends authed={authed} setAuthed={setAuthed} />}
+          right={<JoinYourFriends authed={authed} setAuthed={setAuthed} event={eventState}/>}
           pageState={pageState}
         />
       )}
