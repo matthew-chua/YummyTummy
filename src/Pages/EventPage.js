@@ -40,6 +40,9 @@ export default function EventPage() {
   const [pageState, setPageState] = useState(PageStates.Loading);
   const params = useParams();
 
+  // check if user is authenticated
+  const [authed, setAuthed] = useState(true);
+
   //get current userID
   const { currentUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
@@ -58,19 +61,28 @@ export default function EventPage() {
 
   //this function sets the pageState
   const pageSetter = (event) => {
-    if (event.host.id == currentUser.uid) {
-      //user is host of the event, pageState should be 0/1/2
-      if (event.recommendedEateries.length === 0) {
-        setPageState(PageStates.SearchLocation);
-      } else if (event.selectedEatery === "") {
-        setPageState(PageStates.ChooseLocation);
-      } else {
-        setPageState(PageStates.SelectedLocation);
-      }
-    } else if (!event.participantsID.includes(currentUser.id)) {
+    // not logged in state passed as prop to JoinYourFriends
+    // console.log("HERE", event);
+
+    if (!currentUser) {
+      setAuthed(false);
       setPageState(PageStates.JoinEvent);
+      console.log("run now");
     } else {
-      setPageState(PageStates.JoinedEvent);
+      if (event.host.id == currentUser.uid) {
+        //user is host of the event, pageState should be 0/1/2
+        if (event.recommendedEateries.length === 0) {
+          setPageState(PageStates.SearchLocation);
+        } else if (event.selectedEatery === "") {
+          setPageState(PageStates.ChooseLocation);
+        } else {
+          setPageState(PageStates.SelectedLocation);
+        }
+      } else if (!event.participantsID.includes(currentUser.id)) {
+        setPageState(PageStates.JoinEvent);
+      } else {
+        setPageState(PageStates.JoinedEvent);
+      }
     }
   };
 
@@ -132,7 +144,7 @@ export default function EventPage() {
               loading={loading}
             />
           }
-          right={<JoinYourFriends event={eventState}/>}
+          right={<JoinYourFriends authed={authed} setAuthed={setAuthed} />}
           pageState={pageState}
         />
       )}
