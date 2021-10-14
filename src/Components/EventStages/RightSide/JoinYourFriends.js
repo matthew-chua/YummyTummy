@@ -11,7 +11,6 @@ import { LoginModal } from "../../Modals/LoginModal";
 // import useNearbySearch from '../../../Maps/NearbySearch'
 
 export default function JoinYourFriends(props) {
-<<<<<<< Updated upstream
   
   const currentEvent = props.event;
   const history = useHistory();
@@ -90,15 +89,6 @@ export default function JoinYourFriends(props) {
     await editEvent(event);
   }
   
-=======
-  const joinWithCustomLocationHandler = (location) => {
-    console.log(location);
-    console.log(location.lat);
-    console.log(location.lng);
-    // yo daniel this is wired up to the "Join" button for the text box, will
-    // return the location if the user chose from the drop down list
-  };
->>>>>>> Stashed changes
 
   return (
     <div className={classes.root}>
