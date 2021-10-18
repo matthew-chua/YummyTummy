@@ -1,14 +1,18 @@
 import React from "react";
+import { useState } from "react";
 import classes from "./ConfirmDeleteModal.module.css";
 import { deleteEvent } from "../../Firestore/DatabaseManager";
 import { useHistory } from "react-router";
+import LoadingModal from "./LoadingModal";
 
 export default function ConfirmDeleteModal(props) {
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
 
   const deleteEventHandler = async () => {
     console.log(props.event)
     if (props.event) {
+      setLoading(true);
       await deleteEvent(props.event);
       history.push("/home");
     }
@@ -31,6 +35,7 @@ export default function ConfirmDeleteModal(props) {
         </div>
       </div>
       <div className={classes.overlay} onClick={props.toggle} />
+      <LoadingModal isLoading = {loading} />
     </div>
   );
 }

@@ -41,7 +41,7 @@ export default function LeftSide(props) {
   //get an array of participant names
   let participantNames = [];
 
-  if (event.participantsID) {
+  if (event && event.participantsID) {
     event.participantsID.forEach((participant) => {
       participantNames.push(participant.name);
     });
@@ -49,7 +49,7 @@ export default function LeftSide(props) {
   let date = "";
   let time = "";
 
-  if (event.startTime) {
+  if (event && event.startTime) {
     const newTime = event.startTime.toDate().toString().split(" ");
     date = newTime[0] + ", " + newTime[1] + " " + newTime[2];
     time = newTime[4].substring(0, 5);
@@ -63,11 +63,11 @@ export default function LeftSide(props) {
       <div id="map"></div>
       <div className={classes.top}>
         <div>
-          <h1 className={classes.title}>{event.eventTitle}</h1>
+          <h1 className={classes.title}>{event && event.eventTitle}</h1>
           <p className={classes.text}> 📅 {date + ", " + time}</p>
           <p className={classes.text}>
             {" "}
-            📍 {event.selectedEatery ? event.selectedEatery : "Pending"}
+            📍 {event && event.selectedEatery ? event.selectedEatery : "Pending"}
           </p>
         </div>
 

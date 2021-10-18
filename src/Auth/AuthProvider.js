@@ -1,5 +1,6 @@
 // import app from "../Firebase/firebase";
 import React, { useEffect, useState } from "react";
+import LoadingModal from "../Components/Modals/LoadingModal";
 import { auth } from "./auth";
 
 // source code
@@ -19,7 +20,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   if (pending) {
-    return <>Loading...</>;
+    return <LoadingModal isLoading = {true}/>;
   }
 
   return (

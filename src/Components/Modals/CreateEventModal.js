@@ -15,6 +15,7 @@ import hri from "human-readable-ids";
 //network
 import {createEvent} from "../../Firestore/DatabaseManager";
 import AutocompleteSearch from "../../Maps/AutocompleteSearch";
+import LoadingModal from "./LoadingModal";
 
 export default function CreateEventModal(props) {
 
@@ -25,6 +26,8 @@ export default function CreateEventModal(props) {
   const [startTimeValid, setStartTimeValid] = useState(true);
 
   const [count, setCount] = useState(1);
+
+  const [loading, setLoading] = useState(false);
 
   const plusOne = (e) => {
     e.preventDefault();
@@ -79,7 +82,10 @@ export default function CreateEventModal(props) {
 
   //generate the totalCoordinates field, and update event 
   const currentLocationHandler = () => {
+    // set loading
+    setLoading(true);
     navigator.geolocation.getCurrentPosition(success, error, options)
+    setLoading(false);
   }
 
   //generate the totalCoordinates field, and update event 
@@ -255,6 +261,7 @@ export default function CreateEventModal(props) {
         />
       </form>
       <div className={classes.overlay} onClick={props.toggle} />
+      <LoadingModal isLoading = {loading} />
     </div>
   );
 }

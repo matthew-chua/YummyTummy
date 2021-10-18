@@ -8,8 +8,11 @@ import Card from "../Card";
 import { editEvent } from "../../Firestore/DatabaseManager";
 import { Timestamp } from "firebase/firestore";
 
+import LoadingModal from "./LoadingModal";
+
 export default function EditEventModal(props) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const toggleDeleteModal = (e) => {
     e.preventDefault();
@@ -60,6 +63,9 @@ export default function EditEventModal(props) {
       };
       
       console.log("FINAL EVENT", finalEvent.startTime);
+      
+      // add state here
+      setLoading(true);
 
       await editEvent(finalEvent);
       // need to check for failure bro
@@ -158,6 +164,8 @@ export default function EditEventModal(props) {
         />
       </form>
       <div className={classes.overlay} onClick={props.toggle} />
+      <LoadingModal isLoading = { loading }/> 
+      {/* {loading && <h1>loading boi</h1>} */}
     </>
   );
 }

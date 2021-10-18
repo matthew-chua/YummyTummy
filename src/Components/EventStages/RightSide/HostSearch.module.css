@@ -68,3 +68,15 @@ transition: background-color 0.2s;
         line-height: 1rem;
     }
 }
+
+/* .text1 {
+    font-size: large;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-weight: normal;
+}
+
+.text1:after {
+    content: " .";
+    animation: dots 1s steps(5, end) infinite;
+} */

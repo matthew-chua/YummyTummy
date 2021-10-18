@@ -1,9 +1,10 @@
-import { React, useEffect, useContext } from "react";
+import { React, useState, useEffect, useContext } from "react";
 import JoinYourFriendsPic from "../../../Assets/JoinYourFriendsPic.gif";
 import classes from "./JoinYourFriends.module.css";
 import { AuthContext } from "../../../Auth/AuthProvider";
 import { editEvent } from "../../../Firestore/DatabaseManager";
 import { useHistory } from "react-router";
+import LoadingModal from "../../Modals/LoadingModal";
 
 // Autocomplete Search
 import AutocompleteSearch from "../../../Maps/AutocompleteSearch";
@@ -11,20 +12,25 @@ import { LoginModal } from "../../Modals/LoginModal";
 // import useNearbySearch from '../../../Maps/NearbySearch'
 
 export default function JoinYourFriends(props) {
-  
+  // Loading
+  const [loading, setLoading] = useState(false);
+
   const currentEvent = props.event;
   console.log(currentEvent);
   const history = useHistory();
-  
-  let updatedLat = currentEvent.totalCoordinates[0]
-  let updatedLong = currentEvent.totalCoordinates[1]
+    
+  let updatedLat = currentEvent ? currentEvent.totalCoordinates[0] : 0
+  let updatedLong = currentEvent ? currentEvent.totalCoordinates[1] : 0
   const { currentUser } = useContext(AuthContext);
   let currentUserDetails = {"name": currentUser.displayName, "id":  currentUser.uid, }
   console.log(currentUserDetails)
-  let updatedParticipantsID = currentEvent.participantsID
+  let updatedParticipantsID = currentEvent ? currentEvent.participantsID : []
   console.log(updatedParticipantsID)
   
   const joinWithCustomLocationHandler = (location) => {
+    // first thing is set loading state
+    setLoading(true)
+
     console.log(location)
     console.log(location.lat)
     console.log(location.lng)
@@ -45,14 +51,17 @@ export default function JoinYourFriends(props) {
       //add participant ID
       
     }
-    console.log(updatedEvent)
+    console.log(updatedEvent);
+    setLoading(true);
     await submitHandler(updatedEvent)
     history.push("/home");
   }
 
   const currentLocationHandler = (e) => {
     console.log(e)
+    setLoading(true);
     navigator.geolocation.getCurrentPosition(success, error, options)
+    setLoading(false);
   }
 
    //some random options for the geolocation call
@@ -76,6 +85,7 @@ export default function JoinYourFriends(props) {
       totalCoordinates: [updatedLat, updatedLong]
     }
     console.log(updatedEvent)
+    setLoading(true);
     await submitHandler(updatedEvent)
     history.push("/home");
   }
@@ -87,7 +97,9 @@ export default function JoinYourFriends(props) {
   
   const submitHandler = async (event) => {
     console.log(event)
+    setLoading(true);
     await editEvent(event);
+    setLoading(false);
   }
   
 
@@ -124,6 +136,8 @@ export default function JoinYourFriends(props) {
           Join with postal code{" "}
           <i style={{ marginLeft: "10px" }} class="fa fa-arrow-right"></i>
         </button> */}
+        {loading && <p className={classes.text1}>loading... </p>}
+        {/* <LoadingModal isLoading = { loading }/> */}
       </div>
     </div>
   );

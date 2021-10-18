@@ -9,6 +9,7 @@ import JoinYourFriends from "../Components/EventStages/RightSide/JoinYourFriends
 import HostSearch from "../Components/EventStages/RightSide/HostSearch";
 import WaitForLocation from "../Components/EventStages/RightSide/WaitForLocation";
 import CuratedLocation from "../Components/EventStages/RightSide/CuratedLocation";
+import LoadingModal from "../Components/Modals/LoadingModal";
 
 //css
 import classes from "./EventPage.module.css";
@@ -37,7 +38,7 @@ export default function EventPage() {
   };
 
   // initial state = loading
-  const [pageState, setPageState] = useState(PageStates.Loading);
+  const [pageState, setPageState] = useState(PageStates.JoinEvent);
   const params = useParams();
 
   // check if user is authenticated
@@ -56,7 +57,7 @@ export default function EventPage() {
       setEventState(singleEvent);
     }
     setLoading(false);
-    pageSetter(singleEvent);
+    // pageSetter(singleEvent);
   }, [eventState]);
 
   //this function sets the pageState
@@ -163,7 +164,9 @@ export default function EventPage() {
           pageState={pageState}
         />
       )}
-      {pageState === PageStates.Loading && <h1>loading boi</h1>}
+      {/* {pageState === PageStates.Loading && <h1>loading boi</h1>} */}
+      <LoadingModal isLoading = { pageState === PageStates.Loading }/> 
     </div>
   );
 }
+

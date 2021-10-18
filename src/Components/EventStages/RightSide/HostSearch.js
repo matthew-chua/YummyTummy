@@ -5,6 +5,7 @@ import {
   useNearbySearch,
   getNearbyRestaurants,
 } from "../../../Maps/UseNearbySearch";
+// import LoadingModal from "../../Modals/LoadingModal";
 
 //css
 import classes from "./HostSearch.module.css";
@@ -19,6 +20,7 @@ export default function HostSearch(props) {
   useNearbySearch();
 
   const didFinishGettingNearbyRestaurants = async (recommendedEateries) => {
+    console.log("hello")
     const didUpload = await updateRecommendedEateries(props.eventID, recommendedEateries);
 
     if (didUpload){
@@ -71,7 +73,8 @@ export default function HostSearch(props) {
         <button className={classes.btn} onClick={toggleShowEateries}>
           Search
         </button>
-        {loading && <p>Loading...</p>}
+        {loading && <p className={classes.text1}>Loading... </p>}
+        {/* <LoadingModal isLoading = {loading} /> */}
       </div>
     </div>
   );

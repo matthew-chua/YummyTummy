@@ -54,3 +54,8 @@
     width: 100%;
   }
 }
+
+/* .text1:after {
+  content: " .";
+  animation: dots 1s steps(5, end) infinite;
+} */
