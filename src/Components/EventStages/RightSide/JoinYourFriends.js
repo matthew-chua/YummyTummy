@@ -1,4 +1,4 @@
-import { React, useEffect, useContext } from "react";
+import { React, useEffect, useContext, useState } from "react";
 import JoinYourFriendsPic from "../../../Assets/JoinYourFriendsPic.gif";
 import classes from "./JoinYourFriends.module.css";
 import { AuthContext } from "../../../Auth/AuthProvider";
@@ -13,6 +13,7 @@ import { LoginModal } from "../../Modals/LoginModal";
 export default function JoinYourFriends(props) {
   const currentEvent = props.event;
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
 
   let updatedLat = currentEvent.totalCoordinates[0];
   let updatedLong = currentEvent.totalCoordinates[1];
@@ -29,10 +30,10 @@ export default function JoinYourFriends(props) {
   let updatedParticipantsID = currentEvent ? currentEvent.participantsID : [];
   console.log(updatedParticipantsID);
 
-  const joinWithCustomLocationHandler = (location) => {
-    // first thing is set loading state
-    setLoading(true);
-  };
+  // const joinWithCustomLocationHandler = (location) => {
+  //   // first thing is set loading state
+  //   setLoading(true);
+  // };
 
   const joinWithCustomLocationHandler = (location) => {
     console.log(location);
@@ -55,13 +56,16 @@ export default function JoinYourFriends(props) {
       //add participant ID
     };
     console.log(updatedEvent);
+    setLoading(true);
     await submitHandler(updatedEvent);
     history.push("/home");
   };
 
   const currentLocationHandler = (e) => {
     console.log(e);
+    setLoading(true);
     navigator.geolocation.getCurrentPosition(success, error, options);
+    setLoading(false);
   };
 
   //some random options for the geolocation call
@@ -83,6 +87,7 @@ export default function JoinYourFriends(props) {
       totalCoordinates: [updatedLat, updatedLong],
     };
     console.log(updatedEvent);
+    setLoading(true);
     await submitHandler(updatedEvent);
     history.push("/home");
   };
@@ -94,7 +99,9 @@ export default function JoinYourFriends(props) {
 
   const submitHandler = async (event) => {
     console.log(event);
+    setLoading(true);
     await editEvent(event);
+    setLoading(false);
   };
 
   return (
