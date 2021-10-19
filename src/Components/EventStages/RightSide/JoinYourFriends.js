@@ -1,10 +1,9 @@
-import { React, useState, useEffect, useContext } from "react";
+import { React, useEffect, useContext, useState } from "react";
 import JoinYourFriendsPic from "../../../Assets/JoinYourFriendsPic.gif";
 import classes from "./JoinYourFriends.module.css";
 import { AuthContext } from "../../../Auth/AuthProvider";
 import { editEvent } from "../../../Firestore/DatabaseManager";
 import { useHistory } from "react-router";
-import LoadingModal from "../../Modals/LoadingModal";
 
 // Autocomplete Search
 import AutocompleteSearch from "../../../Maps/AutocompleteSearch";
@@ -12,101 +11,98 @@ import { LoginModal } from "../../Modals/LoginModal";
 // import useNearbySearch from '../../../Maps/NearbySearch'
 
 export default function JoinYourFriends(props) {
-  // Loading
+  const currentEvent = props.event;
+  const history = useHistory();
   const [loading, setLoading] = useState(false);
 
-  const currentEvent = props.event;
-  console.log(currentEvent);
-  const history = useHistory();
-    
-  let updatedLat = currentEvent ? currentEvent.totalCoordinates[0] : 0
-  let updatedLong = currentEvent ? currentEvent.totalCoordinates[1] : 0
+  let updatedLat = currentEvent.totalCoordinates[0];
+  let updatedLong = currentEvent.totalCoordinates[1];
   const { currentUser } = useContext(AuthContext);
-  
+
   // let currentUserDetails;
 
-  let currentUserDetails = {"name": currentUser ? currentUser.displayName : "", "id":  currentUser ? currentUser.uid : "", }
-  console.log(currentUserDetails)
-  
-  
-  let updatedParticipantsID = currentEvent ? currentEvent.participantsID : []
-  console.log(updatedParticipantsID)
-  
-  const joinWithCustomLocationHandler = (location) => {
-    // first thing is set loading state
-    setLoading(true)
+  let currentUserDetails = {
+    name: currentUser ? currentUser.displayName : "",
+    id: currentUser ? currentUser.uid : "",
+  };
+  console.log(currentUserDetails);
 
-    console.log(location)
-    console.log(location.lat)
-    console.log(location.lng)
-    finishJoiningEvent(location)
-  } 
+  let updatedParticipantsID = currentEvent ? currentEvent.participantsID : [];
+  console.log(updatedParticipantsID);
+
+  // const joinWithCustomLocationHandler = (location) => {
+  //   // first thing is set loading state
+  //   setLoading(true);
+  // };
+
+  const joinWithCustomLocationHandler = (location) => {
+    console.log(location);
+    console.log(location.lat);
+    console.log(location.lng);
+    finishJoiningEvent(location);
+  };
 
   const finishJoiningEvent = async (location) => {
-    console.log(currentEvent)
-    console.log(location)
-    updatedLat += location.lat
-    updatedLong += location.lng
-    updatedParticipantsID.push(currentUserDetails)
-    console.log(updatedParticipantsID)
+    console.log(currentEvent);
+    console.log(location);
+    updatedLat += location.lat;
+    updatedLong += location.lng;
+    updatedParticipantsID.push(currentUserDetails);
+    console.log(updatedParticipantsID);
 
     let updatedEvent = {
       ...currentEvent,
-      totalCoordinates: [updatedLat, updatedLong]
+      totalCoordinates: [updatedLat, updatedLong],
       //add participant ID
-      
-    }
+    };
     console.log(updatedEvent);
     setLoading(true);
-    await submitHandler(updatedEvent)
+    await submitHandler(updatedEvent);
     history.push("/home");
-  }
-
-  const currentLocationHandler = (e) => {
-    console.log(e)
-    setLoading(true);
-    navigator.geolocation.getCurrentPosition(success, error, options)
-    setLoading(false);
-  }
-
-   //some random options for the geolocation call
-   var options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
   };
 
-  
+  const currentLocationHandler = (e) => {
+    console.log(e);
+    setLoading(true);
+    navigator.geolocation.getCurrentPosition(success, error, options);
+    setLoading(false);
+  };
+
+  //some random options for the geolocation call
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
 
   //success callback for geolocation call
   const success = async (pos) => {
-    updatedLat += pos.coords.latitude
-    updatedLong += pos.coords.longitude
-    updatedParticipantsID.push(currentUserDetails)
-    console.log(updatedParticipantsID)
+    updatedLat += pos.coords.latitude;
+    updatedLong += pos.coords.longitude;
+    updatedParticipantsID.push(currentUserDetails);
+    console.log(updatedParticipantsID);
 
     let updatedEvent = {
       ...currentEvent,
-      totalCoordinates: [updatedLat, updatedLong]
-    }
-    console.log(updatedEvent)
+      totalCoordinates: [updatedLat, updatedLong],
+    };
+    console.log(updatedEvent);
     setLoading(true);
-    await submitHandler(updatedEvent)
+    await submitHandler(updatedEvent);
     history.push("/home");
-  }
+  };
 
   //error callback for geolocation
   const error = (err) => {
     console.log("ERROR", err);
-  }
-  
+  };
+
   const submitHandler = async (event) => {
-    console.log(event)
+    console.log(event);
     setLoading(true);
     await editEvent(event);
     setLoading(false);
-  }
-  
+  };
 
   return (
     <div className={classes.root}>
@@ -127,7 +123,9 @@ export default function JoinYourFriends(props) {
         </h3>
       </div>
       <div className={classes.bottom}>
-        <button className={classes.button1} onClick={currentLocationHandler}>Join with Current Location</button>
+        <button className={classes.button1} onClick={currentLocationHandler}>
+          Join with Current Location
+        </button>
         {/* <h3 className={classes.text3}>or</h3> */}
         <div className={classes.searchBoxContainer}>
           <AutocompleteSearch
@@ -141,7 +139,7 @@ export default function JoinYourFriends(props) {
           Join with postal code{" "}
           <i style={{ marginLeft: "10px" }} class="fa fa-arrow-right"></i>
         </button> */}
-        {loading && <p className={classes.text1}>loading... </p>}
+        {loading && <p className={classes.text4}>loading </p>}
         {/* <LoadingModal isLoading = { loading }/> */}
       </div>
     </div>

@@ -90,7 +90,7 @@ export default function HostChooseLocation(props) {
           </button>
         </>
       ) : (
-        <h1 className={classes.text1}>loading... </h1>
+        <h1 className={classes.text1}>loading </h1>
       )}
     </div>
   );
