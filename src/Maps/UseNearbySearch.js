@@ -45,7 +45,7 @@ export const useNearbySearch = () => {
   // return service;
 };
 
-export const getNearbyRestaurants = (location, completed) => {
+export const getNearbyRestaurants = (location, completed, radius) => {
   const locationToSearch = new window.google.maps.LatLng(
     location.lat,
     location.lng
@@ -53,7 +53,7 @@ export const getNearbyRestaurants = (location, completed) => {
   console.log("location to search", location)
   var request = {
     location: locationToSearch,
-    radius: "500",
+    radius: radius,
     type: ["restaurant"],
   };
   service.nearbySearch(request, callback);
