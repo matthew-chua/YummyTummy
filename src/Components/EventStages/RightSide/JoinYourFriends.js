@@ -22,8 +22,12 @@ export default function JoinYourFriends(props) {
   let updatedLat = currentEvent ? currentEvent.totalCoordinates[0] : 0
   let updatedLong = currentEvent ? currentEvent.totalCoordinates[1] : 0
   const { currentUser } = useContext(AuthContext);
-  let currentUserDetails = {"name": currentUser.displayName, "id":  currentUser.uid, }
-  console.log(currentUserDetails)
+  if (currentUser){
+    let currentUserDetails = {"name": currentUser.displayName, "id":  currentUser.uid, }
+    console.log(currentUserDetails)
+  }
+  
+  
   let updatedParticipantsID = currentEvent ? currentEvent.participantsID : []
   console.log(updatedParticipantsID)
   
