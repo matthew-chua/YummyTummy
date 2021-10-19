@@ -18,6 +18,7 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import { AuthProvider } from "./Auth/AuthProvider";
 import TestPage from "./Pages/TestPage";
 import { LoginModal } from "./Components/Modals/LoginModal";
+import ExpiredPage from "./Pages/ExpiredPage";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route exact path='/event/:id' component={EventPage} />
           {/* <PrivateRoute exact path="/test" component={TestPage} /> */}
           <Route exact path='/test' component={LoginModal} />
+          <Route exact path='/expired' component={ExpiredPage}/>
           <Route path='/'>
             <Redirect to='/welcome' />
           </Route>
