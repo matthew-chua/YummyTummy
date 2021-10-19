@@ -23,6 +23,12 @@
   height: 50%;
   width: 50%;
 }
+.leftContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
 
 .rightContainer {
   display: flex;
@@ -32,6 +38,11 @@
 .text {
   padding-top: 3rem;
 }
+
+.title{
+  margin-bottom: 10px;
+}
+
 .cancelButton {
   border: none;
   background-color: black;
@@ -67,7 +78,7 @@
 }
 
 .vertButtonGroup {
-  margin-top: 10vh;
+  /* margin-top: 10vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -153,52 +164,71 @@ input {
 .maxPax {
   display: flex;
   flex-direction: row;
-  margin: 1%;
-  height: 5vh;
-  margin: 5% 0 0 0;
+  /* align-items: center; */
+  justify-content: space-between;
+  margin-top: 30px;
+  /* height: 5vh; */
+}
+
+.maxPaxButtonGroup{
+  display: flex;
+  flex-direction: row;
 }
 
 .minusButton {
-  margin-left: 10px;
+  /* margin-left: 10px; */
   border: none;
-  background-color: rgba(0, 0, 0, 0.2);
-  color: black;
-  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  font-size: clamp(0.8rem, 2vw, 1.5rem);
-  width: 10%;
+  /* background-color: rgba(0, 0, 0, 0.2); */
+  /* background-color: #ba5bb2; */
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  /* color: black; */
+  /* font-family: Futura, "Trebuchet MS", Arial, sans-serif; */
+  /* font-size: clamp(0.8rem, 2vw, 1.5rem); */
+  /* width: 10%;
   text-align: center;
   display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
+  vertical-align: middle; */
+  /* line-height: normal; */
+  width: 20px;
   border-radius: 10% 0 0 10%;
+  text-align: center;
+  padding: 0;
 }
 
 .count {
   border: none;
-  background-color: black;
-  opacity: 0.4;
-  color: white;
-  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  font-size: clamp(0.8rem, 2vw, 1.6rem);
-  width: 10%;
+  background-color: white;
+  /* opacity: 0.4; */
+  color: black;
+  /* font-family: Futura, "Trebuchet MS", Arial, sans-serif; */
+  /* font-size: clamp(0.8rem, 2vw, 1.6rem); */
+  /* width: 10%; */
   text-align: center;
-  display: inline-block;
+  /*display: inline-block;
   vertical-align: middle;
-  line-height: normal;
+  line-height: normal; */
+  /* vertical-align: middle; */
+  line-height: 30px;
   margin: 0;
+  width: 40px;
 }
 
 .addButton {
   border: none;
-  background-color: rgba(0, 0, 0, 0.2);
-  color: black;
-  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  font-size: clamp(0.8rem, 2vw, 1.5rem);
-  width: 10%;
-  text-align: center;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
+  background-color: rgba(0, 0, 0, 0.4);
+  /* background-color: #ba5bb2; */
+  color: white;
+  /* color: black; */
+  /* font-family: Futura, "Trebuchet MS", Arial, sans-serif; */
+  /* font-size: clamp(0.8rem, 2vw, 1.5rem); */
+  /* width: 10%; */
+  /* text-align: center; */
+  /* display: inline-block; */
+  /* vertical-align: middle; */
+  /* line-height: normal; */
+  padding: 0;
+  width: 20px;
   border-radius: 0 10% 10% 0;
 }
 
@@ -206,9 +236,10 @@ input {
   text-align: left;
   display: inline-block;
   vertical-align: middle;
-  line-height: normal;
-  height: 100%;
+  /* line-height: normal; */
+  /* height: 100%; */
   margin: 0;
+  line-height: 30px;
 }
 
 .minusButton:hover {

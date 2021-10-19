@@ -185,14 +185,16 @@ export default function CreateEventModal(props) {
         <Card
           left={
             <div className={classes.leftContainer}>
-              <h2>Event Title:</h2>
+              <div>
+              <h4 className={classes.title}>Event Title:</h4>
               <input value={event.eventTitle} name="eventTitle" onChange={inputHandler}/>
               {!eventTitleValid && <p className={classes.invalidText}>This is a required field.</p>}
-              <h2>Date & Time:</h2>
+              <h4 className={classes.title}>Date & Time:</h4>
               <input type="datetime-local" min={min.toISOString().substring(0,16)} value={event.startTime} name="startTime" onChange={dateInputHandler}/>
               {!startTimeValid && <p className={classes.invalidText}>Date and Time is Required.</p>}
               <div className={classes.maxPax} >
-                <h2 className={classes.maxPaxText}>Max Pax:</h2>
+                <h4 className={classes.maxPaxText}>Max Pax:</h4>
+                <div className={classes.maxPaxButtonGroup}>
                 <button className={classes.minusButton} onClick={minusOne}>
                   -
                 </button>
@@ -200,8 +202,9 @@ export default function CreateEventModal(props) {
                 <button className={classes.addButton} onClick={plusOne}>
                   +
                 </button>
+                </div>
               </div>
-
+            </div>
               
 
               <div className={classes.vertButtonGroup}>
@@ -212,18 +215,6 @@ export default function CreateEventModal(props) {
                 >
                   Create with current location
                 </button>
-                {/* <div className={classes.or}>or</div> */}
-                {/* <button
-                  onClick={postalCodeHandler}
-                  className={classes.joinWithPostalCode}
-                  type="button"
-                >
-                  Create with Postal Code{" "}
-                  <i
-                    style={{ marginLeft: "10px" }}
-                    class="fa fa-arrow-right"
-                  ></i>
-                </button> */}
                 
                 <div className={classes.searchBox}>
                   <AutocompleteSearch 
