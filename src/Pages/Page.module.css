@@ -30,10 +30,9 @@
   justify-content: space-evenly;
   aspect-ratio: 4;
   cursor: pointer;
-  box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.4);
-  -webkit-box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.4);
   border-radius: 20px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.25);
+  transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
   /* padding: 10px; */
   width: 35vw;
   transition: 0.1s ease-in;
@@ -45,7 +44,16 @@
 }
 .createEventButton:hover {
   transform: scale(1.1);
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 3px 3px rgba(219, 191, 254, 0.3);
+  box-shadow: 0 0 3px 3px rgba(219, 191, 254, 0.3);
 }
+
+.createEventButton:active {
+  background-color: rgba(219, 191, 254, 0.3);
+  transition: background-color 0.2s;
+}
+
 .pic {
   width: 15%;
   /* height: 80%; */
