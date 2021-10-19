@@ -49,7 +49,7 @@
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
     transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
     text-align: center;
-  }
+}
 
 .btn:hover {
 cursor: pointer;
