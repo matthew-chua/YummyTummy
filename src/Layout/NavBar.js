@@ -33,6 +33,7 @@ const NavBar = () => {
 
   const signOutOnClickHandler = () => {
     onLogout();
+
   }
 
   return (
@@ -60,12 +61,13 @@ const NavBar = () => {
             </NavLink>
           ))} */}
               </div>
-              <button
+              <a
                 onClick={signOutOnClickHandler}
                 className={classes.button}
+                href={'/'}
               >
                 Sign Out
-              </button>
+              </a>
               {/* <i
           className={`${menuIsOpen ? "fa fa-times" : "fa fa-bars"} ${
             classes.icon
