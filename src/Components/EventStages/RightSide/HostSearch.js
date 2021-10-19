@@ -15,11 +15,18 @@ import { updateRecommendedEateries } from "../../../Firestore/DatabaseManager";
 
 export default function HostSearch(props) {
   const [showEateries, setShowEateries] = useState(false);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useNearbySearch();
 
   const didFinishGettingNearbyRestaurants = async (recommendedEateries) => {
+    if (!recommendedEateries){
+      setLoading(false);
+      setError(true);
+      return;
+    }
+
     console.log("hello")
     const didUpload = await updateRecommendedEateries(props.eventID, recommendedEateries);
 
@@ -38,14 +45,16 @@ export default function HostSearch(props) {
     if (props.location) {
       console.log(props.location);
       console.log(props.participantsList.length);
+      // console.log("updated lat: ", (props.location[0] / props.participantsList.length).toFixed(7));
+      // console.log("updated lng: ", (props.location[1] / props.participantsList.length).toFixed(7));
       // console.log(props.location / props.participantsList.length)
-
+      setError(false);
       setLoading(true);
 
       getNearbyRestaurants(
         {
-          lat: props.location[0] / props.participantsList.length,
-          lng: props.location[1] / props.participantsList.length,
+          lat:  parseFloat((props.location[0] / props.participantsList.length).toFixed(7)),
+          lng: parseFloat((props.location[1] / props.participantsList.length).toFixed(7)),
         },
         didFinishGettingNearbyRestaurants
       );
@@ -70,10 +79,11 @@ export default function HostSearch(props) {
           We’ll suggest a handful of optimal diners for you to choose based on
           their location, reviews and what’s still open at this time!
         </p>
-        <button className={classes.btn} onClick={toggleShowEateries}>
+        <button className={`${error && classes.error} ${classes.btn}`} onClick={toggleShowEateries}>
           Search
         </button>
         {loading && <p className={classes.text1}>Loading... </p>}
+        {error && <p >Oops, no restaurants found. Sorry!</p>}
         {/* <LoadingModal isLoading = {loading} /> */}
       </div>
     </div>

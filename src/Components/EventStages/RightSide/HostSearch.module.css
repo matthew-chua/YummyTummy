@@ -51,6 +51,12 @@
     text-align: center;
 }
 
+.error{
+    animation: shake 0.2s ease-in-out 0s 2;
+    /* color: red; */
+  /* box-shadow: 0 0 0.5em red;   */
+}
+
 .btn:hover {
 cursor: pointer;
 -webkit-box-shadow: 0 0 3px 3px rgba(219, 191, 254, 0.3);
@@ -80,3 +86,9 @@ transition: background-color 0.2s;
     content: " .";
     animation: dots 1s steps(5, end) infinite;
 } */
+@keyframes shake {
+    0% { margin-left: 0rem; }
+    25% { margin-left: 0.5rem; }
+    75% { margin-left: -0.5rem; }
+    100% { margin-left: 0rem; }
+}

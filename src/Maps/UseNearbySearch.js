@@ -50,6 +50,7 @@ export const getNearbyRestaurants = (location, completed) => {
     location.lat,
     location.lng
   );
+  console.log("location to search", location)
   var request = {
     location: locationToSearch,
     radius: "500",
@@ -62,6 +63,8 @@ export const getNearbyRestaurants = (location, completed) => {
         return restaurant.place_id;
       });
       completed(recommendedEateries);
+    }else{
+      completed(null);
     }
   }
 }
