@@ -13,10 +13,25 @@ import LoadingModal from "./LoadingModal";
 export default function EditEventModal(props) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [count, setCount] = useState(props.event.maxParticipants);
 
   const toggleDeleteModal = (e) => {
     e.preventDefault();
     setShowDeleteModal((prev) => !prev);
+  };
+
+  const plusOne = (e) => {
+    e.preventDefault();
+    if (count < 5) {
+      setCount(() => count + 1);
+    }
+  };
+
+  const minusOne = (e) => {
+    e.preventDefault();
+    if (count > 1) {
+      setCount(() => count - 1);
+    }
   };
 
   const [eventState, setEventState] = useState({});
@@ -45,6 +60,7 @@ export default function EditEventModal(props) {
   const submitHandler = async (e) => {
     console.log("Hi", eventState);
     e.preventDefault();
+    eventState.maxParticipants = count;
     if (eventState.eventTitle == "" && !eventState.startTime) {
       setStartTimeValid(false);
       setEventTitleValid(false);
@@ -58,12 +74,13 @@ export default function EditEventModal(props) {
       setEventTitleValid(true);
       setStartTimeValid(true);
 
-      let finalEvent = {...eventState,
-      startTime: time,
-      };
-      
-      console.log("FINAL EVENT", finalEvent.startTime);
-      
+      let finalEvent = { ...eventState, startTime: time };
+
+      console.log("FINAL EVENT", eventState.startTime);
+      console.log("FINAL pax", eventState.maxParticipants);
+      if (!finalEvent.startTime){
+        finalEvent.startTime = props.event.startTime;
+      }
       // add state here
       setLoading(true);
 
@@ -102,7 +119,9 @@ export default function EditEventModal(props) {
 
   return (
     <>
-      {showDeleteModal && <ConfirmDeleteModal event={eventState} toggle={toggleDeleteModal} />}
+      {showDeleteModal && (
+        <ConfirmDeleteModal event={eventState} toggle={toggleDeleteModal} />
+      )}
 
       <form className={classes.modal}>
         <Card
@@ -125,12 +144,30 @@ export default function EditEventModal(props) {
                 </p>
               )}
 
-              <h2>Max Pax:</h2>
+              {/* <h2>Max Pax:</h2>
               <input
                 type="number"
                 value={eventState.maxParticipants}
                 onChange={editMaxPax}
-              />
+              /> */}
+
+              <div className={classes.maxPax}>
+                <h2 className={classes.maxPaxText}>Max Pax:</h2>
+                <button className={classes.minusButton} onClick={minusOne}>
+                  -
+                </button>
+
+                <p
+                  className={classes.count}
+                  type="number"
+                  onChange={editMaxPax}
+                >
+                  {count}
+                </p>
+                <button className={classes.addButton} onClick={plusOne}>
+                  +
+                </button>
+              </div>
 
               <div className={classes.horiButtonGroup}>
                 <button onClick={props.toggle} className={classes.cancelButton}>
@@ -164,7 +201,7 @@ export default function EditEventModal(props) {
         />
       </form>
       <div className={classes.overlay} onClick={props.toggle} />
-      <LoadingModal isLoading = { loading }/> 
+      <LoadingModal isLoading={loading} />
       {/* {loading && <h1>loading boi</h1>} */}
     </>
   );
