@@ -1,9 +1,14 @@
+<<<<<<< Updated upstream
 import { React, useEffect, useContext, useState } from "react";
+=======
+import { React, useState, useEffect, useContext } from "react";
+>>>>>>> Stashed changes
 import JoinYourFriendsPic from "../../../Assets/JoinYourFriendsPic.gif";
 import classes from "./JoinYourFriends.module.css";
 import { AuthContext } from "../../../Auth/AuthProvider";
 import { editEvent } from "../../../Firestore/DatabaseManager";
 import { useHistory } from "react-router";
+import LoadingModal from "../../Modals/LoadingModal";
 
 // Autocomplete Search
 import AutocompleteSearch from "../../../Maps/AutocompleteSearch";
@@ -11,12 +16,23 @@ import { LoginModal } from "../../Modals/LoginModal";
 // import useNearbySearch from '../../../Maps/NearbySearch'
 
 export default function JoinYourFriends(props) {
+<<<<<<< Updated upstream
   const currentEvent = props.event;
   const history = useHistory();
   const [loading, setLoading] = useState(false);
 
   let updatedLat = currentEvent && currentEvent.totalCoordinates[0];
   let updatedLong = currentEvent && currentEvent.totalCoordinates[1];
+=======
+  // Loading
+  const [loading, setLoading] = useState(true);
+
+  const currentEvent = props.event;
+  const history = useHistory();
+    
+  let updatedLat = currentEvent.totalCoordinates[0]
+  let updatedLong = currentEvent.totalCoordinates[1]
+>>>>>>> Stashed changes
   const { currentUser } = useContext(AuthContext);
 
   // let currentUserDetails;
@@ -54,10 +70,18 @@ export default function JoinYourFriends(props) {
       ...currentEvent,
       totalCoordinates: [updatedLat, updatedLong],
       //add participant ID
+<<<<<<< Updated upstream
     };
     console.log(updatedEvent);
     setLoading(true);
     await submitHandler(updatedEvent);
+=======
+      
+    }
+    console.log(updatedEvent);
+ 
+    await submitHandler(updatedEvent)
+>>>>>>> Stashed changes
     history.push("/home");
   };
 
@@ -101,8 +125,13 @@ export default function JoinYourFriends(props) {
     console.log(event);
     setLoading(true);
     await editEvent(event);
+<<<<<<< Updated upstream
     setLoading(false);
   };
+=======
+  }
+
+>>>>>>> Stashed changes
 
   return (
     <div className={classes.root}>
@@ -139,8 +168,12 @@ export default function JoinYourFriends(props) {
           Join with postal code{" "}
           <i style={{ marginLeft: "10px" }} class="fa fa-arrow-right"></i>
         </button> */}
+<<<<<<< Updated upstream
         {loading && <p className={classes.text4}>loading </p>}
         {/* <LoadingModal isLoading = { loading }/> */}
+=======
+        <LoadingModal isLoading = { loading==false }/>
+>>>>>>> Stashed changes
       </div>
     </div>
   );
