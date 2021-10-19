@@ -15,8 +15,8 @@ export default function JoinYourFriends(props) {
   const history = useHistory();
   const [loading, setLoading] = useState(false);
 
-  let updatedLat = currentEvent.totalCoordinates[0];
-  let updatedLong = currentEvent.totalCoordinates[1];
+  let updatedLat = currentEvent && currentEvent.totalCoordinates[0];
+  let updatedLong = currentEvent && currentEvent.totalCoordinates[1];
   const { currentUser } = useContext(AuthContext);
 
   // let currentUserDetails;
@@ -63,9 +63,9 @@ export default function JoinYourFriends(props) {
 
   const currentLocationHandler = (e) => {
     console.log(e);
-    setLoading(true);
+    // setLoading(true);
     navigator.geolocation.getCurrentPosition(success, error, options);
-    setLoading(false);
+    // setLoading(false);
   };
 
   //some random options for the geolocation call

@@ -82,12 +82,8 @@ export default function HostSearch(props) {
         <button className={`${error && classes.error} ${classes.btn}`} onClick={toggleShowEateries}>
           Search
         </button>
-<<<<<<< HEAD
-        {loading && <p className={classes.text1}>Loading... </p>}
-        {error && <p >Oops, no restaurants found. Sorry!</p>}
-=======
         {loading && <p className={classes.text1}>Loading </p>}
->>>>>>> 3ac3a25ccb997e9e05e90f991ee76ef4cda3b01c
+        {error && <p >Oops, no restaurants found. Sorry!</p>}
         {/* <LoadingModal isLoading = {loading} /> */}
       </div>
     </div>
