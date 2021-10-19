@@ -38,7 +38,7 @@ export default function EventPage() {
   };
 
   // initial state = loading
-  const [pageState, setPageState] = useState(PageStates.Loading);
+  const [pageState, setPageState] = useState(PageStates.JoinEvent);
   const params = useParams();
 
   // check if user is authenticated
@@ -57,7 +57,7 @@ export default function EventPage() {
       setEventState(singleEvent);
     }
     setLoading(false);
-    pageSetter(singleEvent);
+    // pageSetter(singleEvent);
   }, [eventState]);
 
   //this function sets the pageState

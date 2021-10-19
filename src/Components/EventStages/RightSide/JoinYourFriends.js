@@ -141,7 +141,7 @@ export default function JoinYourFriends(props) {
           Join with postal code{" "}
           <i style={{ marginLeft: "10px" }} class="fa fa-arrow-right"></i>
         </button> */}
-        {loading && <p className={classes.text1}>loading... </p>}
+        {loading && <p className={classes.text4}>loading </p>}
         {/* <LoadingModal isLoading = { loading }/> */}
       </div>
     </div>

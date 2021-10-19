@@ -73,7 +73,7 @@ export default function HostSearch(props) {
         <button className={classes.btn} onClick={toggleShowEateries}>
           Search
         </button>
-        {loading && <p className={classes.text1}>Loading... </p>}
+        {loading && <p className={classes.text1}>Loading </p>}
         {/* <LoadingModal isLoading = {loading} /> */}
       </div>
     </div>
