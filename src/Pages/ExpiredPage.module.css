@@ -1,0 +1,42 @@
+.page {
+  /* margin: 10vh 10vh 10vw 10vw; */
+  padding: 0 10vh 0 10vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+}
+.left {
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.right {
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+}
+.img {
+  width: 40vw;
+  border-radius: 2vw;
+  box-shadow: 6px 15px 19px 0px rgba(0, 0, 0, 0.79);
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.25);
+}
+.logo {
+    font-family: Lobster;
+    line-height: 130%;
+    font-size: clamp(2.5rem, 6vw, 7vw);
+    background: -webkit-linear-gradient(135deg, #ba5bb2 55%, #5e6bcb);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0;
+
+  }
+  .text{
+      font-size: 2vw;
+      line-height: 130%;
+  }

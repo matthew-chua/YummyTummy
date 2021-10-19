@@ -153,9 +153,12 @@ input {
 .maxPax {
   display: flex;
   flex-direction: row;
-  margin: 1%;
-  height: 5vh;
-  margin: 5% 0 0 0;
+  /* margin: 1%; */
+  /* height: 5vh; */
+  margin: 5% 0 0 0; 
+  /* padding-top: 1rem; */
+  align-items: center;
+  /* vertical-align: middle; */
 }
 
 .minusButton {

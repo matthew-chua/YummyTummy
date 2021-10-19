@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
 import { AuthContext } from "../Auth/AuthProvider";
+import { useHistory } from "react-router";
 
 //components
 import Card from "../Components/Card";
@@ -26,7 +27,7 @@ export default function EventPage() {
   // 3 - invitee (join event)
   // 4 - participant (wait for host to choose location)
   // 5 - loading screen so it won't make unnecessary api calls
-  console.log("help la");
+  
 
   const PageStates = {
     SearchLocation: 0,
@@ -48,6 +49,8 @@ export default function EventPage() {
   const { currentUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [eventState, setEventState] = useState(null);
+  const history = useHistory();
+
   useEffect(async () => {
     //get event, then set the pageState based on the event
     setLoading(true);
@@ -60,29 +63,35 @@ export default function EventPage() {
     // pageSetter(singleEvent);
   }, [eventState]);
 
+
   //this function sets the pageState
   const pageSetter = (event) => {
     // not logged in state passed as prop to JoinYourFriends
     // console.log("HERE", event);
-
     if (!currentUser) {
       setAuthed(false);
       setPageState(PageStates.JoinEvent);
       console.log("run now");
     } else {
-      if (event.host.id == currentUser.uid) {
-        //user is host of the event, pageState should be 0/1/2
-        if (event.recommendedEateries.length === 0) {
-          setPageState(PageStates.SearchLocation);
-        } else if (event.selectedEatery === "") {
-          setPageState(PageStates.ChooseLocation);
+
+      try{
+
+        if (event.host.id == currentUser.uid) {
+          //user is host of the event, pageState should be 0/1/2
+          if (event.recommendedEateries.length === 0) {
+            setPageState(PageStates.SearchLocation);
+          } else if (event.selectedEatery === "") {
+            setPageState(PageStates.ChooseLocation);
+          } else {
+            setPageState(PageStates.SelectedLocation);
+          }
+        } else if (!event.participantsID.includes(currentUser.id)) {
+          setPageState(PageStates.JoinEvent);
         } else {
-          setPageState(PageStates.SelectedLocation);
+          setPageState(PageStates.JoinedEvent);
         }
-      } else if (!event.participantsID.includes(currentUser.id)) {
-        setPageState(PageStates.JoinEvent);
-      } else {
-        setPageState(PageStates.JoinedEvent);
+      } catch (err){
+        history.push("/expired");
       }
     }
   };
