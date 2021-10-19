@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { getEvents } from "../Firestore/DatabaseManager";
 import { AuthContext } from "../Auth/AuthProvider";
+import LoadingModal from "../Components/Modals/LoadingModal";
 
 //css
 import classes from "./Page.module.css";
@@ -16,6 +17,7 @@ import Event from "../Components/Event";
 export default function HomePage() {
   const { currentUser } = useContext(AuthContext);  
   const [createEventModal, setCreateEventModal] = useState(false);
+  const [loading, setLoading] = useState(false)
   
   const createEventModalHandler = () => {
     setCreateEventModal((prev) => !prev);
@@ -24,8 +26,10 @@ export default function HomePage() {
   //fetches ALL events from firebase
   const [eventState, setEventState] = useState([]);
   useEffect(async () => {
+    setLoading(true); 
     const eventArray = await getEvents();
     setEventState(eventArray);
+    setLoading(false);
   }, []);
   
   //add user's events to myEvents, and user's expired events to myExpiredEvents
@@ -114,6 +118,7 @@ export default function HomePage() {
       {createEventModal && (
         <CreateEventModal toggle={createEventModalHandler} />
       )}
+      <LoadingModal isLoading = { loading }/> 
     </div>
   );
 }
