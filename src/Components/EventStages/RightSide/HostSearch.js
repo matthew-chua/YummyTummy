@@ -17,6 +17,7 @@ export default function HostSearch(props) {
   const [showEateries, setShowEateries] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [radius, setRadius] = useState(500);
 
   useNearbySearch();
 
@@ -24,6 +25,7 @@ export default function HostSearch(props) {
     if (!recommendedEateries){
       setLoading(false);
       setError(true);
+      setRadius(prev=> prev*6)
       return;
     }
 
@@ -56,7 +58,8 @@ export default function HostSearch(props) {
           lat:  parseFloat((props.location[0] / props.participantsList.length).toFixed(7)),
           lng: parseFloat((props.location[1] / props.participantsList.length).toFixed(7)),
         },
-        didFinishGettingNearbyRestaurants
+        didFinishGettingNearbyRestaurants,
+        radius
       );
     }else{
       // handle error
