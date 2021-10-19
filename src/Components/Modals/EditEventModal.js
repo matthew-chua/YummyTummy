@@ -78,7 +78,7 @@ export default function EditEventModal(props) {
 
       console.log("FINAL EVENT", eventState.startTime);
       console.log("FINAL pax", eventState.maxParticipants);
-      if (!finalEvent.startTime){
+      if (!finalEvent.startTime) {
         finalEvent.startTime = props.event.startTime;
       }
       // add state here
@@ -127,63 +127,63 @@ export default function EditEventModal(props) {
         <Card
           left={
             <div className={classes.leftContainer}>
-              <h2>Event Title:</h2>
-              <input value={eventState.eventTitle} onChange={editTitle} />
-              {!eventTitleValid && (
-                <p className={classes.invalidText}>This is a required field.</p>
-              )}
-              <h2>Date & Time:</h2>
-              <input
-                type="datetime-local"
-                value={eventState.startTime}
-                onChange={editDate}
-              />
-              {!startTimeValid && (
-                <p className={classes.invalidText}>
-                  Date and Time is Required.
-                </p>
-              )}
+              <div>
+                <h2>Event Title:</h2>
+                <input value={eventState.eventTitle} onChange={editTitle} />
+                {!eventTitleValid && (
+                  <p className={classes.invalidText}>
+                    This is a required field.
+                  </p>
+                )}
+                <h2>Date & Time:</h2>
+                <input
+                  type='datetime-local'
+                  value={eventState.startTime}
+                  onChange={editDate}
+                />
+                {!startTimeValid && (
+                  <p className={classes.invalidText}>
+                    Date and Time is Required.
+                  </p>
+                )}
 
-              {/* <h2>Max Pax:</h2>
+                {/* <h2>Max Pax:</h2>
               <input
                 type="number"
                 value={eventState.maxParticipants}
                 onChange={editMaxPax}
               /> */}
 
-              <div className={classes.maxPax}>
-                <h2 className={classes.maxPaxText}>Max Pax:</h2>
-                <button className={classes.minusButton} onClick={minusOne}>
-                  -
-                </button>
+                <div className={classes.maxPax}>
+                  <h2 className={classes.maxPaxText}>Max Pax:</h2>
+                  <button className={classes.minusButton} onClick={minusOne}>
+                    -
+                  </button>
 
-                <p
-                  className={classes.count}
-                  type="number"
-                  onChange={editMaxPax}
-                >
-                  {count}
-                </p>
-                <button className={classes.addButton} onClick={plusOne}>
-                  +
-                </button>
+                  <p
+                    className={classes.count}
+                    type='number'
+                    onChange={editMaxPax}
+                  >
+                    {count}
+                  </p>
+                  <button className={classes.addButton} onClick={plusOne}>
+                    +
+                  </button>
+                </div>
               </div>
 
               <div className={classes.horiButtonGroup}>
-                <button onClick={props.toggle} className={classes.cancelButton}>
+                <button onClick={props.toggle} className={classes.btn}>
                   Cancel
                 </button>
-                <button className={classes.saveButton} onClick={submitHandler}>
+                <button className={classes.btn} onClick={submitHandler}>
                   Save
                 </button>
+                <button className={classes.btn} onClick={toggleDeleteModal}>
+                  Delete
+                </button>
               </div>
-
-              <button
-                className={classes.deleteButton}
-                onClick={toggleDeleteModal}
-              >
-                Delete
-              </button>
             </div>
           }
           right={
