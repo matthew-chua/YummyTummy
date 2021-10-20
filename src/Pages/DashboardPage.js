@@ -15,23 +15,24 @@ import CreateEventModal from "../Components/Modals/CreateEventModal";
 import Event from "../Components/Event";
 
 export default function HomePage() {
-  const { currentUser } = useContext(AuthContext);  
+  const { currentUser } = useContext(AuthContext);
   const [createEventModal, setCreateEventModal] = useState(false);
-  const [loading, setLoading] = useState(false)
-  
+  const [loading, setLoading] = useState(false);
+
   const createEventModalHandler = () => {
     setCreateEventModal((prev) => !prev);
+    setHidden();
   };
-  
+
   //fetches ALL events from firebase
   const [eventState, setEventState] = useState([]);
   useEffect(async () => {
-    setLoading(true); 
+    setLoading(true);
     const eventArray = await getEvents();
     setEventState(eventArray);
     setLoading(false);
   }, []);
-  
+
   //add user's events to myEvents, and user's expired events to myExpiredEvents
   let myEvents = [];
   let myExpiredEvents = [];
@@ -60,9 +61,19 @@ export default function HomePage() {
     noUpcomingEvents = true;
   }
 
+  // prevent scrolling when create event modal is open
+
+  const setHidden = () => {
+    console.log(document.body.style.overflow);
+    if (document.body.style.overflow !== "hidden") {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "scroll";
+    }
+  };
+
   return (
     <div className={classes.page}>
-      
       <div className={classes.header}>
         <h3 className={classes.subtitle}>My Events</h3>
         <div
@@ -118,7 +129,7 @@ export default function HomePage() {
       {createEventModal && (
         <CreateEventModal toggle={createEventModalHandler} />
       )}
-      <LoadingModal isLoading = { loading }/> 
+      <LoadingModal isLoading={loading} />
     </div>
   );
 }
