@@ -57,6 +57,7 @@ export const getNearbyRestaurants = (location, completed, radius) => {
     type: ["restaurant"],
   };
   service.nearbySearch(request, callback);
+
   function callback(results, status) {
     if (status == window.google.maps.places.PlacesServiceStatus.OK) {
       let recommendedEateries = results.map((restaurant) => {
@@ -67,5 +68,6 @@ export const getNearbyRestaurants = (location, completed, radius) => {
       completed(null);
     }
   }
+  
 }
 
