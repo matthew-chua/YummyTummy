@@ -32,9 +32,10 @@ export default function LeftSide(props) {
 
   const editEventHandler = () => {
     setEditEvent((prev) => !prev);
+    setHidden();
   };
 
-  console.log("left side place list: ", props.placeList)
+  console.log("left side place list: ", props.placeList);
 
   const event = props.event;
 
@@ -55,6 +56,17 @@ export default function LeftSide(props) {
     time = newTime[4].substring(0, 5);
   }
 
+  // prevent scrolling when EDIT event modal is open
+
+  const setHidden = () => {
+    console.log(document.body.style.overflow);
+    if (document.body.style.overflow !== "hidden") {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "scroll";
+    }
+  };
+
   return (
     <div className={classes.root}>
       {editEvent && (
@@ -67,7 +79,8 @@ export default function LeftSide(props) {
           <p className={classes.text}> 📅 {date + ", " + time}</p>
           <p className={classes.text}>
             {" "}
-            📍 {event && event.selectedEatery ? event.selectedEatery : "Pending"}
+            📍{" "}
+            {event && event.selectedEatery ? event.selectedEatery : "Pending"}
           </p>
         </div>
 
