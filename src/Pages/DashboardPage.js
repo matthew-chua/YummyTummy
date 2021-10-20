@@ -61,7 +61,7 @@ export default function HomePage() {
     noUpcomingEvents = true;
   }
 
-  // prevent scrolling when create event modal is open
+  // prevent scrolling when CREATE event modal is open
 
   const setHidden = () => {
     console.log(document.body.style.overflow);
