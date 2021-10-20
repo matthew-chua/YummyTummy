@@ -60,7 +60,7 @@ export default function ChooseLocationCard(props) {
           selectedIndex={selectedIndex}
         />
       }
-      right={<HostChooseLocation event={props.event} selectedPlace={placeList[selectedIndex]} />}
+      right={<HostChooseLocation event={props.event} selectedPlace={placeList[selectedIndex]} placeList={placeList}/>}
       pageState={props.pageState}
     />
   );

@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Stars from "../../Utility/Stars";
 
 import svg from "../../../Assets/undraw_special_event_4aj8.svg";
+import { selectLocation } from "../../../Firestore/DatabaseManager";
 
 export default function HostChooseLocation(props) {
   useEffect(() => {
@@ -55,8 +56,11 @@ export default function HostChooseLocation(props) {
     maxHeight: 500,
   };
 
-  const selectLocationHandler = () => {
+  const selectLocationHandler = async () => {
     // bitch i aint doing none of this shit no more bye!
+    console.log(props.event, props.selectedPlace.placeId)
+    await selectLocation(props.event, props.selectedPlace.placeId)
+    window.location.reload();
   };
 
   return (

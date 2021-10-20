@@ -41,6 +41,20 @@
   width: 48%;
   height: 55.36px;
   border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+}
+
+.btn2 {
+  border: none;
+  background-color: rgba(102, 60, 117, 1);
+  color: white;
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  font-size: clamp(0.4rem, 1.5vw, 1.5rem);
+  width: 48%;
+  height: 55.36px;
+  border-radius: 15px;
 }
 
 .btn:hover {

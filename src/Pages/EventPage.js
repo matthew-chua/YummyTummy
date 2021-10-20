@@ -139,8 +139,9 @@ export default function EventPage() {
               loading={loading}
             />
           }
-          right={<CuratedLocation />}
+          right={<CuratedLocation event={eventState}/>}
           pageState={pageState}
+          
         />
       )}
 

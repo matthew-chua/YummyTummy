@@ -89,3 +89,12 @@ export const editEvent = async (event) => {
 
   await updateDoc(docRef, event);
 };
+
+//add location
+export const selectLocation = async (event, selectedPlaceID) => {
+  const docRef = doc(db, eventsCollectionName, event.eventID);
+
+  await updateDoc(docRef, {
+    "selectedEatery": selectedPlaceID
+  });
+};

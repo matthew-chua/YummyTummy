@@ -1,16 +1,48 @@
 import React from "react";
 import { useState, useEffect } from "react";
-
+import { usePlaceDetails } from "../../../Maps/UsePlaceDetails";
 //components
 import Invite from "./Invite";
 import Locations from "./Locations";
 import Participants from "./Participants";
 import EditEventModal from "../../Modals/EditEventModal";
+import { getPlaceDetailsForList } from "../../../Maps/UsePlaceDetails";
 
 //css
 import classes from "./LeftSide.module.css";
 
 export default function LeftSide(props) {
+  usePlaceDetails();
+
+
+  const [placeDetails, setPlaceDetails] = useState({
+    name: "",
+    place_id: "",
+    rating: "",
+    user_ratings_total: "",
+    opening_hours: "",
+    formatted_address: "",
+    address_component: "",
+    } 
+  )
+
+  const didFetchPlaceDetail = (placeDetailsList) => {
+    if (!placeDetailsList) {
+      //error
+      console.log("no place details list")
+    } else {
+      console.log("Here")
+      console.log(placeDetailsList)
+      setPlaceDetails(placeDetailsList)
+    }
+  }
+
+  useEffect(() => {
+    if (props.event) {
+      getPlaceDetailsForList([props.event.selectedEatery], didFetchPlaceDetail)
+    }
+  }, [])
+
   // const DUMMYLOCATIONS = [
   //   {
   //     name: "Koufu",
@@ -66,6 +98,7 @@ export default function LeftSide(props) {
       document.body.style.overflow = "scroll";
     }
   };
+  console.log(event)
 
   return (
     <div className={classes.root}>
@@ -80,7 +113,7 @@ export default function LeftSide(props) {
           <p className={classes.text}>
             {" "}
             📍{" "}
-            {event && event.selectedEatery ? event.selectedEatery : "Pending"}
+            {placeDetails && placeDetails.name ? placeDetails.name : "Pending"}
           </p>
         </div>
 
