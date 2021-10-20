@@ -33,7 +33,7 @@
 }
 
 .horiButtonGroup {
-  justify-content: space-between;
+  justify-content: space-around;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -123,7 +123,7 @@
 
 .btn {
   height: clamp(1.8rem, 3vw, 2.5rem);
-  width: 33%;
+  width: 40%;
   background-color: white;
   color: black;
   border: none;
@@ -139,6 +139,33 @@
 }
 .btn:active {
   background-color: rgba(219, 191, 254, 0.3);
+  transition: background-color 0.2s;
+}
+.buttonGroup{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.delBtn{
+  height: clamp(1.8rem, 3vw, 2.5rem);
+  width: 91%;
+  background-color: #CB5E5E;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+  transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
+  text-align: center;
+  cursor: pointer;
+}
+.delBtn:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 3px 3px rgb(243, 55, 55);
+  box-shadow: 0 0 3px 3px rgb(243, 55, 55);
+}
+.delBtn:active {
+  background-color: #c47373;
   transition: background-color 0.2s;
 }
 

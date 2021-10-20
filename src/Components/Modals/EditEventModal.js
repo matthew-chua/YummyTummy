@@ -174,7 +174,7 @@ export default function EditEventModal(props) {
                   </button>
                 </div>
               </div>
-
+              <div className={classes.buttonGroup}>
               <div className={classes.horiButtonGroup}>
                 <button onClick={props.toggle} className={classes.btn}>
                   Cancel
@@ -182,7 +182,9 @@ export default function EditEventModal(props) {
                 <button className={classes.btn} onClick={submitHandler}>
                   Save
                 </button>
-                <button className={classes.btn} onClick={toggleDeleteModal}>
+              </div>
+                <button className={classes.delBtn} onClick={toggleDeleteModal}>
+                
                   Delete
                 </button>
               </div>
