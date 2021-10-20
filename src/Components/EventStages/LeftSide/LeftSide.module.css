@@ -10,6 +10,7 @@
 .editIcon{
     cursor: pointer;
     height: fit-content;
+    font-size: 2vw;
 }
 .title{
     font-family: "Lobster";

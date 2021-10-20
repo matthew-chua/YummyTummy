@@ -11,6 +11,11 @@ import { Timestamp } from "firebase/firestore";
 import LoadingModal from "./LoadingModal";
 
 export default function EditEventModal(props) {
+  Date.prototype.toLocaleISOString = function () {
+    return new Date(this.getTime() - this.getTimezoneOffset() * 1000 * 60)
+      .toISOString()
+      .replace("Z", "");
+  };
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(props.event.maxParticipants);
@@ -40,18 +45,16 @@ export default function EditEventModal(props) {
 
   useEffect(() => {
     if (props.event) {
-      // setEventState(props.event);
-      newDate = props.event.startTime.toDate().toISOString().substr(0, 19);
+      newDate = props.event.startTime.toDate().toLocaleISOString().substr(0, 19);
       setEventState({
         ...props.event,
         startTime: newDate,
       });
-      console.log("TEST", eventState.eventTitle);
     }
   }, []);
 
-  console.log("HERE", props.event);
-  // console.log("title", eventState.eventTitle);
+  
+  
 
   const [eventTitleValid, setEventTitleValid] = useState(true);
 
@@ -76,8 +79,7 @@ export default function EditEventModal(props) {
 
       let finalEvent = { ...eventState, startTime: time };
 
-      console.log("FINAL EVENT", eventState.startTime);
-      console.log("FINAL pax", eventState.maxParticipants);
+      
       if (!finalEvent.startTime) {
         finalEvent.startTime = props.event.startTime;
       }
@@ -109,12 +111,12 @@ export default function EditEventModal(props) {
   const editDate = (e) => {
     let timeStamp = new Timestamp(Date.parse(e.target.value) / 1000, 0);
     setTime(timeStamp);
-    console.log("here1", timeStamp);
+    
     setEventState({
       ...eventState,
       startTime: e.target.value,
     });
-    console.log("here2", eventState.startTime);
+    
   };
 
   return (
@@ -137,7 +139,7 @@ export default function EditEventModal(props) {
                 )}
                 <h2>Date & Time:</h2>
                 <input
-                  type='datetime-local'
+                  type="datetime-local"
                   value={eventState.startTime}
                   onChange={editDate}
                 />
@@ -162,7 +164,7 @@ export default function EditEventModal(props) {
 
                   <p
                     className={classes.count}
-                    type='number'
+                    type="number"
                     onChange={editMaxPax}
                   >
                     {count}

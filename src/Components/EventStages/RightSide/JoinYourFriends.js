@@ -29,7 +29,7 @@ export default function JoinYourFriends(props) {
   console.log(currentUserDetails);
 
   let updatedParticipantsID = currentEvent ? currentEvent.participantsID : [];
-  console.log(updatedParticipantsID);
+  console.log("here", updatedParticipantsID);
 
   // const joinWithCustomLocationHandler = (location) => {
   //   // first thing is set loading state
@@ -39,9 +39,9 @@ export default function JoinYourFriends(props) {
   const joinWithCustomLocationHandler = (location) => {
     // setLoading(true);
 
-    console.log(location);
-    console.log(location.lat);
-    console.log(location.lng);
+    // console.log(location);
+    // console.log(location.lat);
+    // console.log(location.lng);
     finishJoiningEvent(location);
   };
 
@@ -51,7 +51,7 @@ export default function JoinYourFriends(props) {
     updatedLat += location.lat;
     updatedLong += location.lng;
     updatedParticipantsID.push(currentUserDetails);
-    console.log(updatedParticipantsID);
+    // console.log("HERE", updatedParticipantsID);
 
     let updatedEvent = {
       ...currentEvent,
@@ -115,14 +115,12 @@ export default function JoinYourFriends(props) {
       </div>
       <div>
         <h1 className={classes.join}>Join Your Friends</h1>
-        <h3 className={classes.text1}>
-          Respond to {updatedParticipantsID[0].name}’s invite with your
-          location!
-        </h3>
+        <h3 className={classes.text1}>Respond to {updatedParticipantsID[0] ? updatedParticipantsID[0].name : "Host"}'s invite with your location!</h3>
         {/* NOTE: STILL NEEDA PASS IN PROPS AND MAKE NAME RESPONSIVE */}
         <h3 className={classes.text2}>
           We’ll take your location into consideration, before suggesting a
-          handful of optimal diners for {updatedParticipantsID[0].name} to
+          handful of optimal diners for to{" "}
+          {updatedParticipantsID[0] ? updatedParticipantsID[0].name : "Host"} to
           choose based on their location, reviews and what’s still open at this
           time!
         </h3>
@@ -134,9 +132,9 @@ export default function JoinYourFriends(props) {
         {/* <h3 className={classes.text3}>or</h3> */}
         <div className={classes.searchBoxContainer}>
           <AutocompleteSearch
-            placeholder='Join with custom location'
-            buttonText='Join!'
-            errorTextColor='white'
+            placeholder="Join with custom location"
+            buttonText="Join!"
+            errorTextColor="white"
             searchBoxActionClicked={joinWithCustomLocationHandler}
           />
         </div>

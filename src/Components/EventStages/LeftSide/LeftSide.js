@@ -74,7 +74,7 @@ export default function LeftSide(props) {
         {/* need to change this to the icon */}
         {props.pageState === 0 && (
           <p className={classes.editIcon} onClick={editEventHandler}>
-            edit
+            <i class="fa fa-edit"></i>
           </p>
         )}
       </div>

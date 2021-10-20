@@ -60,7 +60,7 @@ export default function EventPage() {
       setEventState(singleEvent);
     }
     setLoading(false);
-    // pageSetter(singleEvent);
+    pageSetter(singleEvent);
   }, [eventState]);
 
 
