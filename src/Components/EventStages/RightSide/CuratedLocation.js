@@ -65,7 +65,11 @@ export default function CuratedLocation(props) {
       
 
       <div className={classes.btnGroup}>
-        <a className={classes.btn2} href={`https://www.google.com/maps/place/?q=place_id:${placeDetails.placeId}`}target="_blank">Open in Google Maps</a>
+        <a className={classes.btn} href={`https://www.google.com/maps/place/?q=place_id:${placeDetails.placeId}`}target="_blank">
+          <div className={classes.btn2Text}>
+            Open in Google Maps
+          </div>
+        </a>
         <button className={classes.btn} onClick={copyLinkHandler}>Copy Address</button>
         {showCopiedMessage && <p className={classes.text}>Copied!</p>}
       </div>
