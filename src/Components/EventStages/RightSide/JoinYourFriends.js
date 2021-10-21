@@ -15,21 +15,32 @@ export default function JoinYourFriends(props) {
   const currentEvent = props.event;
   const history = useHistory();
   const [loading, setLoading] = useState(false);
-
+  
   let updatedLat = currentEvent && currentEvent.totalCoordinates[0];
   let updatedLong = currentEvent && currentEvent.totalCoordinates[1];
   const { currentUser } = useContext(AuthContext);
 
-  // let currentUserDetails;
+
+  //check if the maximum number of participants has been reached
+  const [disableJoin, setDisableJoin] = useState(false);
+
+  useEffect(()=>{
+    if (currentEvent.maxParticipants == currentEvent.participantsID.length){
+      setDisableJoin(true);
+      
+    }
+  }, [currentEvent]);
+
+  
 
   let currentUserDetails = {
     name: currentUser ? currentUser.displayName : "",
     id: currentUser ? currentUser.uid : "",
   };
-  console.log(currentUserDetails);
+  
 
   let updatedParticipantsID = currentEvent ? currentEvent.participantsID : [];
-  console.log("here", updatedParticipantsID);
+  
 
   // const joinWithCustomLocationHandler = (location) => {
   //   // first thing is set loading state
@@ -126,18 +137,18 @@ export default function JoinYourFriends(props) {
         </h3>
       </div>
       <div className={classes.bottom}>
-        <button className={classes.button1} onClick={currentLocationHandler}>
-          Join with Current Location
+        <button className={classes.button1} onClick={currentLocationHandler} disabled={disableJoin}>
+          {disableJoin ? "Sorry, event is full" : "Join with Current Location"}
         </button>
         {/* <h3 className={classes.text3}>or</h3> */}
-        <div className={classes.searchBoxContainer}>
+        {!disableJoin && <div className={classes.searchBoxContainer}>
           <AutocompleteSearch
             placeholder="Join with custom location"
             buttonText="Join!"
             errorTextColor="white"
             searchBoxActionClicked={joinWithCustomLocationHandler}
           />
-        </div>
+        </div>}
         {/* <button className={classes.button2}>
           Join with postal code{" "}
           <i style={{ marginLeft: "10px" }} class="fa fa-arrow-right"></i>
