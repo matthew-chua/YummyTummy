@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import Slider from "react-slick";
 import classes from "./HostChooseLocation.module.css";
@@ -11,6 +11,9 @@ import svg from "../../../Assets/undraw_special_event_4aj8.svg";
 import { selectLocation } from "../../../Firestore/DatabaseManager";
 
 export default function HostChooseLocation(props) {
+
+  const [loading, setLoading] = useState(false)
+
   useEffect(() => {
     if (props.selectedPlace) {
       //   setSelectedPlace(props.selectedPlace)
@@ -32,24 +35,6 @@ export default function HostChooseLocation(props) {
     slidesToShow: 1,
     slidesToScroll: 1,
     focusOnSelect: false,
-    // responsive: [
-    //   {
-    //     breakpoint: 768,
-    //     settings: {
-    //       slidesToShow: 2,
-    //       slidesToScroll: 1,
-    //       infinite: true,
-    //       dots: true,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 480,
-    //     settings: {
-    //       slidesToShow: 1,
-    //       slidesToScroll: 1,
-    //     },
-    //   },
-    // ],
   };
   let options = {
     // maxWidth: 500,
@@ -59,6 +44,7 @@ export default function HostChooseLocation(props) {
   const selectLocationHandler = async () => {
     // bitch i aint doing none of this shit no more bye!
     console.log(props.event, props.selectedPlace.placeId)
+    setLoading(true)
     await selectLocation(props.event, props.selectedPlace.placeId)
     window.location.reload();
   };
@@ -92,6 +78,8 @@ export default function HostChooseLocation(props) {
             {" "}
             Select{" "}
           </button>
+          {loading && <p className={classes.loading}>Loading</p>}
+
         </>
       ) : (
         <h1 className={classes.text1}>loading </h1>

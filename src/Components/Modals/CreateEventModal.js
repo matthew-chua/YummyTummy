@@ -8,17 +8,16 @@ import { AuthContext } from "../../Auth/AuthProvider";
 //firebase timestamp stuff
 import { Timestamp } from "firebase/firestore";
 
-
 //id stuff
 import hri from "human-readable-ids";
 
 //network
-import {createEvent} from "../../Firestore/DatabaseManager";
+import { createEvent } from "../../Firestore/DatabaseManager";
 import AutocompleteSearch from "../../Maps/AutocompleteSearch";
 import LoadingModal from "./LoadingModal";
+import { useHistory } from "react-router";
 
 export default function CreateEventModal(props) {
-
   const { currentUser } = useContext(AuthContext);
 
   const [eventTitleValid, setEventTitleValid] = useState(true);
@@ -29,17 +28,19 @@ export default function CreateEventModal(props) {
 
   const [loading, setLoading] = useState(false);
 
+  const history = useHistory();
+
   const plusOne = (e) => {
     e.preventDefault();
     if (count < 5) {
-      setCount(()=> (count + 1));
+      setCount(() => count + 1);
     }
   };
 
   const minusOne = (e) => {
     e.preventDefault();
     if (count > 1) {
-      setCount(()=> (count - 1));
+      setCount(() => count - 1);
     }
   };
 
@@ -48,16 +49,15 @@ export default function CreateEventModal(props) {
     eventTitle: "",
     host: {
       id: "",
-      name: ""
+      name: "",
     },
     maxParticipants: 0,
     participantsID: [],
     recommendedEateries: [],
     selectedEatery: "",
-    startTime : "",
-    totalCoordinates : []
-
-  })
+    startTime: "",
+    totalCoordinates: [],
+  });
 
   //updates the event title and startTime in event
   const inputHandler = (e) => {
@@ -65,46 +65,46 @@ export default function CreateEventModal(props) {
     setEvent({
       ...event,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
   const [time, setTime] = useState();
 
   const dateInputHandler = (e) => {
     e.preventDefault();
-    let timeStamp = new Timestamp((Date.parse(e.target.value)/1000), 0);
+    let timeStamp = new Timestamp(Date.parse(e.target.value) / 1000, 0);
     setTime(timeStamp);
     setEvent({
       ...event,
       startTime: e.target.value,
-    })
-  }
+    });
+  };
 
-  //generate the totalCoordinates field, and update event 
+  //generate the totalCoordinates field, and update event
   const currentLocationHandler = () => {
     // set loading
     setLoading(true);
-    navigator.geolocation.getCurrentPosition(success, error, options)
+    navigator.geolocation.getCurrentPosition(success, error, options);
     setLoading(false);
-  }
+  };
 
-  //generate the totalCoordinates field, and update event 
+  //generate the totalCoordinates field, and update event
   const postalCodeHandler = () => {
     // submitHandler();
     window.location.reload();
-  }
+  };
 
   const customLocationHandler = (location) => {
     finishCreatingEvent(location);
-  }
+  };
 
   //create the unique ID and send it to firebase
   const submitHandler = async (event) => {
-    console.log("HERE!!!!", event)
+    console.log("HERE!!!!", event);
     if (event.eventTitle == "" && !event.startTime) {
       setStartTimeValid(false);
       setEventTitleValid(false);
-    } else if (!event.startTime){
+    } else if (!event.startTime) {
       setStartTimeValid(false);
       setEventTitleValid(true);
     } else if (event.eventTitle == "") {
@@ -116,9 +116,10 @@ export default function CreateEventModal(props) {
       await createEvent(event);
       // need to check for failure bro
       props.toggle();
-      window.location.reload();
+      history.push(`/event/${event.eventID}`)
+      // window.location.reload();
     }
-  }
+  };
 
   // create event for custom location
   const finishCreatingEvent = (location) => {
@@ -131,15 +132,17 @@ export default function CreateEventModal(props) {
         id: currentUser.uid,
         name: currentUser.displayName,
       },
-      participantsID: [{
-        id: currentUser.uid,
-        name: currentUser.displayName,
-      }],
+      participantsID: [
+        {
+          id: currentUser.uid,
+          name: currentUser.displayName,
+        },
+      ],
       maxParticipants: count,
-      startTime: time
-    }
-    submitHandler(updatedEvent); 
-  }
+      startTime: time,
+    };
+    submitHandler(updatedEvent);
+  };
 
   //success callback for geolocation call
   const success = (pos) => {
@@ -154,27 +157,29 @@ export default function CreateEventModal(props) {
         id: currentUser.uid,
         name: currentUser.displayName,
       },
-      participantsID: [{
-        id: currentUser.uid,
-        name: currentUser.displayName,
-      }],
+      participantsID: [
+        {
+          id: currentUser.uid,
+          name: currentUser.displayName,
+        },
+      ],
       maxParticipants: count,
-      startTime: time
-    }
-    submitHandler(updatedEvent); 
-  }
-  
+      startTime: time,
+    };
+    submitHandler(updatedEvent);
+  };
+
   //some random options for the geolocation call
   var options = {
     enableHighAccuracy: true,
     timeout: 5000,
-    maximumAge: 0
+    maximumAge: 0,
   };
 
   //error callback for geolocation
   const error = (err) => {
     console.log("ERROR", err);
-  }
+  };
 
   //gets current date so i can use it to set min in datetime input
   const min = new Date();
@@ -186,26 +191,43 @@ export default function CreateEventModal(props) {
           left={
             <div className={classes.leftContainer}>
               <div>
-              <h4 className={classes.title}>Event Title:</h4>
-              <input value={event.eventTitle} name="eventTitle" onChange={inputHandler}/>
-              {!eventTitleValid && <p className={classes.invalidText}>This is a required field.</p>}
-              <h4 className={classes.title}>Date & Time:</h4>
-              <input type="datetime-local" min={min.toISOString().substring(0,16)} value={event.startTime} name="startTime" onChange={dateInputHandler}/>
-              {!startTimeValid && <p className={classes.invalidText}>Date and Time is Required.</p>}
-              <div className={classes.maxPax} >
-                <h4 className={classes.maxPaxText}>Max Pax:</h4>
-                <div className={classes.maxPaxButtonGroup}>
-                <button className={classes.minusButton} onClick={minusOne}>
-                  -
-                </button>
-                <p className={classes.count}>{count}</p>
-                <button className={classes.addButton} onClick={plusOne}>
-                  +
-                </button>
+                <h4 className={classes.title}>Event Title:</h4>
+                <input
+                  value={event.eventTitle}
+                  name="eventTitle"
+                  onChange={inputHandler}
+                />
+                {!eventTitleValid && (
+                  <p className={classes.invalidText}>
+                    This is a required field.
+                  </p>
+                )}
+                <h4 className={classes.title}>Date & Time:</h4>
+                <input
+                  type="datetime-local"
+                  min={min.toISOString().substring(0, 16)}
+                  value={event.startTime}
+                  name="startTime"
+                  onChange={dateInputHandler}
+                />
+                {!startTimeValid && (
+                  <p className={classes.invalidText}>
+                    Date and Time is Required.
+                  </p>
+                )}
+                <div className={classes.maxPax}>
+                  <h4 className={classes.maxPaxText}>Max Pax:</h4>
+                  <div className={classes.maxPaxButtonGroup}>
+                    <button className={classes.minusButton} onClick={minusOne}>
+                      -
+                    </button>
+                    <p className={classes.count}>{count}</p>
+                    <button className={classes.addButton} onClick={plusOne}>
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-              
 
               <div className={classes.vertButtonGroup}>
                 <button
@@ -215,13 +237,13 @@ export default function CreateEventModal(props) {
                 >
                   Create with current location
                 </button>
-                
+
                 <div className={classes.searchBox}>
-                  <AutocompleteSearch 
-                  placeholder="Create with a specific location" 
-                  buttonText="Create"
-                  searchBoxActionClicked={customLocationHandler}
-                  errorTextColor="red"
+                  <AutocompleteSearch
+                    placeholder="Create with a specific location"
+                    buttonText="Create"
+                    searchBoxActionClicked={customLocationHandler}
+                    errorTextColor="red"
                   />
                 </div>
 
@@ -252,7 +274,7 @@ export default function CreateEventModal(props) {
         />
       </form>
       <div className={classes.overlay} onClick={props.toggle} />
-      <LoadingModal isLoading = {loading} />
+      <LoadingModal isLoading={loading} />
     </div>
   );
 }
