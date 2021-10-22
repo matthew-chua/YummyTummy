@@ -72,7 +72,8 @@ export default function JoinYourFriends(props) {
     console.log(updatedEvent);
     setLoading(true);
     await submitHandler(updatedEvent);
-    history.push("/home");
+    // history.push("/home");
+    window.location.reload()
   };
 
   const currentLocationHandler = (e) => {
