@@ -13,10 +13,20 @@ export default function ConfirmDeleteModal(props) {
     console.log(props.event);
     if (props.event) {
       setLoading(true);
+      setHidden();
       await deleteEvent(props.event);
       console.log("I SHOULD BE HERE");
       history.push("/home");
-      window.location.reload();
+      // window.location.reload();
+    }
+  };
+
+  const setHidden = () => {
+    console.log(document.body.style.overflow);
+    if (document.body.style.overflow !== "hidden") {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "scroll";
     }
   };
 
