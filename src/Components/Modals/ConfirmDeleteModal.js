@@ -14,6 +14,7 @@ export default function ConfirmDeleteModal(props) {
     if (props.event) {
       setLoading(true);
       await deleteEvent(props.event);
+      console.log("I SHOULD BE HERE")
       history.push("/home");
     }
   };

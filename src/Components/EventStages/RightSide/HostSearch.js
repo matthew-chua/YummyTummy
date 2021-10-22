@@ -23,11 +23,11 @@ export default function HostSearch(props) {
   useNearbySearch();
 
   // listener = useEventListener(props.eventID, props.setEventState);
-  useEffect(() => {
-    if (props.eventID){
-      listenToEvent(props.eventID, props.setEventState)
-    }
-  }, [props.eventID])
+  // useEffect(() => {
+  //   if (props.eventID){
+  //     listenToEvent(props.eventID, props.setEventState)
+  //   }
+  // }, [props.eventID])
 
   const didFinishGettingNearbyRestaurants = async (recommendedEateries) => {
     if (!recommendedEateries) {
