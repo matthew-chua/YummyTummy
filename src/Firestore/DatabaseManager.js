@@ -115,11 +115,19 @@ export const selectLocation = async (event, selectedPlace) => {
 //   }, []);
 // };
 
+let unsub;
+
 export const listenToEvent = (eventID, setEventState) => {
-  const unsub = onSnapshot(
+  unsub = onSnapshot(
     doc(db, eventsCollectionName, eventID),
     (doc) => {
-      setEventState(doc.data());
+      console.log("doc:", doc);
+      console.log("doc data:", doc.data());
+      if (doc && doc.data()){
+        setEventState(doc.data());
+      }else{
+        unsub();
+      }
     }
   );
-}
+} 

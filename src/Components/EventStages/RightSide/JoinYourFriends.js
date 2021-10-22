@@ -2,7 +2,7 @@ import { React, useEffect, useContext, useState } from "react";
 import JoinYourFriendsPic from "../../../Assets/JoinYourFriendsPic.gif";
 import classes from "./JoinYourFriends.module.css";
 import { AuthContext } from "../../../Auth/AuthProvider";
-import { editEvent } from "../../../Firestore/DatabaseManager";
+import { editEvent, listenToEvent } from "../../../Firestore/DatabaseManager";
 import { useHistory } from "react-router";
 import LoadingModal from "../../Modals/LoadingModal";
 
@@ -30,6 +30,12 @@ export default function JoinYourFriends(props) {
       
     }
   }, [currentEvent]);
+
+  useEffect(()=>{
+    if (currentEvent){
+      listenToEvent(currentEvent.eventID, props.setEventState)
+    }
+  },[currentEvent.eventID])
 
   
 
@@ -73,7 +79,7 @@ export default function JoinYourFriends(props) {
     setLoading(true);
     await submitHandler(updatedEvent);
     // history.push("/home");
-    window.location.reload()
+    // window.location.reload()
   };
 
   const currentLocationHandler = (e) => {
@@ -89,6 +95,8 @@ export default function JoinYourFriends(props) {
     timeout: 5000,
     maximumAge: 0,
   };
+
+  
 
   //success callback for geolocation call
   const success = async (pos) => {

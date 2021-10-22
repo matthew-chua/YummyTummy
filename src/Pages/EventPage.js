@@ -178,7 +178,7 @@ export default function EventPage() {
               loading={loading}
             />
           }
-          right={<JoinYourFriends authed={authed} setAuthed={setAuthed} event={eventState}/>}
+          right={<JoinYourFriends authed={authed} setAuthed={setAuthed} event={eventState} setEventState={setEventState}/>}
           pageState={pageState}
         />
       )}
@@ -193,7 +193,7 @@ export default function EventPage() {
               loading={loading}
             />
           }
-          right={<WaitForLocation />}
+          right={<WaitForLocation eventID={eventState.eventID} setEventState={setEventState}/>}
           pageState={pageState}
         />
       )}
