@@ -2,7 +2,8 @@ import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { getEvents } from "../Firestore/DatabaseManager";
 import { AuthContext } from "../Auth/AuthProvider";
-import LoadingModal from "../Components/Modals/LoadingModal";
+// import LoadingModal from "../Components/Modals/LoadingModal";
+import LoadingGif from "../Assets/LoadingGif.svg"
 
 //css
 import classes from "./Page.module.css";
@@ -131,7 +132,13 @@ export default function HomePage() {
       {createEventModal && (
         <CreateEventModal toggle={createEventModalHandler} />
       )}
-      <LoadingModal isLoading={loading} />
+      {/* <LoadingModal isLoading={loading} /> */}
+      { loading && 
+        <div className={classes.pic1}>
+          <img className={classes.spinner} src={LoadingGif}/>
+          <div className={classes.overlay} />
+        </div>
+      }
     </div>
   );
 }
