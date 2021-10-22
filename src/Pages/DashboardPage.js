@@ -104,7 +104,7 @@ export default function HomePage() {
             <Event
               key={index}
               title={event.eventTitle}
-              location={event.placeID}
+              location={event.selectedEateryName}
               dateTime={event.startTime.toDate()}
               participants={event.participantsID}
               eventID={event.eventID}
@@ -120,7 +120,7 @@ export default function HomePage() {
             <Event
               key={index}
               title={event.eventTitle}
-              location={event.placeID}
+              location={event.selectedEateryName}
               dateTime={event.startTime.toDate()}
               participants={event.participantsID}
               eventID={event.eventID}

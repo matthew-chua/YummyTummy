@@ -6,11 +6,13 @@ export default function LoadingModal(props) {
     return (
         <>
         {props.isLoading && 
+        <>
         <div className={classes.pic}>
             <img className={classes.spinner} src={LoadingGif}/>
-            <div className={classes.overlay} />
-        </div>}
-    </>
+        </div>
+            <div className={classes.overlay}> </div>
+        </>}
+        </>
         
     )
 }
