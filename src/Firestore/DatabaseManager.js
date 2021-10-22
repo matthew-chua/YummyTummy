@@ -7,8 +7,10 @@ import {
   getDoc,
   updateDoc,
   deleteDoc,
+  onSnapshot,
 } from "firebase/firestore";
 import firebase from "../Firebase/firebase";
+import { useEffect } from "react";
 
 // constants
 const db = firebase.db;
@@ -95,7 +97,29 @@ export const selectLocation = async (event, selectedPlace) => {
   const docRef = doc(db, eventsCollectionName, event.eventID);
 
   await updateDoc(docRef, {
-    "selectedEatery": selectedPlace.placeId,
-    "selectedEateryName": selectedPlace.name
+    selectedEatery: selectedPlace.placeId,
+    selectedEateryName: selectedPlace.name,
   });
 };
+
+// export const useEventListener = (eventID, setEventState) => {
+//   useEffect(() => {
+//     const unsub = onSnapshot(
+//       doc(db, eventsCollectionName, eventID),
+//       (doc) => {
+//         console.log("Current data: ", doc.data());
+//         // setEventState(doc.data());
+//       }
+//     );
+//     return unsub;
+//   }, []);
+// };
+
+export const listenToEvent = (eventID, setEventState) => {
+  const unsub = onSnapshot(
+    doc(db, eventsCollectionName, eventID),
+    (doc) => {
+      setEventState(doc.data());
+    }
+  );
+}
