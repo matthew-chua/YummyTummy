@@ -51,7 +51,12 @@ export default function EventPage() {
   const [eventState, setEventState] = useState(null);
   const history = useHistory();
 
-  
+  // let currentTime = new Date();
+  // if (event.startTime.toDate() > currentTime) {
+  //   myEvents.push(event);
+  // } else {
+  //   myExpiredEvents.push(event);
+  // }
 
   useEffect(async () => {
     //get event, then set the pageState based on the event
@@ -61,6 +66,15 @@ export default function EventPage() {
       // stop an unlimited loop because i added event state to dependency
       setEventState(singleEvent);
     }
+    
+    let currentTime = new Date();
+    if (eventState){
+      if (eventState.startTime.toDate() < currentTime){
+        console.log("expired");
+        history.push("/expired");
+      }
+    }
+
     setLoading(false);
     pageSetter(singleEvent);
   }, [eventState]);
