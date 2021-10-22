@@ -70,6 +70,9 @@
   white-space: nowrap;
   width:100%;
 }
+.participantNames{
+  text-align: right;
+}
 
 .eventTitle {
   font-size: clamp(1.25rem, 3vw, 2rem);

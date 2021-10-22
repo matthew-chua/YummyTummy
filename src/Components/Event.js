@@ -33,7 +33,7 @@ export default function Event(props) {
         <div className={classes.rightContainer}>
           {/* actually if too many, put ... */}
           {participants.map((participant, index) => (
-            <p key={index} className={classes.fontsize}>
+            <p key={index} className={`${classes.fontsize} ${classes.participantNames}`}>
               {participant.name}
             </p>
           ))}
