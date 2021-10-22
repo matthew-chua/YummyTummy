@@ -51,6 +51,8 @@ export default function EventPage() {
   const [eventState, setEventState] = useState(null);
   const history = useHistory();
 
+  
+
   useEffect(async () => {
     //get event, then set the pageState based on the event
     setLoading(true);
@@ -73,8 +75,13 @@ export default function EventPage() {
       setPageState(PageStates.JoinEvent);
       console.log("run now");
     } else {
-
+      let participantIDArray = [];
+      event.participantsID.forEach((participant) => {
+        participantIDArray.push(participant.id);
+      })
+      
       try{
+
 
         if (event.host.id == currentUser.uid) {
           //user is host of the event, pageState should be 0/1/2
@@ -85,9 +92,11 @@ export default function EventPage() {
           } else {
             setPageState(PageStates.SelectedLocation);
           }
-        } else if (!event.participantsID.includes(currentUser.id)) {
+        } else if (!participantIDArray.includes(currentUser.uid)) {
           setPageState(PageStates.JoinEvent);
-        } else {
+        } else if (event.selectedEatery !== ""){
+          setPageState(PageStates.SelectedLocation);
+        }else {
           setPageState(PageStates.JoinedEvent);
         }
       } catch (err){

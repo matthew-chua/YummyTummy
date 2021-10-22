@@ -78,7 +78,10 @@
     -webkit-box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.50);
     -moz-box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.50);
 }
-
+.button1:disabled{
+    background-color: grey;
+    cursor: default;
+}
 .button2:hover {
     cursor: pointer;
     -webkit-box-shadow: 0 0 6px 6px rgba(27, 26, 28, 0.3);
