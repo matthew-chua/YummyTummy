@@ -118,6 +118,7 @@ export default function EditEventModal(props) {
     });
     
   };
+  const min = new Date();
 
   return (
     <>
@@ -142,6 +143,7 @@ export default function EditEventModal(props) {
                   type="datetime-local"
                   value={eventState.startTime}
                   onChange={editDate}
+                  min={min.toISOString().substring(0, 16)}
                 />
                 {!startTimeValid && (
                   <p className={classes.invalidText}>
