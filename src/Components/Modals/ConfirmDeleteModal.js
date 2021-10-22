@@ -10,12 +10,13 @@ export default function ConfirmDeleteModal(props) {
   const [loading, setLoading] = useState(false);
 
   const deleteEventHandler = async () => {
-    console.log(props.event)
+    console.log(props.event);
     if (props.event) {
       setLoading(true);
       await deleteEvent(props.event);
-      console.log("I SHOULD BE HERE")
+      console.log("I SHOULD BE HERE");
       history.push("/home");
+      window.location.reload();
     }
   };
 
@@ -36,7 +37,7 @@ export default function ConfirmDeleteModal(props) {
         </div>
       </div>
       <div className={classes.overlay} onClick={props.toggle} />
-      <LoadingModal isLoading = {loading} />
+      <LoadingModal isLoading={loading} />
     </div>
   );
 }
