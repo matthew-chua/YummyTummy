@@ -1,62 +1,92 @@
 .root {
-    z-index: 9999;
-    padding: 20px;
-    text-align: center;
-    background-image: linear-gradient(135deg, #5E6BCB, #BA5BB2);
-    color: rgb(255, 255, 255);
-    box-shadow: 5px 5px 10px 3px rgba(0,0,0,0.50);
-    -webkit-box-shadow: 5px 5px 10px 3px rgba(0,0,0,0.50);
-    -moz-box-shadow: 5px 5px 10px 3px rgba(0,0,0,0.50);
-    border-radius: 20px;
-    width: 30%;
-    height: 30%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    
+  z-index: 9999;
+  padding: 20px;
+  text-align: center;
+  background-image: linear-gradient(135deg, #5e6bcb, #ba5bb2);
+  color: rgb(255, 255, 255);
+  box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  width: 30%;
+  height: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .bigFont {
-    font-size: 2rem;
+  font-size: 2rem;
+  line-height: normal;
 }
 
 .smallFont {
-    font-size: 1rem;
+  font-weight: normal;
+  font-size: 1rem;
 }
 
 .buttons {
-    padding: 20px;
-    justify-content: center;
-    display: flex;
-    height: 50px;
+  padding: 20px;
+  justify-content: center;
+  display: flex;
+  height: 50px;
 }
 
 .leftButton {
-    display: flex;
-    border-radius: 20px;
-    justify-content: center;
-    align-items: center;
-    width: 30%;
-    margin-right: 50px;
+  display: flex;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 30%;
+  margin-right: 50px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 0 rgba(250, 231, 231, 0.25);
+  transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
+}
+
+.leftButton:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 3px 3px rgba(219, 191, 254, 0.3);
+  box-shadow: 0 0 3px 3px rgba(219, 191, 254, 0.3);
+}
+.leftButton:active {
+  background-color: rgba(219, 191, 254, 0.3);
+  transition: background-color 0.2s;
 }
 
 .rightButton {
-    display: flex;
-    border-radius: 20px;
-    justify-content: center;
-    align-items: center;
-    width: 30%;
-    margin-left: 50px;
-}
-.overlay{
-    z-index: 9998;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 30%;
+  margin-left: 50px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 0 rgba(250, 231, 231, 0.25);
+  transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
 }
 
+.rightButton:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 3px 3px rgba(219, 191, 254, 0.3);
+  box-shadow: 0 0 3px 3px rgba(219, 191, 254, 0.3);
+}
+.rightButton:active {
+  background-color: rgba(219, 191, 254, 0.3);
+  transition: background-color 0.2s;
+}
+
+.overlay {
+  z-index: 9998;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
