@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import Slider from "react-slick";
 import classes from "./HostChooseLocation.module.css";
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+
 import Stars from "../../Utility/Stars";
 
 import svg from "../../../Assets/undraw_special_event_4aj8.svg";

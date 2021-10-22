@@ -21,7 +21,6 @@
   width: 100%;
   height: 30vh;
   outline: none;
-  /* border-radius: 1.5rem; */
 }
 
 .loading:after {
