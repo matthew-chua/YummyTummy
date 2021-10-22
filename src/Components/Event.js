@@ -19,7 +19,7 @@ export default function Event(props) {
   const time = formattedTime[4].substring(0, 5);
 
   return (
-    <div className={classes.root} onClick={openEventPageHandler}>
+    <div className={!props.expired ? classes.root : classes.expired} onClick={!props.expired ? openEventPageHandler : ()=>{}}>
       <div className={classes.cardContent}>
         <div className={classes.leftContainer}>
           <h3 className={classes.eventTitle}>{props.title}</h3>

@@ -107,6 +107,7 @@ export default function HomePage() {
               dateTime={event.startTime.toDate()}
               participants={event.participantsID}
               eventID={event.eventID}
+              expired={false}
             />
           ))}
         </div>
@@ -122,6 +123,7 @@ export default function HomePage() {
               dateTime={event.startTime.toDate()}
               participants={event.participantsID}
               eventID={event.eventID}
+              expired={true}
             />
           ))}
         </div>
