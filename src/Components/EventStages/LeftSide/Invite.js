@@ -9,7 +9,7 @@ export default function Invite(props) {
     const [showCopiedMessage, setShowCopiedMessage] = useState(false);
 
     const copyLinkHandler = () => {
-        navigator.clipboard.writeText(`https://www.yummytummy.com/event/${props.id}`)
+        navigator.clipboard.writeText(`https://yummytum.herokuapp.com/event/${props.id}`)
         setShowCopiedMessage(true);
         setTimeout(()=>{setShowCopiedMessage(false)}, 1000);
     }
@@ -18,7 +18,7 @@ export default function Invite(props) {
             <p>Invite your friends:</p>
             <div className={classes.link}>
                 {/* think input might be a better choice in this case */}
-                {!showCopiedMessage && <input className={`${classes.text} ${classes.input}`} value={`https://www.yummytummy.com/event/${props.id}`}></input>}
+                {!showCopiedMessage && <input className={`${classes.text} ${classes.input}`} value={`https://yummytum.herokuapp.com/event/${props.id}`}></input>}
                 {/* {!showCopiedMessage && <p className={classes.text}>{`https://www.yummytummy.com/event/${props.id}`}</p>} */}
                 {showCopiedMessage && <p className={classes.text}>Copied!</p>}
                 <p className={classes.icon} onClick={copyLinkHandler}>
