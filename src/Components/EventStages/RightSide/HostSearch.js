@@ -86,7 +86,7 @@ export default function HostSearch(props) {
           Search
         </button>
         {loading && <p className={classes.text1}>Loading </p>}
-        {error && <p >Oops, no restaurants found. Sorry!</p>}
+        {error && <p >Oops, no restaurants found. Please try again!</p>}
         {/* <LoadingModal isLoading = {loading} /> */}
       </div>
     </div>

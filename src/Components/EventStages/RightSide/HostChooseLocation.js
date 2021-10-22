@@ -46,7 +46,7 @@ export default function HostChooseLocation(props) {
     console.log(props.event, props.selectedPlace.placeId)
     setLoading(true)
     await selectLocation(props.event, props.selectedPlace.placeId)
-    window.location.reload();
+    window.location.reload(); 
   };
 
   return (
