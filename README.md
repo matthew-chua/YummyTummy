@@ -70,7 +70,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-[![Yummy Screen Shot][product-screenshot]](https://yummytum.herokuapp.com)
+[![Yummy Screen Shot][product-screenshot](https://yummytum.herokuapp.com)
 
 YummyTummy is a web app that is used to discover new eateries in Singapore. This system is designed as a comprehensive platform for users and to provide them with an accessible way of organizing and viewing events. It also enables Host and Invitees to look for  new places to eat. With the use of the Google Maps API, the application also provides users with immediate access to information about the suggested eateries as well as the selected eatery. The Google Maps API is also used to generate said eateries. 
 
@@ -172,7 +172,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 1. On the Landing Page, Sign In with Google to start using YummyTummy. 
 <img src="ReadMeAssets/LandingPage.png"/>
-2. You will be greeted with the Dashboard where you can view your Upcoming Events and Previous Events.
+2. You will be greeted with the Dashboard where you can view your Upcoming Events and Previous Events.\n
 3. To create a new event, click "Jio Your Friends".
 <img src="ReadMeAssets/Dashboard:JoinEvent.png"/>
 4. Be sure to fill in all the Event Details before creating the event with your location (with current location or manually entering where you are currently at).
@@ -182,7 +182,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 6. You may edit the details of the event on that Event Page too.To delete and event, click the Delete button.
 <img src="ReadMeAssets/DeleteEvent.png"/>
 7. Sit back, relax and wait for your friends to join the event.
-8. Satisfied with who's coming? Click the Search button to find the nearest food places for all!
+8. Satisfied with who's coming? Click the Search button to find the nearest food places for all!\n
 9. Choose from a list of curated food places for you to meet!
 <img src="ReadMeAssets/CuratedLocations.png"/>
 10. Your friends will now see your chosen meeting location on their Dashboard.
@@ -249,8 +249,6 @@ Project Link: [https://github.com/matthew-chua/YummyTummy](https://github.com/ma
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
 <!-- * [Choose an Open Source License](https://choosealicense.com) -->
 * [Icons8](https://icons8.com/l/animations/)
