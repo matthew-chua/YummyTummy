@@ -271,4 +271,4 @@ Project Link: [https://github.com/matthew-chua/YummyTummy](https://github.com/ma
 [issues-url]: https://github.com/matthew-chua/YummyTummy/issues
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
 [license-url]: https://github.com/matthew-chua/master/LICENSE.txt
-[product-screenshot]: https://github.com/matthew-chua/master/ReadMeAssets/LandingPage.png
+[product-screenshot]: https://github.com/matthew-chua/master/blob/ReadMeAssets/LandingPage.png
