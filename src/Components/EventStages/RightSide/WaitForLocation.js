@@ -5,11 +5,11 @@ import { listenToEvent } from "../../../Firestore/DatabaseManager";
 
 export default function WaitForLocation(props) {
 
-  useEffect(()=>{
-    if (props.eventID){
-      listenToEvent(props.eventID, props.setEventState)
-    }
-  },[props.eventID])
+  // useEffect(()=>{
+  //   if (props.eventID){
+  //     listenToEvent(props.eventID, props.setEventState)
+  //   }
+  // },[props.eventID])
 
   return (
     <div className={classes.root}>

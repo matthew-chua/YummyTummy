@@ -36,17 +36,17 @@
   margin-bottom: 12px;
 }
 
-.googleLogo {
+/* .googleLogo {
   height: 20px;
   margin-right: 12px;
-}
+} */
 
 .headerText {
   display: inline;
   font-size: 14px;
   color: black;
 }
-
+/* 
 .btnContainer {
   display: flex;
   flex-direction: row;
@@ -78,7 +78,7 @@
 .btn:active {
   background-color: rgba(219, 191, 254, 0.3);
   transition: background-color 0.2s;
-}
+} */
 
 .card {
   display: flex;

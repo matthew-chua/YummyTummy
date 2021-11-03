@@ -28,6 +28,7 @@ export default function HomePage() {
   //fetches ALL events from firebase
   const [eventState, setEventState] = useState([]);
   useEffect(async () => {
+    setHidden();
     setLoading(true);
     const eventArray = await getEvents();
     setEventState(eventArray);

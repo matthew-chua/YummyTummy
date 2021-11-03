@@ -66,6 +66,7 @@ export const getSingleEvent = async (eventID) => {
   if (!docSnapshot.exists()) {
     // LOL wtf matt HAHAHAHHA
     console.log("L");
+    return null;
   } else {
     return docSnapshot.data();
   }

@@ -10,10 +10,12 @@ import { getPlaceDetailsForList } from "../../../Maps/UsePlaceDetails";
 
 //css
 import classes from "./LeftSide.module.css";
+import { listenToEvent } from "../../../Firestore/DatabaseManager";
 
 export default function LeftSide(props) {
   usePlaceDetails();
 
+  
 
   const [placeDetails, setPlaceDetails] = useState({
     name: "",
@@ -25,6 +27,12 @@ export default function LeftSide(props) {
     address_component: "",
     } 
   )
+
+  useEffect(()=>{
+    if (props.event){
+      listenToEvent(props.event.eventID, props.setEventState)
+    }
+  },[props.pageState])
 
   const didFetchPlaceDetail = (placeDetailsList) => {
     if (!placeDetailsList) {

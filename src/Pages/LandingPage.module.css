@@ -36,7 +36,7 @@
   display: flex;
   align-items: center;
 }
-
+/* 
 .btn {
   width: 25vh;
   height: 5vh;
@@ -56,25 +56,25 @@
 .btn:active {
   background-color: rgba(219, 191, 254, 0.3);
   transition: background-color 0.2s;
-}
+} */
 
-.googleImg {
+/* .googleImg {
   width: 2vh;
   height: 2vh;
   margin-right: 10px;
-}
+} */
 
-.btnContainer {
+/* .btnContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-}
+} */
 
-.btnText {
+/* .btnText {
   display: inline;
   font-size: 0.75rem;
-}
+} */
 
 @media screen and (max-width: 680px) {
   

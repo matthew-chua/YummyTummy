@@ -16,9 +16,10 @@ import LoadingModal from "../Components/Modals/LoadingModal";
 import classes from "./EventPage.module.css";
 
 //data manager
-import { getSingleEvent } from "../Firestore/DatabaseManager";
+import { getSingleEvent,listenToEvent } from "../Firestore/DatabaseManager";
 import HostChooseLocation from "../Components/EventStages/RightSide/HostChooseLocation";
 import ChooseLocationCard from "../Components/EventStages/ChooseLocation/ChooseLocationCard";
+
 
 export default function EventPage() {
   // 0 - host (search location)
@@ -62,6 +63,9 @@ export default function EventPage() {
     //get event, then set the pageState based on the event
     setLoading(true);
     const singleEvent = await getSingleEvent(params.id);
+    if (singleEvent == null){
+      history.push("/home");
+    }
     if (eventState == null) {
       // stop an unlimited loop because i added event state to dependency
       setEventState(singleEvent);
@@ -79,6 +83,12 @@ export default function EventPage() {
     pageSetter(singleEvent);
   }, [eventState]);
 
+  // useEffect(()=>{
+  //   if (eventState){
+  //     listenToEvent(eventState.eventID, setEventState)
+  //   }
+  // },[])
+    
 
   //this function sets the pageState
   const pageSetter = (event) => {
@@ -118,6 +128,7 @@ export default function EventPage() {
       }
     }
   };
+  
 
   return (
     <div className={classes.root}>
@@ -129,6 +140,7 @@ export default function EventPage() {
               id={params.id}
               event={eventState}
               loading={loading}
+              setEventState={setEventState}
             />
           }
           right={
@@ -146,6 +158,7 @@ export default function EventPage() {
       {pageState === PageStates.ChooseLocation && (
         <ChooseLocationCard
           pageState={pageState}
+          setEventState={setEventState}
           id={params.id}
           event={eventState}
           loading={loading}
@@ -160,6 +173,7 @@ export default function EventPage() {
               event={eventState}
               id={params.id}
               loading={loading}
+              setEventState={setEventState}
             />
           }
           right={<CuratedLocation event={eventState}/>}
@@ -176,6 +190,7 @@ export default function EventPage() {
               id={params.id}
               event={eventState}
               loading={loading}
+              setEventState={setEventState}
             />
           }
           right={<JoinYourFriends authed={authed} setAuthed={setAuthed} event={eventState} setEventState={setEventState}/>}
@@ -191,6 +206,7 @@ export default function EventPage() {
               id={params.id}
               event={eventState}
               loading={loading}
+              setEventState={setEventState}
             />
           }
           right={<WaitForLocation eventID={eventState.eventID} setEventState={setEventState}/>}

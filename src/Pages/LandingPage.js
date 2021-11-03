@@ -9,6 +9,7 @@ import landingPageClasses from "./LandingPage.module.css";
 //assets
 import hungryPic from "../Assets/food_dream.png";
 import googleLogo from "../Assets/google_logo.svg";
+import LoginButton from "../Components/Utility/LoginButton";
 
 export default function WelcomePage() {
   const history = useHistory();
@@ -21,12 +22,6 @@ export default function WelcomePage() {
     }
   }, [currentUser]);
 
-  // sign in
-  const signInWithGoogleHandler = () => {
-    signInWithGoogleAuth(auth, provider);
-    
-  };
-
   return (
     <div className={landingPageClasses.page}>
       <div>
@@ -36,26 +31,11 @@ export default function WelcomePage() {
           fret not, Yummy Tummy is here to help you and your best friends find
           new places to dine!
         </p>
-
         <div>
-          <div>
-            <button
-              onClick={signInWithGoogleHandler}
-              className={landingPageClasses.btn}
-            >
-              <div className={landingPageClasses.btnContainer}>
-                <img className={landingPageClasses.googleImg} src={googleLogo} />
-                <div className={landingPageClasses.btnText}>
-                  Sign in With Google
-                </div>
-              </div>
-            </button>
-          </div>
-
+          <LoginButton />
           <p>log in now to jio your friends!</p>
         </div>
       </div>
-
       <div className={landingPageClasses.rightContainer}>
         <img src={hungryPic} className={landingPageClasses.pic} />
       </div>

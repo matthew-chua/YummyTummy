@@ -25,17 +25,18 @@ export default function JoinYourFriends(props) {
   const [disableJoin, setDisableJoin] = useState(false);
 
   useEffect(()=>{
-    if (currentEvent.maxParticipants == currentEvent.participantsID.length){
-      setDisableJoin(true);
-      
+    if (currentEvent){
+      if (currentEvent.maxParticipants == currentEvent.participantsID.length){
+        setDisableJoin(true);
+      }
     }
   }, [currentEvent]);
 
-  useEffect(()=>{
-    if (currentEvent){
-      listenToEvent(currentEvent.eventID, props.setEventState)
-    }
-  },[currentEvent.eventID])
+  // useEffect(()=>{
+  //   if (currentEvent){
+  //     listenToEvent(currentEvent.eventID, props.setEventState)
+  //   }
+  // },[currentEvent])
 
   
 

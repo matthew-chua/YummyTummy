@@ -58,6 +58,7 @@ export default function ChooseLocationCard(props) {
           placeList={placeList}
           placeClickHandler={placeClickHandler}
           selectedIndex={selectedIndex}
+          setEventState={props.setEventState}
         />
       }
       right={<HostChooseLocation event={props.event} selectedPlace={placeList[selectedIndex]} placeList={placeList}/>}

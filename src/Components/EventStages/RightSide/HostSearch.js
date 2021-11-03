@@ -15,6 +15,7 @@ import classes from "./HostSearch.module.css";
 import { listenToEvent, updateRecommendedEateries } from "../../../Firestore/DatabaseManager";
 
 export default function HostSearch(props) {
+  const currentEvent = props.event;
   const [showEateries, setShowEateries] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -28,6 +29,12 @@ export default function HostSearch(props) {
   //     listenToEvent(props.eventID, props.setEventState)
   //   }
   // }, [props.eventID])
+
+  // useEffect(()=>{
+  //   if (currentEvent){
+  //     listenToEvent(currentEvent.eventID, props.setEventState)
+  //   }
+  // },[currentEvent])
 
   const didFinishGettingNearbyRestaurants = async (recommendedEateries) => {
     if (!recommendedEateries) {
