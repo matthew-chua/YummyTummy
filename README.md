@@ -247,6 +247,16 @@ Project Link: [https://github.com/matthew-chua/YummyTummy](https://github.com/ma
 <p align="right">(<a href="#top">back to top</a>)</p>
  -->
 
+<!-- CONTRIBUTORS -->
+## Contributors
+* <a href="https://github.com/ivaanteo">Ivan Teo</a>
+* <a href="https://github.com/matthew-chua">Matthew Chua</a>
+* <a href="https://github.com/googlercolin">Colin Hong</a>
+* <a href="https://github.com/dyang1999">Daniel Yang</a>
+* <a>Joel Lim</a>
+
+
+
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
