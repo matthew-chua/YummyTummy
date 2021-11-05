@@ -144,6 +144,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
   ```sh
   yarn install
   ```
+* All package versions are found in yarn.lock and package.json
 
 <!-- ### Installation
 
