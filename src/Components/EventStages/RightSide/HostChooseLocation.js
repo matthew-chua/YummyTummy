@@ -43,12 +43,10 @@ export default function HostChooseLocation(props) {
   };
 
   const selectLocationHandler = async () => {
-    // bitch i aint doing none of this shit no more bye!
-    console.log(props.event, props.selectedPlace.placeId)
     setLoading(true)
 
     await selectLocation(props.event, props.selectedPlace)
-    // window.location.reload(); 
+    window.location.reload(); 
   };
 
   return (
